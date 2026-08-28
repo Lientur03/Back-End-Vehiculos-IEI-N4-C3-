@@ -1,47 +1,75 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Control de Vehículos y Mantenciones</title>
-</head>
-<body>
-    <header>
-        <img src="{% static 'INACAP.png' %}" alt="Logo INACAP" width="180">
-        <h1>Sistema de Control de Vehículos y Mantenciones</h1>
-        <p>Plataforma para la gestión operativa, trazabilidad de flotas y auditoría de mantenimientos</p>
-    </header>
 
-    <main>
-        <section>
-            <h2>Saludo</h2>
-            <p>Bienvenido(a) al portal centralizado de gestión para el Control de Vehículos y Mantenciones. 
-            A través de este entorno, se centralizan los procesos de administración, supervisión de bitácoras, histórico de intervenciones mecánicas y asignación de recursos en tiempo real.</p>
-        </section>
+{% block title %}Inicio | Control de Vehículos y Mantenciones{% endblock %}
 
-        <section>
-            <h2>Objetivos y Capacidades del Sistema</h2>
-            <p>La plataforma facilita la coordinación continua entre conductores, administradores de flota y talleres mecánicos autorizados. 
-                Entre sus funciones principales destaca el control preventivo y correctivo de vehículos, la validación de reglas de negocio, 
-                la emisión de alertas de mantenimiento y la generación de indicadores clave para la toma de decisiones estratégicas.</p>
-            
-            <ul>
-                <li><strong>Control de Flotas:</strong>Hoja de vida del vehículo, estado operativo, documentación al día y asignación a conductores.</li>
-                <li><strong>Gestión de Talleres y Mantenimientos:</strong> Registro detallado de repuestos, órdenes de trabajo, diagnósticos y trazabilidad de costos.</li>
-                <li><strong>Seguridad y Auditoría:</strong> Registro histórico e inalterable de eventos, gestión de permisos por perfil y control de acceso seguro.</li>
-            </ul>
-        </section>
+{% block content %}
+<!-- Tarjeta Principal de Bienvenida -->
+<div class="card mb-4 border-0 shadow-sm border-start border-primary border-4">
+    <div class="card-body p-4">
+        <div class="d-flex justify-content-between align-items-start">
+            <div>
+                <h2 class="fw-bold text-dark">Sistema de Control de Vehículos y Mantenciones</h2>
+                <p class="text-muted fs-5">Plataforma para la gestión operativa, trazabilidad de flotas y auditoría de mantenimientos.</p>
+            </div>
+            <!-- Corrección de extensión/nombre a Django.png -->
+            <img src="{% static 'Django.jpeg' %}" alt="Django" height="50">
+        </div>
+        
+        <hr class="my-3">
+        
+        <h5 class="fw-bold text-primary">Bienvenido(a)</h5>
+        <p class="mb-0 text-secondary">
+            Bienvenido(a) al portal centralizado de gestión para el Control de Vehículos y Mantenciones. A través de este entorno, se centralizan los procesos de administración, supervisión de bitácoras, histórico de intervenciones mecánicas y asignación de recursos en tiempo real.
+        </p>
+    </div>
+</div>
 
-        <section>
-            <img src="{% static 'Django.jpeg' %}" alt="Logo Django Back-End" width="150">
-        </section>
-    </main>
+<!-- Sección Objetivos y Capacidades -->
+<div class="mb-3">
+    <h4 class="fw-bold text-dark">Objetivos y Capacidades del Sistema</h4>
+    <p class="text-secondary">
+        La plataforma facilita la coordinación continua entre conductores, administradores de flota y talleres mecánicos autorizados. Entre sus funciones principales destaca el control preventivo y correctivo de vehículos, la validación de reglas de negocio, la emisión de alertas de mantenimiento y la generación de indicadores clave para la toma de decisiones estratégicas.
+    </p>
+</div>
 
-    <footer>
-        <p>Programación Back End - INACAP Sede Temuco [Primavera 2026]</p>
-        <p>Estudiante: Andrés Lientur Hormazábal Fuentes</p>
-        <p>Docente: Erick Bailey Rebolledo</p>
-    </footer>
-</body>
-</html>
+<!-- Tarjetas Informativas -->
+<div class="row g-3">
+    <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm text-center">
+            <div class="card-body p-4">
+                <img src="{% static 'Flota.png' %}" alt="Control de Flotas" class="img-fluid mb-3" style="max-height: 80px;">
+                <h5 class="fw-bold text-dark text-start">Control de Flotas</h5>
+                <p class="card-text text-muted small text-start">
+                    Hoja de vida del vehículo, estado operativo, documentación al día y asignación a conductores.
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm text-center">
+            <div class="card-body p-4">
+                <img src="{% static 'Taller.png' %}" alt="Gestión de Talleres" class="img-fluid mb-3" style="max-height: 80px;">
+                <h5 class="fw-bold text-dark text-start">Gestión de Talleres</h5>
+                <p class="card-text text-muted small text-start">
+                    Registro detallado de repuestos, órdenes de trabajo, diagnósticos y trazabilidad de costos.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm text-center">
+            <div class="card-body p-4">
+                <!-- Imagen actualizada a S.A..jpg -->
+                <img src="{% static 'S.A..jpg' %}" alt="Seguridad y Auditoría" class="img-fluid mb-3" style="max-height: 80px;">
+                <h5 class="fw-bold text-dark text-start">Seguridad y Auditoría</h5>
+                <p class="card-text text-muted small text-start">
+                    Registro histórico e inalterable de eventos, gestión de permisos por perfil y control de acceso seguro.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
