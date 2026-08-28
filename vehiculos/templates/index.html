@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,21 +8,40 @@
 </head>
 <body>
     <header>
-        <p>Proyecto: Control de Vehículos y Mantenciones</p>
-        <h1>Control de Vehículos y Mantenciones</h1>
+        <img src="{% static 'INACAP.png' %}" alt="Logo INACAP" width="180">
+        <h1>Sistema de Control de Vehículos y Mantenciones</h1>
+        <p>Plataforma para la gestión operativa, trazabilidad de flotas y auditoría de mantenimientos</p>
     </header>
 
     <main>
-        <p>Empresa con flota necesita digitalizar la gestión de vehículos y mantenimiento. Actualmente gran parte de la información se mantiene distribuida en distintos registros, lo que dificulta el seguimiento de operaciones, la generación de reportes y la coordinación entre los distintos actores involucrados. El sistema deberá centralizar la información relevante y ofrecer mecanismos que permitan mantener datos históricos consistentes.</p>
-        
-        <p>Los conductores y talleres interactuarán diariamente con la plataforma realizando operaciones que afectan el estado de los registros. Será necesario almacenar antecedentes históricos, controlar situaciones excepcionales, validar reglas de negocio y facilitar consultas complejas utilizando diferentes criterios de búsqueda. Determinados eventos producirán cambios de estado que deberán quedar registrados para efectos de auditoría y seguimiento.</p>
-        
-        <p>La organización requiere además indicadores de gestión que permitan analizar tendencias, actividad reciente, utilización de recursos y comportamiento de los usuarios. El diseño deberá considerar distintos perfiles de acceso, información pública y privada, relaciones de dependencia entre los datos y procesos que involucren múltiples entidades conectadas entre sí. La descripción entrega suficiente contexto para que el equipo de desarrollo identifique actores, entidades, relaciones, restricciones, reglas de integridad y posibles escenarios de uso.</p>
+        <section>
+            <h2>Saludo</h2>
+            <p>Bienvenido(a) al portal centralizado de gestión para el Control de Vehículos y Mantenciones. 
+            A través de este entorno, se centralizan los procesos de administración, supervisión de bitácoras, histórico de intervenciones mecánicas y asignación de recursos en tiempo real.</p>
+        </section>
+
+        <section>
+            <h2>Objetivos y Capacidades del Sistema</h2>
+            <p>La plataforma facilita la coordinación continua entre conductores, administradores de flota y talleres mecánicos autorizados. 
+                Entre sus funciones principales destaca el control preventivo y correctivo de vehículos, la validación de reglas de negocio, 
+                la emisión de alertas de mantenimiento y la generación de indicadores clave para la toma de decisiones estratégicas.</p>
+            
+            <ul>
+                <li><strong>Control de Flotas:</strong>Hoja de vida del vehículo, estado operativo, documentación al día y asignación a conductores.</li>
+                <li><strong>Gestión de Talleres y Mantenimientos:</strong> Registro detallado de repuestos, órdenes de trabajo, diagnósticos y trazabilidad de costos.</li>
+                <li><strong>Seguridad y Auditoría:</strong> Registro histórico e inalterable de eventos, gestión de permisos por perfil y control de acceso seguro.</li>
+            </ul>
+        </section>
+
+        <section>
+            <img src="{% static 'Django.jpeg' %}" alt="Logo Django Back-End" width="150">
+        </section>
     </main>
 
     <footer>
         <p>Programación Back End - INACAP Sede Temuco [Primavera 2026]</p>
+        <p>Estudiante: Andrés Lientur Hormazábal Fuentes</p>
+        <p>Docente: Erick Bailey Rebolledo</p>
     </footer>
-
 </body>
 </html>
