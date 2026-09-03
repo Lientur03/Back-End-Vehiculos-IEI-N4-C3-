@@ -16,6 +16,7 @@
     ```
 
 2. **Crear y activar el entorno virtual**
+    
     Esto se hace en la Terminal de Visual Studio Code mediante PowerShell:
     
     ```
