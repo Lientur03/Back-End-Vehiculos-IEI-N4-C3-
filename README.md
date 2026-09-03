@@ -9,8 +9,11 @@
 
 1. **Clonar el repositorio:**
    ```bash
-   git clone [https://github.com/Lientur03/Back-End-Vehiculos-IEI-N4-C3.git](https://github.com/Lientur03/Back-End-Vehiculos-IEI-N4-C3.git)
+   
+   git clone [https://github.com/Lientur03/Back-End-Vehiculos-IEI-N4-C3.git]
+
    cd Back-End-Vehiculos-IEI-N4-C3
+    ```
 
 2. **Crear y activar el entorno virtual**
     Esto se hace en la Terminal de Visual Studio Code mediante PowerShell:
