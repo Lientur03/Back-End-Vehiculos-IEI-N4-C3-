@@ -10,7 +10,7 @@
 1. **Clonar el repositorio:**
    ```bash
    
-   git clone [https://github.com/Lientur03/Back-End-Vehiculos-IEI-N4-C3.git]
+   git clone https://github.com/Lientur03/Back-End-Vehiculos-IEI-N4-C3.git
 
    cd Back-End-Vehiculos-IEI-N4-C3
     ```
