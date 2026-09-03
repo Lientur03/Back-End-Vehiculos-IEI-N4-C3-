@@ -35,3 +35,12 @@
     ```
     python manage.py runserver
     ```
+
+### Pasos para guardar, confirmar y sincronizar en el Control De Código Fuente
+Pasos para guardar y subir desde la interfaz gráfica de VS Code (sin abrir terminal):
+
+1. Presiona `Ctrl + S` para guardar el archivo `README.md`.
+2. Haz clic en el ícono de **Control de Código Fuente** (tercer ícono de la barra lateral izquierda).
+3. En el cuadro de texto, escribe el mensaje: `Se actualiza README.md con instrucciones`.
+4. Haz clic en el botón **Confirmación** (o Commit).
+5. Haz clic en **Sincronizar cambios** (o Sync) y presiona **Aceptar**.
