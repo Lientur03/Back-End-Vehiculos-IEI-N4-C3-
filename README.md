@@ -2,6 +2,8 @@
 
 **Asignatura:** Programación Back End [TI3041]  
 **Institución:** INACAP Sede Temuco  
+**Estudiante:** Andrés Lientur Hormazábal Fuentes
+**Docente**: Erick Bailey Rebolledo
 
 ## Requisitos e Instalación
 
