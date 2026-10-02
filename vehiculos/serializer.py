@@ -1,23 +1,10 @@
 from rest_framework import serializers
 
-from .models import Perfil
-from .models import Actor
-from .models import Estado
-from .models import Gestion
-from .models import Operacion
-from .models import Datos
-from .models import Antecedentes
-from .models import Excepcionales
-from .models import Reglas
-from .models import Consultas
-from .models import Reportes
-from .models import Indicador
-from .models import Tendencias
-from .models import Actividad
-from .models import Publica
-from .models import Privada
+from .models import Perfil, Actor, Estado, Gestion, Operacion, Datos, Antecedente, Excepcionales, Reglas, Consultas 
+from .models import Reportes, Indicador, Tendencias, Actividad, Publica, Privada
 
 class PerfilSerializer(serializers.ModelSerializer):
+    class
 
 class ActorSerializer(serializers.ModelSerializer):
 

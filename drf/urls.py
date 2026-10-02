@@ -6,6 +6,7 @@ from django.views.static import serve
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('vehiculos.urls')),
+    path('vehiculos/', include('vehiculos.urls'))
 ]
 
 # Forzar la entrega de archivos estáticos incluso cuando DEBUG = False
