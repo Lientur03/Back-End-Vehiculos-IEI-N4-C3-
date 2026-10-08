@@ -7,7 +7,8 @@ from vehiculos import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
-    path('vehiculos/', include('vehiculos.urls'))
+    path('vehiculos/', include('vehiculos.urls')),
+    path('api-auth/', include('rest_framework.urls')),
 ]
 
 # Forzar la entrega de archivos estáticos incluso cuando DEBUG = False
