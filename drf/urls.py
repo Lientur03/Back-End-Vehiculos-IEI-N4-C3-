@@ -1,7 +1,5 @@
 from django.contrib import admin
-from django.urls import path, include, re_path
-from django.conf import settings
-from django.views.static import serve
+from django.urls import path, include
 from vehiculos import views
 
 urlpatterns = [
@@ -9,9 +7,4 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('vehiculos/', include('vehiculos.urls')),
     path('api-auth/', include('rest_framework.urls')),
-]
-
-# Forzar la entrega de archivos estáticos incluso cuando DEBUG = False
-urlpatterns += [
-    re_path(r'^static/(?P<path>.*)$', serve, {'document_root': settings.BASE_DIR / 'vehiculos' / 'static'}),
 ]
