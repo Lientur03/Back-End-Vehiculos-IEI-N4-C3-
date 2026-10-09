@@ -83,14 +83,14 @@ class Datos(models.Model):
 
 # 7. Antecedentes históricos de vehículos
 class Antecedentes(models.Model):
-    patente_vehiculo = models.CharField(max_length=10)
+    vehiculo = models.ForeignKey(max_length=10)
     fecha_evento = models.DateField()
     tipo_antecedente = models.CharField(max_length=100)
     descripcion = models.TextField()
     archivo_adjunto = models.FileField(upload_to='antecedentes/', null=True, blank=True)
 
     def __str__(self):
-        return f"Antecedente {self.patente_vehiculo} - {self.tipo_antecedente}"
+        return f"Antecedente {self.vehiculo} - {self.tipo_antecedente}"
 
 
 # 8. Registro de situaciones excepcionales o incidencias
