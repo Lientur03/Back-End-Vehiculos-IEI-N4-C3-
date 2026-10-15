@@ -1,8 +1,8 @@
 from rest_framework import serializers
 from .models import (
-    Perfil, Actor, Estado, Gestion, Operacion, Datos,
-    Antecedentes, Excepcionales, Reglas, Consultas, Reportes,
-    Indicador, Tendencias, Actividad, Publica, Privada
+    Perfil, Administrador, Supervisor, Cliente, Vehiculos, Estado, 
+    Gestion, Operacion, Datos, Antecedentes, Excepcionales, Reglas, 
+    Consultas, Reportes, Indicador, Tendencias, Actividad, Publica, Privada
 )
 
 class PerfilSerializer(serializers.ModelSerializer):
@@ -10,9 +10,24 @@ class PerfilSerializer(serializers.ModelSerializer):
         model = Perfil
         fields = '__all__'
 
-class ActorSerializer(serializers.ModelSerializer):
+class AdministradorSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Actor
+        model = Administrador
+        fields = '__all__'
+
+class SupervisorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Supervisor
+        fields = '__all__'
+
+class ClienteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Cliente
+        fields = '__all__'
+
+class VehiculosSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Vehiculos
         fields = '__all__'
 
 class EstadoSerializer(serializers.ModelSerializer):

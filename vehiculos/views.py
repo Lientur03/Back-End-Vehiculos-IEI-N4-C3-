@@ -1,19 +1,17 @@
-from django.shortcuts import render
 from rest_framework import viewsets
-
 from .models import (
-    Perfil, Actor, Estado, Gestion, Operacion, Datos,
-    Antecedentes, Excepcionales, Reglas, Consultas, Reportes,
-    Indicador, Tendencias, Actividad, Publica, Privada
+    Perfil, Administrador, Supervisor, Cliente, Vehiculos, Estado, 
+    Gestion, Operacion, Datos, Antecedentes, Excepcionales, Reglas, 
+    Consultas, Reportes, Indicador, Tendencias, Actividad, Publica, Privada
 )
 from .serializer import (
-    PerfilSerializer, ActorSerializer, EstadoSerializer, GestionSerializer,
-    OperacionSerializer, DatosSerializer, AntecedentesSerializer,
-    ExcepcionalesSerializer, ReglasSerializer, ConsultasSerializer,
-    ReportesSerializer, IndicadorSerializer, TendenciasSerializer,
-    ActividadSerializer, PublicaSerializer, PrivadaSerializer
+    PerfilSerializer, AdministradorSerializer, SupervisorSerializer, ClienteSerializer, VehiculosSerializer, EstadoSerializer, 
+    GestionSerializer, OperacionSerializer, DatosSerializer, AntecedentesSerializer, ExcepcionalesSerializer, ReglasSerializer, 
+    ConsultasSerializer, ReportesSerializer, IndicadorSerializer, TendenciasSerializer, ActividadSerializer, PublicaSerializer, PrivadaSerializer
 )
+from django.shortcuts import render
 
+# Vista tradicional de índice / inicio
 def index(request):
     return render(request, 'index.html')
 
@@ -21,9 +19,21 @@ class PerfilViewSet(viewsets.ModelViewSet):
     queryset = Perfil.objects.all()
     serializer_class = PerfilSerializer
 
-class ActorViewSet(viewsets.ModelViewSet):
-    queryset = Actor.objects.all()
-    serializer_class = ActorSerializer
+class AdministradorViewSet(viewsets.ModelViewSet):
+    queryset = Administrador.objects.all()
+    serializer_class = AdministradorSerializer
+
+class SupervisorViewSet(viewsets.ModelViewSet):
+    queryset = Supervisor.objects.all()
+    serializer_class = SupervisorSerializer
+
+class ClienteViewSet(viewsets.ModelViewSet):
+    queryset = Cliente.objects.all()
+    serializer_class = ClienteSerializer
+
+class VehiculosViewSet(viewsets.ModelViewSet):
+    queryset = Vehiculos.objects.all()
+    serializer_class = VehiculosSerializer
 
 class EstadoViewSet(viewsets.ModelViewSet):
     queryset = Estado.objects.all()

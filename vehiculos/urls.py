@@ -5,7 +5,10 @@ from vehiculos import views
 enrutador = routers.DefaultRouter()
 
 enrutador.register(r'perfiles', views.PerfilViewSet)
-enrutador.register(r'actores', views.ActorViewSet)
+enrutador.register(r'administradores', views.AdministradorViewSet)
+enrutador.register(r'supervisores', views.SupervisorViewSet)
+enrutador.register(r'clientes', views.ClienteViewSet)
+enrutador.register(r'vehiculos', views.VehiculosViewSet)
 enrutador.register(r'estados', views.EstadoViewSet)
 enrutador.register(r'gestiones', views.GestionViewSet)
 enrutador.register(r'operaciones', views.OperacionViewSet)

@@ -14,24 +14,48 @@ class Perfil(models.Model):
     def __str__(self):
         return f"{self.usuario.username} - {self.rol}"
 
+# 2. Modelo Del Rol Administrador
+class Administrador(models.Model):
+    nombre = models.CharField(max_length=100)
+    correo = models.EmailField(unique=True)
+    
+    def __str__(self):
+        return self.nombre
 
-# 2. Actores del sistema (Conductores, Talleres, Supervisores)
-class Actor(models.Model):
-    perfil = models.ForeignKey(Perfil, on_delete=models.CASCADE, related_name='actores', null=True, blank=True)
-    nombre_completo = models.CharField(max_length=150)
-    rut = models.CharField(max_length=12, unique=True)
-    tipo = models.CharField(
-        max_length=50, 
-        choices=[('CONDUCTOR', 'Conductor'), ('TALLER', 'Taller Mecánico'), ('SUPERVISOR', 'Supervisor')]
-    )
-    telefono = models.CharField(max_length=20, blank=True)
-    email = models.EmailField()
+# 3. Modelo Del Rol Supervisor
+class Supervisor(models.Model):
+    nombre = models.CharField(max_length=100)
+    correo = models.EmailField(unique=True)
+    perfil = models.CharField(max_length=50, default='Supervisor')
+    
+    def __str__(self):
+        return self.nombre
+
+# 4. Cliente que va al Taller De Mecánica Automotriz (Antes Actor)
+class Cliente(models.Model):
+    rut = models.CharField(max_length=12, primary_key=True, unique=True)
+    nombre = models.CharField(max_length=100)
+    correo = models.EmailField(unique=True)
+    telefono = models.CharField(max_length=20)
+    direccion = models.CharField(max_length=255)
 
     def __str__(self):
-        return f"{self.nombre_completo} ({self.tipo})"
+        return f"{self.nombre} ({self.rut})"
 
+# 5. Modelo Principal sobre los Vehiculos
+class Vehiculos(models.Model):
+    patente = models.CharField(max_length=10, primary_key=True, unique=True)
+    marca = models.CharField(max_length=50)
+    modelo = models.CharField(max_length=50)
+    anio = models.IntegerField()
+    tipo_combustible = models.CharField(max_length=50)
+    # Relación ForeignKey con Cliente
+    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name='vehiculos')
 
-# 3. Estados de flota y mantenimiento
+    def __str__(self):
+        return f"{self.marca} {self.modelo} - {self.patente}"
+
+# 6. Estados de flota y mantenimiento
 class Estado(models.Model):
     nombre = models.CharField(max_length=50, unique=True)
     descripcion = models.TextField(blank=True)
@@ -41,11 +65,11 @@ class Estado(models.Model):
         return self.nombre
 
 
-# 4. Gestión global de flotas y asignaciones
+# 7. Gestión global de flotas y asignaciones
 class Gestion(models.Model):
     codigo_flota = models.CharField(max_length=50, unique=True)
     nombre_area = models.CharField(max_length=100)
-    responsable = models.ForeignKey(Actor, on_delete=models.SET_NULL, null=True, related_name='gestiones')
+    responsable = models.ForeignKey(Cliente, on_delete=models.SET_NULL, null=True, related_name='gestiones')
     fecha_inicio = models.DateField()
     activo = models.BooleanField(default=True)
 
@@ -53,10 +77,10 @@ class Gestion(models.Model):
         return f"Gestión {self.codigo_flota} - {self.nombre_area}"
 
 
-# 5. Operaciones de vehículos y servicios
+# 8. Operaciones de vehículos y servicios
 class Operacion(models.Model):
     gestion = models.ForeignKey(Gestion, on_delete=models.CASCADE, related_name='operaciones', null=True, blank=True)
-    actor = models.ForeignKey(Actor, on_delete=models.CASCADE, related_name='operaciones')
+    actor = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name='operaciones')
     patente_vehiculo = models.CharField(max_length=10)
     tipo_operacion = models.CharField(
         max_length=50, 
@@ -70,7 +94,7 @@ class Operacion(models.Model):
         return f"Operación {self.id} - {self.patente_vehiculo} ({self.tipo_operacion})"
 
 
-# 6. Registros de datos y telemetría
+# 9. Registros de datos y telemetría
 class Datos(models.Model):
     operacion = models.ForeignKey(Operacion, on_delete=models.CASCADE, related_name='datos_registrados')
     kilometraje = models.PositiveIntegerField()
@@ -81,19 +105,19 @@ class Datos(models.Model):
         return f"Datos {self.id} - KM: {self.kilometraje}"
 
 
-# 7. Antecedentes históricos de vehículos
+# 10. Antecedentes históricos de vehículos
 class Antecedentes(models.Model):
-    vehiculo = models.ForeignKey(max_length=10)
+    vehiculo = models.ForeignKey(Vehiculos, on_delete=models.CASCADE, related_name='antecedentes')
     fecha_evento = models.DateField()
     tipo_antecedente = models.CharField(max_length=100)
     descripcion = models.TextField()
     archivo_adjunto = models.FileField(upload_to='antecedentes/', null=True, blank=True)
 
     def __str__(self):
-        return f"Antecedente {self.vehiculo} - {self.tipo_antecedente}"
+        return f"Antecedente {self.vehiculo.patente} - {self.tipo_antecedente}"
 
 
-# 8. Registro de situaciones excepcionales o incidencias
+# 11. Registro de situaciones excepcionales o incidencias
 class Excepcionales(models.Model):
     operacion = models.ForeignKey(Operacion, on_delete=models.CASCADE, related_name='excepciones')
     titulo = models.CharField(max_length=150)
@@ -109,7 +133,7 @@ class Excepcionales(models.Model):
         return f"Excepción: {self.titulo} [{self.nivel_prioridad}]"
 
 
-# 9. Reglas de negocio e integridad del sistema
+# 12. Reglas de negocio e integridad del sistema
 class Reglas(models.Model):
     nombre_regla = models.CharField(max_length=100)
     limite_kilometros_mantencion = models.PositiveIntegerField()
@@ -120,7 +144,7 @@ class Reglas(models.Model):
         return self.nombre_regla
 
 
-# 10. Consultas avanzadas y filtros guardados
+# 13. Consultas avanzadas y filtros guardados
 class Consultas(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     nombre_consulta = models.CharField(max_length=100)
@@ -131,7 +155,7 @@ class Consultas(models.Model):
         return self.nombre_consulta
 
 
-# 11. Reportes generados
+# 14. Reportes generados
 class Reportes(models.Model):
     titulo = models.CharField(max_length=150)
     tipo_reporte = models.CharField(max_length=50)
@@ -143,7 +167,7 @@ class Reportes(models.Model):
         return f"Reporte: {self.titulo} ({self.fecha_generacion.strftime('%Y-%m-%d')})"
 
 
-# 12. Indicadores de gestión (KPIs)
+# 15. Indicadores de gestión (KPIs)
 class Indicador(models.Model):
     nombre = models.CharField(max_length=100)
     valor = models.DecimalField(max_digits=10, decimal_places=2)
@@ -154,7 +178,7 @@ class Indicador(models.Model):
         return f"{self.nombre}: {self.valor} {self.unidad_medida}"
 
 
-# 13. Análisis de tendencias
+# 16. Análisis de tendencias
 class Tendencias(models.Model):
     indicador = models.ForeignKey(Indicador, on_delete=models.CASCADE, related_name='tendencias')
     periodo = models.CharField(max_length=20)
@@ -165,9 +189,9 @@ class Tendencias(models.Model):
         return f"Tendencia {self.periodo} - {self.indicador.nombre}"
 
 
-# 14. Auditoría y registro de actividad
+# 17. Auditoría y registro de actividad
 class Actividad(models.Model):
-    actor = models.ForeignKey(Actor, on_delete=models.SET_NULL, null=True)
+    actor = models.ForeignKey(Cliente, on_delete=models.SET_NULL, null=True)
     accion = models.CharField(max_length=150)
     entidad_afectada = models.CharField(max_length=50)
     fecha_hora = models.DateTimeField(auto_now_add=True)
@@ -177,7 +201,7 @@ class Actividad(models.Model):
         return f"{self.fecha_hora} - {self.actor}: {self.accion}"
 
 
-# 15. Información pública
+# 18. Información pública
 class Publica(models.Model):
     titulo = models.CharField(max_length=150)
     contenido = models.TextField()
@@ -187,7 +211,8 @@ class Publica(models.Model):
     def __str__(self):
         return self.titulo
 
-# 16. Información privada / restringida
+
+# 19. Información privada / restringida
 class Privada(models.Model):
     titulo = models.CharField(max_length=150)
     contenido_sensible = models.TextField()
