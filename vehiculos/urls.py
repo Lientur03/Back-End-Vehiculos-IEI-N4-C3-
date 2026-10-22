@@ -26,8 +26,7 @@ enrutador.register(r'publicas', views.PublicaViewSet)
 enrutador.register(r'privadas', views.PrivadaViewSet)
 
 urlpatterns = [
-    path('', include(enrutador.urls)),
+    path('api/', include(enrutador.urls)),  # Prefijo centralizado para todos los ViewSets
     path('index/', views.index, name='index'),
     path('admin/', admin.site.urls),
-    path('api/', include('vehiculos.urls')), # Acostumbra agrupar las rutas de API bajo un prefijo como 'api/'
 ]
