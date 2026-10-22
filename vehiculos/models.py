@@ -49,11 +49,10 @@ class Vehiculos(models.Model):
     modelo = models.CharField(max_length=50)
     anio = models.IntegerField()
     tipo_combustible = models.CharField(max_length=50)
-    # Relación ForeignKey con Cliente
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name='vehiculos')
 
     def __str__(self):
-        return f"{self.marca} {self.modelo} - {self.patente}"
+        return f"{self.marca} {self.modelo} ({self.patente})"
 
 # 6. Estados de flota y mantenimiento
 class Estado(models.Model):
@@ -63,7 +62,6 @@ class Estado(models.Model):
 
     def __str__(self):
         return self.nombre
-
 
 # 7. Gestión global de flotas y asignaciones
 class Gestion(models.Model):
@@ -75,7 +73,6 @@ class Gestion(models.Model):
 
     def __str__(self):
         return f"Gestión {self.codigo_flota} - {self.nombre_area}"
-
 
 # 8. Operaciones de vehículos y servicios
 class Operacion(models.Model):
@@ -93,7 +90,6 @@ class Operacion(models.Model):
     def __str__(self):
         return f"Operación {self.id} - {self.patente_vehiculo} ({self.tipo_operacion})"
 
-
 # 9. Registros de datos y telemetría
 class Datos(models.Model):
     operacion = models.ForeignKey(Operacion, on_delete=models.CASCADE, related_name='datos_registrados')
@@ -103,7 +99,6 @@ class Datos(models.Model):
 
     def __str__(self):
         return f"Datos {self.id} - KM: {self.kilometraje}"
-
 
 # 10. Antecedentes históricos de vehículos
 class Antecedentes(models.Model):
@@ -115,7 +110,6 @@ class Antecedentes(models.Model):
 
     def __str__(self):
         return f"Antecedente {self.vehiculo.patente} - {self.tipo_antecedente}"
-
 
 # 11. Registro de situaciones excepcionales o incidencias
 class Excepcionales(models.Model):
@@ -132,7 +126,6 @@ class Excepcionales(models.Model):
     def __str__(self):
         return f"Excepción: {self.titulo} [{self.nivel_prioridad}]"
 
-
 # 12. Reglas de negocio e integridad del sistema
 class Reglas(models.Model):
     nombre_regla = models.CharField(max_length=100)
@@ -143,7 +136,6 @@ class Reglas(models.Model):
     def __str__(self):
         return self.nombre_regla
 
-
 # 13. Consultas avanzadas y filtros guardados
 class Consultas(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -153,7 +145,6 @@ class Consultas(models.Model):
 
     def __str__(self):
         return self.nombre_consulta
-
 
 # 14. Reportes generados
 class Reportes(models.Model):
@@ -166,7 +157,6 @@ class Reportes(models.Model):
     def __str__(self):
         return f"Reporte: {self.titulo} ({self.fecha_generacion.strftime('%Y-%m-%d')})"
 
-
 # 15. Indicadores de gestión (KPIs)
 class Indicador(models.Model):
     nombre = models.CharField(max_length=100)
@@ -177,7 +167,6 @@ class Indicador(models.Model):
     def __str__(self):
         return f"{self.nombre}: {self.valor} {self.unidad_medida}"
 
-
 # 16. Análisis de tendencias
 class Tendencias(models.Model):
     indicador = models.ForeignKey(Indicador, on_delete=models.CASCADE, related_name='tendencias')
@@ -187,7 +176,6 @@ class Tendencias(models.Model):
 
     def __str__(self):
         return f"Tendencia {self.periodo} - {self.indicador.nombre}"
-
 
 # 17. Auditoría y registro de actividad
 class Actividad(models.Model):
@@ -200,7 +188,6 @@ class Actividad(models.Model):
     def __str__(self):
         return f"{self.fecha_hora} - {self.actor}: {self.accion}"
 
-
 # 18. Información pública
 class Publica(models.Model):
     titulo = models.CharField(max_length=150)
@@ -210,7 +197,6 @@ class Publica(models.Model):
 
     def __str__(self):
         return self.titulo
-
 
 # 19. Información privada / restringida
 class Privada(models.Model):

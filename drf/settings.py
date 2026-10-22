@@ -86,7 +86,6 @@ DATABASES = {
         'PASSWORD': config('PASSWORD'),
         'OPTIONS': {
             'charset': 'utf8',
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES', innodb_strict_mode=0;",  # <--- Esto desactiva temporalmente el modo estricto de InnoDB para evitar el error 1071
         },
     }
 }
