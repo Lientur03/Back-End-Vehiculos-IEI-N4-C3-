@@ -85,8 +85,8 @@ DATABASES = {
         'USER': config('USER'),
         'PASSWORD': config('PASSWORD'),
         'OPTIONS': {
-            'charset': 'utf8', # <--- Esto soluciona el límite de 1000 bytes en los índices de MySQL
-        },   
+            'charset': 'utf8',  # <--- Agrega esto para solucionar el error 1071 de MySQL
+        },
     }
 }
 
