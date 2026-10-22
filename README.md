@@ -154,11 +154,11 @@ python manage.py migrate
 python manage.py createsuperuser
 ```
 
-### 6. Iniciar el servidor de desarrollo
+### 6. Iniciar el servidor de desarrollo con el enlace del proyecto autónomo
 ```bash
 python manage.py runserver
 ```
-El proyecto estará disponible en `http://127.0.0.1:8000/`.
+El proyecto estará disponible en `http://127.0.0.1:8000/vehiculos/`.
 
 ---
 
@@ -172,7 +172,9 @@ El proyecto estará disponible en `http://127.0.0.1:8000/`.
 
 ## 8. Autor e Información Académica
 * **Estudiante:** Andrés Lientur Hormazábal Fuentes
-* **Institución:** INACAP Sede Temuco
+* **Institución:** INACAP Sede Temuco - Instituto Profesional (IP)
 * **Carrera:** Ingeniería en Informática
-* **Asignatura:** Desarrollo Back-End
+* **Asignatura:** Programación Back End
+* **Docente:** Erick Bailey Rebolledo
+* **Sección:** IEI-N4-C3
 * **Evaluaciones:** Sumativa 1 (Unidad 1) y Sumativa 2 (Unidad 2)
