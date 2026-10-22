@@ -1,4 +1,3 @@
-from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 from vehiculos import views
@@ -26,7 +25,6 @@ enrutador.register(r'publicas', views.PublicaViewSet)
 enrutador.register(r'privadas', views.PrivadaViewSet)
 
 urlpatterns = [
-    path('api/', include(enrutador.urls)),  # Prefijo centralizado para todos los ViewSets
+    path('', include(enrutador.urls)),
     path('index/', views.index, name='index'),
-    path('admin/', admin.site.urls),
 ]
