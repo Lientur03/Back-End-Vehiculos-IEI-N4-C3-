@@ -83,7 +83,10 @@ DATABASES = {
         'HOST': config('HOST'),
         'PORT': config('PORT'),
         'USER': config('USER'),
-        'PASSWORD': config('PASSWORD')   
+        'PASSWORD': config('PASSWORD'),
+        'OPTIONS': {
+            'charset': 'utf8', # <--- Esto soluciona el límite de 1000 bytes en los índices de MySQL
+        },   
     }
 }
 
