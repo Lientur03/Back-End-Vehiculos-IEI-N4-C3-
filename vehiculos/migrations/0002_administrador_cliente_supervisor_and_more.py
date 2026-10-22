@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('nombre', models.CharField(max_length=100)),
-                ('correo', models.EmailField(max_length=254, unique=True)),
+                ('correo', models.EmailField(max_length=100, unique=True)),
             ],
         ),
         migrations.CreateModel(
@@ -24,7 +24,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('rut', models.CharField(max_length=12, primary_key=True, serialize=False, unique=True)),
                 ('nombre', models.CharField(max_length=100)),
-                ('correo', models.EmailField(max_length=254, unique=True)),
+                ('correo', models.EmailField(max_length=100, unique=True)),
                 ('telefono', models.CharField(max_length=20)),
                 ('direccion', models.CharField(max_length=255)),
             ],
@@ -34,7 +34,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('nombre', models.CharField(max_length=100)),
-                ('correo', models.EmailField(max_length=254, unique=True)),
+                ('correo', models.EmailField(max_length=100, unique=True)),
                 ('perfil', models.CharField(default='Supervisor', max_length=50)),
             ],
         ),
