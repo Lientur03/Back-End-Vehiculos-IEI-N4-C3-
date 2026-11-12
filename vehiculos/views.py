@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, UpdateView
+from django.urls import reverse_lazy
 from rest_framework import viewsets
 
 from . import models as mod
@@ -10,7 +11,7 @@ def index(request):
     return render(request, 'index.html')
 
 # ==========================================
-# API RESTful ViewSets, ListView, CreateView (Unidad 3)
+# API RESTful ViewSets, ListView, CreateView, UpdateView (Unidad 3)
 # ==========================================
 
 # ============
@@ -28,8 +29,15 @@ class ActividadListView(ListView):
 class ActividadCreateView(CreateView):
     form_class = fo.ActividadForm
     model = mod.Actividad
-    success_url = 'listar_actividades'
+    success_url = reverse_lazy('listar_actividades')
     template_name = 'vehiculos/Actividad/crear_actividad.html'
+
+class ActividadUpdateView(UpdateView):
+    model = mod.Actividad
+    form_class = fo.ActividadForm
+    template_name = 'vehiculos/Actividad/editar_actividad.html'
+    success_url = reverse_lazy('listar_actividades')
+
 
 # ================
 # 2. ADMINISTRADOR
@@ -46,8 +54,15 @@ class AdministradorListView(ListView):
 class AdministradorCreateView(CreateView):
     form_class = fo.AdministradorForm
     model = mod.Administrador
-    success_url = 'listar_administradores'
+    success_url = reverse_lazy('listar_administradores')
     template_name = 'vehiculos/Administrador/crear_administrador.html'
+
+class AdministradorUpdateView(UpdateView):
+    model = mod.Administrador
+    form_class = fo.AdministradorForm
+    template_name = 'vehiculos/Administrador/editar_administrador.html'
+    success_url = reverse_lazy('listar_administradores')
+
 
 # ===============
 # 3. ANTECEDENTES
@@ -64,8 +79,15 @@ class AntecedentesListView(ListView):
 class AntecedentesCreateView(CreateView):
     form_class = fo.AntecedentesForm
     model = mod.Antecedentes
-    success_url = 'listar_antecedentes'
+    success_url = reverse_lazy('listar_antecedentes')
     template_name = 'vehiculos/Antecedentes/crear_antecedente.html'
+
+class AntecedentesUpdateView(UpdateView):
+    model = mod.Antecedentes
+    form_class = fo.AntecedentesForm
+    template_name = 'vehiculos/Antecedentes/editar_antecedente.html'
+    success_url = reverse_lazy('listar_antecedentes')
+
 
 # ==========
 # 4. CLIENTE
@@ -82,8 +104,15 @@ class ClienteListView(ListView):
 class ClienteCreateView(CreateView):
     form_class = fo.ClienteForm
     model = mod.Cliente
-    success_url = 'listar_clientes'
+    success_url = reverse_lazy('listar_clientes')
     template_name = 'vehiculos/Cliente/crear_cliente.html'
+
+class ClienteUpdateView(UpdateView):
+    model = mod.Cliente
+    form_class = fo.ClienteForm
+    template_name = 'vehiculos/Cliente/editar_cliente.html'
+    success_url = reverse_lazy('listar_clientes')
+
 
 # ============
 # 5. CONSULTAS
@@ -100,8 +129,15 @@ class ConsultasListView(ListView):
 class ConsultasCreateView(CreateView):
     form_class = fo.ConsultasForm
     model = mod.Consultas
-    success_url = 'listar_consultas'
+    success_url = reverse_lazy('listar_consultas')
     template_name = 'vehiculos/Consultas/crear_consulta.html'
+
+class ConsultasUpdateView(UpdateView):
+    model = mod.Consultas
+    form_class = fo.ConsultasForm
+    template_name = 'vehiculos/Consultas/editar_consulta.html'
+    success_url = reverse_lazy('listar_consultas')
+
 
 # ========
 # 6. DATOS
@@ -118,8 +154,15 @@ class DatosListView(ListView):
 class DatosCreateView(CreateView):
     form_class = fo.DatosForm
     model = mod.Datos
-    success_url = 'listar_datos'
+    success_url = reverse_lazy('listar_datos')
     template_name = 'vehiculos/Datos/crear_dato.html'
+
+class DatosUpdateView(UpdateView):
+    model = mod.Datos
+    form_class = fo.DatosForm
+    template_name = 'vehiculos/Datos/editar_dato.html'
+    success_url = reverse_lazy('listar_datos')
+
 
 # =========
 # 7. ESTADO
@@ -136,8 +179,15 @@ class EstadoListView(ListView):
 class EstadoCreateView(CreateView):
     form_class = fo.EstadoForm
     model = mod.Estado
-    success_url = 'listar_estados'
+    success_url = reverse_lazy('listar_estados')
     template_name = 'vehiculos/Estado/crear_estado.html'
+
+class EstadoUpdateView(UpdateView):
+    model = mod.Estado
+    form_class = fo.EstadoForm
+    template_name = 'vehiculos/Estado/editar_estado.html'
+    success_url = reverse_lazy('listar_estados')
+
 
 # ================
 # 8. EXCEPCIONALES
@@ -154,8 +204,15 @@ class ExcepcionalesListView(ListView):
 class ExcepcionalesCreateView(CreateView):
     form_class = fo.ExcepcionalesForm
     model = mod.Excepcionales
-    success_url = 'listar_excepcionales'
+    success_url = reverse_lazy('listar_excepcionales')
     template_name = 'vehiculos/Excepcionales/crear_excepcional.html'
+
+class ExcepcionalesUpdateView(UpdateView):
+    model = mod.Excepcionales
+    form_class = fo.ExcepcionalesForm
+    template_name = 'vehiculos/Excepcionales/editar_excepcional.html'
+    success_url = reverse_lazy('listar_excepcionales')
+
 
 # ==========
 # 9. GESTION
@@ -172,8 +229,15 @@ class GestionListView(ListView):
 class GestionCreateView(CreateView):
     form_class = fo.GestionForm
     model = mod.Gestion
-    success_url = 'listar_gestiones'
+    success_url = reverse_lazy('listar_gestiones')
     template_name = 'vehiculos/Gestion/crear_gestion.html'
+
+class GestionUpdateView(UpdateView):
+    model = mod.Gestion
+    form_class = fo.GestionForm
+    template_name = 'vehiculos/Gestion/editar_gestion.html'
+    success_url = reverse_lazy('listar_gestiones')
+
 
 # =============
 # 10. INDICADOR
@@ -190,8 +254,15 @@ class IndicadorListView(ListView):
 class IndicadorCreateView(CreateView):
     form_class = fo.IndicadorForm
     model = mod.Indicador
-    success_url = 'listar_indicadores'
+    success_url = reverse_lazy('listar_indicadores')
     template_name = 'vehiculos/Indicador/crear_indicador.html'
+
+class IndicadorUpdateView(UpdateView):
+    model = mod.Indicador
+    form_class = fo.IndicadorForm
+    template_name = 'vehiculos/Indicador/editar_indicador.html'
+    success_url = reverse_lazy('listar_indicadores')
+
 
 # =============
 # 11. OPERACION
@@ -208,8 +279,15 @@ class OperacionListView(ListView):
 class OperacionCreateView(CreateView):
     form_class = fo.OperacionForm
     model = mod.Operacion
-    success_url = 'listar_operaciones'
+    success_url = reverse_lazy('listar_operaciones')
     template_name = 'vehiculos/Operacion/crear_operacion.html'
+
+class OperacionUpdateView(UpdateView):
+    model = mod.Operacion
+    form_class = fo.OperacionForm
+    template_name = 'vehiculos/Operacion/editar_operacion.html'
+    success_url = reverse_lazy('listar_operaciones')
+
 
 # ==========
 # 12. PERFIL
@@ -226,8 +304,15 @@ class PerfilListView(ListView):
 class PerfilCreateView(CreateView):
     form_class = fo.PerfilForm
     model = mod.Perfil
-    success_url = 'listar_perfiles'
+    success_url = reverse_lazy('listar_perfiles')
     template_name = 'vehiculos/Perfil/crear_perfil.html'
+
+class PerfilUpdateView(UpdateView):
+    model = mod.Perfil
+    form_class = fo.PerfilForm
+    template_name = 'vehiculos/Perfil/editar_perfil.html'
+    success_url = reverse_lazy('listar_perfiles')
+
 
 # ===========
 # 13. PRIVADA
@@ -244,8 +329,15 @@ class PrivadaListView(ListView):
 class PrivadaCreateView(CreateView):
     form_class = fo.PrivadaForm
     model = mod.Privada
-    success_url = 'listar_privadas'
+    success_url = reverse_lazy('listar_privadas')
     template_name = 'vehiculos/Privada/crear_privada.html'
+
+class PrivadaUpdateView(UpdateView):
+    model = mod.Privada
+    form_class = fo.PrivadaForm
+    template_name = 'vehiculos/Privada/editar_privada.html'
+    success_url = reverse_lazy('listar_privadas')
+
 
 # ===========
 # 14. PUBLICA
@@ -262,8 +354,15 @@ class PublicaListView(ListView):
 class PublicaCreateView(CreateView):
     form_class = fo.PublicaForm
     model = mod.Publica
-    success_url = 'listar_publicas'
+    success_url = reverse_lazy('listar_publicas')
     template_name = 'vehiculos/Publica/crear_publica.html'
+
+class PublicaUpdateView(UpdateView):
+    model = mod.Publica
+    form_class = fo.PublicaForm
+    template_name = 'vehiculos/Publica/editar_publica.html'
+    success_url = reverse_lazy('listar_publicas')
+
 
 # ==========
 # 15. REGLAS
@@ -280,8 +379,15 @@ class ReglasListView(ListView):
 class ReglasCreateView(CreateView):
     form_class = fo.ReglasForm
     model = mod.Reglas
-    success_url = 'listar_reglas'
+    success_url = reverse_lazy('listar_reglas')
     template_name = 'vehiculos/Reglas/crear_reglas.html'
+
+class ReglasUpdateView(UpdateView):
+    model = mod.Reglas
+    form_class = fo.ReglasForm
+    template_name = 'vehiculos/Reglas/editar_reglas.html'
+    success_url = reverse_lazy('listar_reglas')
+
 
 # ============
 # 16. REPORTES
@@ -298,8 +404,15 @@ class ReportesListView(ListView):
 class ReportesCreateView(CreateView):
     form_class = fo.ReportesForm
     model = mod.Reportes
-    success_url = 'listar_reportes'
+    success_url = reverse_lazy('listar_reportes')
     template_name = 'vehiculos/Reportes/crear_reporte.html'
+
+class ReportesUpdateView(UpdateView):
+    model = mod.Reportes
+    form_class = fo.ReportesForm
+    template_name = 'vehiculos/Reportes/editar_reporte.html'
+    success_url = reverse_lazy('listar_reportes')
+
 
 # ==============
 # 17. SUPERVISOR
@@ -316,8 +429,15 @@ class SupervisorListView(ListView):
 class SupervisorCreateView(CreateView):
     form_class = fo.SupervisorForm
     model = mod.Supervisor
-    success_url = 'listar_supervisores'
+    success_url = reverse_lazy('listar_supervisores')
     template_name = 'vehiculos/Supervisor/crear_supervisor.html'
+
+class SupervisorUpdateView(UpdateView):
+    model = mod.Supervisor
+    form_class = fo.SupervisorForm
+    template_name = 'vehiculos/Supervisor/editar_supervisor.html'
+    success_url = reverse_lazy('listar_supervisores')
+
 
 # ==============
 # 18. TENDENCIAS
@@ -334,8 +454,15 @@ class TendenciasListView(ListView):
 class TendenciasCreateView(CreateView):
     form_class = fo.TendenciasForm
     model = mod.Tendencias
-    success_url = 'listar_tendencias'
+    success_url = reverse_lazy('listar_tendencias')
     template_name = 'vehiculos/Tendencias/crear_tendencia.html'
+
+class TendenciasUpdateView(UpdateView):
+    model = mod.Tendencias
+    form_class = fo.TendenciasForm
+    template_name = 'vehiculos/Tendencias/editar_tendencia.html'
+    success_url = reverse_lazy('listar_tendencias')
+
 
 # =============
 # 19. VEHICULOS
@@ -352,5 +479,11 @@ class VehiculosListView(ListView):
 class VehiculosCreateView(CreateView):
     form_class = fo.VehiculosForm
     model = mod.Vehiculos
-    success_url = 'listar_vehiculos'
+    success_url = reverse_lazy('listar_vehiculos')
     template_name = 'vehiculos/Vehiculos/crear_vehiculo.html'
+
+class VehiculosUpdateView(UpdateView):
+    model = mod.Vehiculos
+    form_class = fo.VehiculosForm
+    template_name = 'vehiculos/Vehiculos/editar_vehiculo.html'
+    success_url = reverse_lazy('listar_vehiculos')
