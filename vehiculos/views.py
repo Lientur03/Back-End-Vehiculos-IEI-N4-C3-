@@ -1,5 +1,7 @@
-from django.shortcuts import render
-from django.views.generic import ListView, CreateView, UpdateView
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.http import JsonResponse
+from django.views.generic import ListView, CreateView, UpdateView, DetailView
 from django.urls import reverse_lazy
 from rest_framework import viewsets
 
@@ -11,7 +13,7 @@ def index(request):
     return render(request, 'index.html')
 
 # ==========================================
-# API RESTful ViewSets, ListView, CreateView, UpdateView (Unidad 3)
+# API RESTful ViewSets, ListView, CreateView, UpdateView, DetailView (Unidad 3)
 # ==========================================
 
 # ============
@@ -38,6 +40,22 @@ class ActividadUpdateView(UpdateView):
     template_name = 'vehiculos/Actividad/editar_actividad.html'
     success_url = reverse_lazy('listar_actividades')
 
+class ActividadDetailView(DetailView):
+    form_class = fo.ActividadForm
+    model = mod.Actividad
+    template_name = 'vehiculos/Actividad/detalle_actividad.html'
+
+class CambiarActividadHabilitadoView(UpdateView):
+    form_class = fo.ActividadForm  # O ajusta a tu formulario específico si aplica
+    model = mod.Actividad
+    
+    def form_valid(self, form):
+        self.object = form.save()
+        return redirect(self.request.META.get('HTTP_REFERER', '/'))
+
+    def form_invalid(self, form):
+        return redirect(self.request.META.get('HTTP_REFERER', '/'))
+
 
 # ================
 # 2. ADMINISTRADOR
@@ -62,6 +80,22 @@ class AdministradorUpdateView(UpdateView):
     form_class = fo.AdministradorForm
     template_name = 'vehiculos/Administrador/editar_administrador.html'
     success_url = reverse_lazy('listar_administradores')
+
+class AdministradorDetailView(DetailView):
+    form_class = fo.AdministradorForm
+    model = mod.Administrador
+    template_name = 'vehiculos/Administrador/detalle_administrador.html'
+
+class CambiarAdministradorHabilitadoView(UpdateView):
+    form_class = fo.AdministradorForm
+    model = mod.Administrador
+    
+    def form_valid(self, form):
+        self.object = form.save()
+        return redirect(self.request.META.get('HTTP_REFERER', '/'))
+
+    def form_invalid(self, form):
+        return redirect(self.request.META.get('HTTP_REFERER', '/'))
 
 
 # ===============
@@ -88,6 +122,22 @@ class AntecedentesUpdateView(UpdateView):
     template_name = 'vehiculos/Antecedentes/editar_antecedente.html'
     success_url = reverse_lazy('listar_antecedentes')
 
+class AntecedentesDetailView(DetailView):
+    form_class = fo.AntecedentesForm
+    model = mod.Antecedentes
+    template_name = 'vehiculos/Antecedentes/detalle_antecedente.html'
+
+class CambiarAntecedentesHabilitadoView(UpdateView):
+    form_class = fo.AntecedentesForm
+    model = mod.Antecedentes
+    
+    def form_valid(self, form):
+        self.object = form.save()
+        return redirect(self.request.META.get('HTTP_REFERER', '/'))
+
+    def form_invalid(self, form):
+        return redirect(self.request.META.get('HTTP_REFERER', '/'))
+
 
 # ==========
 # 4. CLIENTE
@@ -112,6 +162,22 @@ class ClienteUpdateView(UpdateView):
     form_class = fo.ClienteForm
     template_name = 'vehiculos/Cliente/editar_cliente.html'
     success_url = reverse_lazy('listar_clientes')
+
+class ClienteDetailView(DetailView):
+    form_class = fo.ClienteForm
+    model = mod.Cliente
+    template_name = 'vehiculos/Cliente/detalle_cliente.html'
+
+class CambiarClienteHabilitadoView(UpdateView):
+    form_class = fo.ClienteForm
+    model = mod.Cliente
+    
+    def form_valid(self, form):
+        self.object = form.save()
+        return redirect(self.request.META.get('HTTP_REFERER', '/'))
+
+    def form_invalid(self, form):
+        return redirect(self.request.META.get('HTTP_REFERER', '/'))
 
 
 # ============
@@ -138,6 +204,22 @@ class ConsultasUpdateView(UpdateView):
     template_name = 'vehiculos/Consultas/editar_consulta.html'
     success_url = reverse_lazy('listar_consultas')
 
+class ConsultasDetailView(DetailView):
+    form_class = fo.ConsultasForm
+    model = mod.Consultas
+    template_name = 'vehiculos/Consultas/detalle_consulta.html'
+
+class CambiarConsultasHabilitadoView(UpdateView):
+    form_class = fo.ConsultasForm
+    model = mod.Consultas
+    
+    def form_valid(self, form):
+        self.object = form.save()
+        return redirect(self.request.META.get('HTTP_REFERER', '/'))
+
+    def form_invalid(self, form):
+        return redirect(self.request.META.get('HTTP_REFERER', '/'))
+
 
 # ========
 # 6. DATOS
@@ -162,6 +244,22 @@ class DatosUpdateView(UpdateView):
     form_class = fo.DatosForm
     template_name = 'vehiculos/Datos/editar_dato.html'
     success_url = reverse_lazy('listar_datos')
+
+class DatosDetailView(DetailView):
+    form_class = fo.DatosForm
+    model = mod.Datos
+    template_name = 'vehiculos/Datos/detalle_dato.html'
+
+class CambiarDatosHabilitadoView(UpdateView):
+    form_class = fo.DatosForm
+    model = mod.Datos
+    
+    def form_valid(self, form):
+        self.object = form.save()
+        return redirect(self.request.META.get('HTTP_REFERER', '/'))
+
+    def form_invalid(self, form):
+        return redirect(self.request.META.get('HTTP_REFERER', '/'))
 
 
 # =========
@@ -188,6 +286,22 @@ class EstadoUpdateView(UpdateView):
     template_name = 'vehiculos/Estado/editar_estado.html'
     success_url = reverse_lazy('listar_estados')
 
+class EstadoDetailView(DetailView):
+    form_class = fo.EstadoForm
+    model = mod.Estado
+    template_name = 'vehiculos/Estado/detalle_estado.html'
+
+class CambiarEstadoHabilitadoView(UpdateView):
+    form_class = fo.EstadoForm
+    model = mod.Estado
+    
+    def form_valid(self, form):
+        self.object = form.save()
+        return redirect(self.request.META.get('HTTP_REFERER', '/'))
+
+    def form_invalid(self, form):
+        return redirect(self.request.META.get('HTTP_REFERER', '/'))
+
 
 # ================
 # 8. EXCEPCIONALES
@@ -212,6 +326,22 @@ class ExcepcionalesUpdateView(UpdateView):
     form_class = fo.ExcepcionalesForm
     template_name = 'vehiculos/Excepcionales/editar_excepcional.html'
     success_url = reverse_lazy('listar_excepcionales')
+
+class ExcepcionalesDetailView(DetailView):
+    form_class = fo.ExcepcionalesForm
+    model = mod.Excepcionales
+    template_name = 'vehiculos/Excepcionales/detalle_excepcional.html'
+
+class CambiarExcepcionalesHabilitadoView(UpdateView):
+    form_class = fo.ExcepcionalesForm
+    model = mod.Excepcionales
+    
+    def form_valid(self, form):
+        self.object = form.save()
+        return redirect(self.request.META.get('HTTP_REFERER', '/'))
+
+    def form_invalid(self, form):
+        return redirect(self.request.META.get('HTTP_REFERER', '/'))
 
 
 # ==========
@@ -238,6 +368,22 @@ class GestionUpdateView(UpdateView):
     template_name = 'vehiculos/Gestion/editar_gestion.html'
     success_url = reverse_lazy('listar_gestiones')
 
+class GestionDetailView(DetailView):
+    form_class = fo.GestionForm
+    model = mod.Gestion
+    template_name = 'vehiculos/Gestion/detalle_gestion.html'
+
+class CambiarGestionHabilitadoView(UpdateView):
+    form_class = fo.GestionForm
+    model = mod.Gestion
+    
+    def form_valid(self, form):
+        self.object = form.save()
+        return redirect(self.request.META.get('HTTP_REFERER', '/'))
+
+    def form_invalid(self, form):
+        return redirect(self.request.META.get('HTTP_REFERER', '/'))
+
 
 # =============
 # 10. INDICADOR
@@ -262,6 +408,22 @@ class IndicadorUpdateView(UpdateView):
     form_class = fo.IndicadorForm
     template_name = 'vehiculos/Indicador/editar_indicador.html'
     success_url = reverse_lazy('listar_indicadores')
+
+class IndicadorDetailView(DetailView):
+    form_class = fo.IndicadorForm
+    model = mod.Indicador
+    template_name = 'vehiculos/Indicador/detalle_indicador.html'
+
+class CambiarIndicadorHabilitadoView(UpdateView):
+    form_class = fo.IndicadorForm
+    model = mod.Indicador
+    
+    def form_valid(self, form):
+        self.object = form.save()
+        return redirect(self.request.META.get('HTTP_REFERER', '/'))
+
+    def form_invalid(self, form):
+        return redirect(self.request.META.get('HTTP_REFERER', '/'))
 
 
 # =============
@@ -288,6 +450,22 @@ class OperacionUpdateView(UpdateView):
     template_name = 'vehiculos/Operacion/editar_operacion.html'
     success_url = reverse_lazy('listar_operaciones')
 
+class OperacionDetailView(DetailView):
+    form_class = fo.OperacionForm
+    model = mod.Operacion
+    template_name = 'vehiculos/Operacion/detalle_operacion.html'
+
+class CambiarOperacionHabilitadoView(UpdateView):
+    form_class = fo.OperacionForm
+    model = mod.Operacion
+    
+    def form_valid(self, form):
+        self.object = form.save()
+        return redirect(self.request.META.get('HTTP_REFERER', '/'))
+
+    def form_invalid(self, form):
+        return redirect(self.request.META.get('HTTP_REFERER', '/'))
+
 
 # ==========
 # 12. PERFIL
@@ -312,6 +490,22 @@ class PerfilUpdateView(UpdateView):
     form_class = fo.PerfilForm
     template_name = 'vehiculos/Perfil/editar_perfil.html'
     success_url = reverse_lazy('listar_perfiles')
+
+class PerfilDetailView(DetailView):
+    form_class = fo.PerfilForm
+    model = mod.Perfil
+    template_name = 'vehiculos/Perfil/detalle_perfil.html'
+
+class CambiarPerfilHabilitadoView(UpdateView):
+    form_class = fo.PerfilForm
+    model = mod.Perfil
+    
+    def form_valid(self, form):
+        self.object = form.save()
+        return redirect(self.request.META.get('HTTP_REFERER', '/'))
+
+    def form_invalid(self, form):
+        return redirect(self.request.META.get('HTTP_REFERER', '/'))
 
 
 # ===========
@@ -338,6 +532,22 @@ class PrivadaUpdateView(UpdateView):
     template_name = 'vehiculos/Privada/editar_privada.html'
     success_url = reverse_lazy('listar_privadas')
 
+class PrivadaDetailView(DetailView):
+    form_class = fo.PrivadaForm
+    model = mod.Privada
+    template_name = 'vehiculos/Privada/detalle_privada.html'
+
+class CambiarPrivadaHabilitadoView(UpdateView):
+    form_class = fo.PrivadaForm
+    model = mod.Privada
+    
+    def form_valid(self, form):
+        self.object = form.save()
+        return redirect(self.request.META.get('HTTP_REFERER', '/'))
+
+    def form_invalid(self, form):
+        return redirect(self.request.META.get('HTTP_REFERER', '/'))
+
 
 # ===========
 # 14. PUBLICA
@@ -362,6 +572,22 @@ class PublicaUpdateView(UpdateView):
     form_class = fo.PublicaForm
     template_name = 'vehiculos/Publica/editar_publica.html'
     success_url = reverse_lazy('listar_publicas')
+
+class PublicaDetailView(DetailView):
+    form_class = fo.PublicaForm
+    model = mod.Publica
+    template_name = 'vehiculos/Publica/detalle_publica.html'
+
+class CambiarPublicaHabilitadoView(UpdateView):
+    form_class = fo.PublicaForm
+    model = mod.Publica
+    
+    def form_valid(self, form):
+        self.object = form.save()
+        return redirect(self.request.META.get('HTTP_REFERER', '/'))
+
+    def form_invalid(self, form):
+        return redirect(self.request.META.get('HTTP_REFERER', '/'))
 
 
 # ==========
@@ -388,6 +614,22 @@ class ReglasUpdateView(UpdateView):
     template_name = 'vehiculos/Reglas/editar_reglas.html'
     success_url = reverse_lazy('listar_reglas')
 
+class ReglasDetailView(DetailView):
+    form_class = fo.ReglasForm
+    model = mod.Reglas
+    template_name = 'vehiculos/Reglas/detalle_reglas.html'
+
+class CambiarReglasHabilitadoView(UpdateView):
+    form_class = fo.ReglasForm
+    model = mod.Reglas
+    
+    def form_valid(self, form):
+        self.object = form.save()
+        return redirect(self.request.META.get('HTTP_REFERER', '/'))
+
+    def form_invalid(self, form):
+        return redirect(self.request.META.get('HTTP_REFERER', '/'))
+
 
 # ============
 # 16. REPORTES
@@ -412,6 +654,22 @@ class ReportesUpdateView(UpdateView):
     form_class = fo.ReportesForm
     template_name = 'vehiculos/Reportes/editar_reporte.html'
     success_url = reverse_lazy('listar_reportes')
+
+class ReportesDetailView(DetailView):
+    form_class = fo.ReportesForm
+    model = mod.Reportes
+    template_name = 'vehiculos/Reportes/detalle_reporte.html'
+
+class CambiarReportesHabilitadoView(UpdateView):
+    form_class = fo.ReportesForm
+    model = mod.Reportes
+    
+    def form_valid(self, form):
+        self.object = form.save()
+        return redirect(self.request.META.get('HTTP_REFERER', '/'))
+
+    def form_invalid(self, form):
+        return redirect(self.request.META.get('HTTP_REFERER', '/'))
 
 
 # ==============
@@ -438,6 +696,22 @@ class SupervisorUpdateView(UpdateView):
     template_name = 'vehiculos/Supervisor/editar_supervisor.html'
     success_url = reverse_lazy('listar_supervisores')
 
+class SupervisorDetailView(DetailView):
+    form_class = fo.SupervisorForm
+    model = mod.Supervisor
+    template_name = 'vehiculos/Supervisor/detalle_supervisor.html'
+
+class CambiarSupervisorHabilitadoView(UpdateView):
+    form_class = fo.SupervisorForm
+    model = mod.Supervisor
+    
+    def form_valid(self, form):
+        self.object = form.save()
+        return redirect(self.request.META.get('HTTP_REFERER', '/'))
+
+    def form_invalid(self, form):
+        return redirect(self.request.META.get('HTTP_REFERER', '/'))
+
 
 # ==============
 # 18. TENDENCIAS
@@ -463,6 +737,22 @@ class TendenciasUpdateView(UpdateView):
     template_name = 'vehiculos/Tendencias/editar_tendencia.html'
     success_url = reverse_lazy('listar_tendencias')
 
+class TendenciasDetailView(DetailView):
+    form_class = fo.TendenciasForm
+    model = mod.Tendencias
+    template_name = 'vehiculos/Tendencias/detalle_tendencia.html'
+
+class CambiarTendenciasHabilitadoView(UpdateView):
+    form_class = fo.TendenciasForm
+    model = mod.Tendencias
+    
+    def form_valid(self, form):
+        self.object = form.save()
+        return redirect(self.request.META.get('HTTP_REFERER', '/'))
+
+    def form_invalid(self, form):
+        return redirect(self.request.META.get('HTTP_REFERER', '/'))
+
 
 # =============
 # 19. VEHICULOS
@@ -487,3 +777,19 @@ class VehiculosUpdateView(UpdateView):
     form_class = fo.VehiculosForm
     template_name = 'vehiculos/Vehiculos/editar_vehiculo.html'
     success_url = reverse_lazy('listar_vehiculos')
+
+class VehiculosDetailView(DetailView):
+    form_class = fo.VehiculosForm
+    model = mod.Vehiculos
+    template_name = 'vehiculos/Vehiculos/detalle_vehiculo.html'
+
+class CambiarVehiculosHabilitadoView(UpdateView):
+    form_class = fo.VehiculosForm
+    model = mod.Vehiculos
+    
+    def form_valid(self, form):
+        self.object = form.save()
+        return redirect(self.request.META.get('HTTP_REFERER', '/'))
+
+    def form_invalid(self, form):
+        return redirect(self.request.META.get('HTTP_REFERER', '/'))
