@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}Listado de Tendencias{% endblock %}
+
+{% block content %}
+<h3>Listado de Análisis de Tendencias</h3>
+<br>
+
+<a href="{% url 'crear_tendencia' %}" class="btn btn-primary">Agregar Tendencia</a>
+<br><br>
+
+<table class="table table-hover" id="tablaTendencias">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Indicador</th>
+            <th>Periodo</th>
+            <th>Variación (%)</th>
+            <th>Interpretación</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for tendencia in tendencias %}
+        <tr>
+            <td>{{ tendencia.id }}</td>
+            <td>{% if tendencia.indicador is not None %}{{ tendencia.indicador.nombre }}{% else %}--{% endif %}</td>
+            <td>{% if tendencia.periodo is not None %}{{ tendencia.periodo }}{% else %}--{% endif %}</td>
+            <td>{% if tendencia.porcentaje_variacion is not None %}{{ tendencia.porcentaje_variacion }}%{% else %}--{% endif %}</td>
+            <td>{% if tendencia.interpretacion is not None %}{{ tendencia.interpretacion|truncatechars:40 }}{% else %}--{% endif %}</td>
+            <td class="d-flex align-items-center gap-1">
+                <a href="{% url 'editar_tendencia' tendencia.pk %}" class="btn btn-warning btn-sm" title="Editar Tendencia">
+                    <i class="bi bi-pencil"></i>
+                </a>
+                <a href="{% url 'detalle_tendencia' tendencia.pk %}" class="btn btn-info btn-sm" title="Detalle Tendencia">
+                    <i class="bi bi-eye"></i>
+                </a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6">No se encontraron elementos en la lista.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+    <tfoot class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Indicador</th>
+            <th>Periodo</th>
+            <th>Variación (%)</th>
+            <th>Interpretación</th>
+            <th>Acciones</th>
+        </tr>
+    </tfoot>
+</table>
+{% csrf_token %}
+{% endblock %}
+
+{% block scripts_pie %}
+<script>
+    window.onload = function () {
+        new DataTable('#tablaTendencias');
+    }
+</script>
+{% endblock %}

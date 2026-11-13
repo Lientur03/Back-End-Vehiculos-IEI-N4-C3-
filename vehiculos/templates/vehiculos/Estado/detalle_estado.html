@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}Detalle Estado{% endblock %}
+
+{% block content %}
+<h3>Detalle Estado</h3>
+<br>
+
+<div class="row">
+    <div class="container">
+        <div class="col">
+            <div class="card text-center">
+                <div class="card-header">
+                    <h3>{{ object.nombre }}</h3>
+                </div>
+
+                <div class="card-body">
+                    <div class="card-text">
+                        <h5 class="card-title"><strong>Estado Actual</strong></h5>
+                        <p class="card-text">
+                            {% if object.es_activo %}Activo{% else %}Inactivo{% endif %}
+                        </p>
+                        <br>
+
+                        <h5 class="card-title"><strong>Descripción</strong></h5>
+                        <p class="card-text">{% if object.descripcion %}{{ object.descripcion }}{% else %}--{% endif %}</p>
+                        <br>
+                    </div>
+                </div>
+
+                <div class="card-footer text-body-secondary">
+                    ID Estado: {{ object.id }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+
+<div class="row">
+    <div class="col">
+        <a href="{% url 'listar_estados' %}" class="btn btn-primary">Volver</a>
+    </div>
+</div>
+{% endblock %}

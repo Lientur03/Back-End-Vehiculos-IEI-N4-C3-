@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+{% block title %}Listado de Reglas{% endblock %}
+
+{% block content %}
+<h3>Listado de Reglas de Negocio</h3>
+<br>
+
+<a href="{% url 'crear_reglas' %}" class="btn btn-primary">Agregar Regla</a>
+<br><br>
+
+<table class="table table-hover" id="tablaReglas">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Nombre Regla</th>
+            <th>Límite KM</th>
+            <th>Días Máx. Revisión</th>
+            <th>Activa</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for regla in reglas %}
+        <tr>
+            <td>{{ regla.id }}</td>
+            <td>{% if regla.nombre_regla is not None %}{{ regla.nombre_regla }}{% else %}--{% endif %}</td>
+            <td>{% if regla.limite_kilometros_mantencion is not None %}{{ regla.limite_kilometros_mantencion }} km{% else %}--{% endif %}</td>
+            <td>{% if regla.dias_maximo_revision is not None %}{{ regla.dias_maximo_revision }} días{% else %}--{% endif %}</td>
+            <td>{% if regla.activa %}Sí{% else %}No{% endif %}</td>
+            <td class="d-flex align-items-center gap-1">
+                <a href="{% url 'editar_reglas' regla.pk %}" class="btn btn-warning btn-sm" title="Editar Regla">
+                    <i class="bi bi-pencil"></i>
+                </a>
+
+                {% if regla.activa %}
+                <button type="button" class="btn btn-danger btn-sm deshabilitar" data-url="{% url 'cambiar_reglas_habilitado' regla.pk %}" data-current="true" title="Desactivar Regla">
+                    <i class="bi bi-x-circle-fill"></i>
+                </button>
+                {% else %}
+                <button type="button" class="btn btn-success btn-sm deshabilitar" data-url="{% url 'cambiar_reglas_habilitado' regla.pk %}" data-current="false" title="Activar Regla">
+                    <i class="bi bi-check-circle-fill"></i>
+                </button>
+                {% endif %}
+
+                <a href="{% url 'detalle_reglas' regla.pk %}" class="btn btn-info btn-sm" title="Detalle Regla">
+                    <i class="bi bi-eye"></i>
+                </a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6">No se encontraron elementos en la lista.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+    <tfoot class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Nombre Regla</th>
+            <th>Límite KM</th>
+            <th>Días Máx. Revisión</th>
+            <th>Activa</th>
+            <th>Acciones</th>
+        </tr>
+    </tfoot>
+</table>
+{% csrf_token %}
+{% endblock %}
+
+{% block scripts_pie %}
+<script>
+    window.onload = function () {
+        new DataTable('#tablaReglas');
+    }
+
+    document.addEventListener('click', function (event) {
+        const button = event.target.closest('.deshabilitar');
+        if (button) {
+            const url = button.getAttribute('data-url');
+            const isCurrentlyEnabled = button.getAttribute('data-current') === 'true';
+            const nextState = !isCurrentlyEnabled;
+
+            const formData = new FormData();
+            formData.append('activa', nextState);
+
+            const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': csrfToken,
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                body: formData
+            }).then(response => {
+                if (response.ok) {
+                    window.location.reload();
+                } else {
+                    alert('Ocurrió un error al actualizar la regla.');
+                }
+            }).catch(error => console.error('Error:', error));
+        }
+    });
+</script>
+{% endblock %}

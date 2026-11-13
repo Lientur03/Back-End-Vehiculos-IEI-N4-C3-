@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}Detalle Tendencia{% endblock %}
+
+{% block content %}
+<h3>Detalle de Análisis de Tendencia</h3>
+<br>
+
+<div class="row">
+    <div class="container">
+        <div class="col">
+            <div class="card text-center">
+                <div class="card-header">
+                    <h3>Tendencia {{ object.periodo }} - {{ object.indicador.nombre }}</h3>
+                </div>
+
+                <div class="card-body">
+                    <div class="card-text">
+                        <div class="row">
+                            <div class="col"><strong>Periodo Evaluado</strong></div>
+                            <div class="col"><strong>Porcentaje de Variación</strong></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">{% if object.periodo %}{{ object.periodo }}{% else %}--{% endif %}</div>
+                            <div class="col">{% if object.porcentaje_variacion is not None %}{{ object.porcentaje_variacion }}%{% else %}--{% endif %}</div>
+                        </div>
+                        <br>
+
+                        <h5 class="card-title"><strong>Interpretación</strong></h5>
+                        <p class="card-text">{% if object.interpretacion %}{{ object.interpretacion }}{% else %}--{% endif %}</p>
+                        <br>
+                    </div>
+                </div>
+
+                <div class="card-footer text-body-secondary">
+                    ID Tendencia: {{ object.id }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+
+<div class="row">
+    <div class="col">
+        <a href="{% url 'listar_tendencias' %}" class="btn btn-primary">Volver</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts_pie %}
+<script>
+</script>
+{% endblock %}

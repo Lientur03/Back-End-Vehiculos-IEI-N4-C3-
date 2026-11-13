@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+{% block title %}Listado de Excepcionales{% endblock %}
+
+{% block content %}
+<h3>Listado de Situaciones Excepcionales</h3>
+<br>
+
+<a href="{% url 'crear_excepcional' %}" class="btn btn-primary">Agregar Excepcional</a>
+<br><br>
+
+<table class="table table-hover" id="tablaExcepcionales">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Título</th>
+            <th>Prioridad</th>
+            <th>Operación ID</th>
+            <th>Resuelto</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for excepcional in excepcionales %}
+        <tr>
+            <td>{{ excepcional.id }}</td>
+            <td>{% if excepcional.titulo is not None %}{{ excepcional.titulo }}{% else %}--{% endif %}</td>
+            <td>{% if excepcional.nivel_prioridad is not None %}{{ excepcional.nivel_prioridad }}{% else %}--{% endif %}</td>
+            <td>{% if excepcional.operacion is not None %}{{ excepcional.operacion.id }}{% else %}--{% endif %}</td>
+            <td>{% if excepcional.resuelto %}Sí{% else %}No{% endif %}</td>
+            <td class="d-flex align-items-center gap-1">
+                <a href="{% url 'editar_excepcional' excepcional.pk %}" class="btn btn-warning btn-sm" title="Editar Excepcional">
+                    <i class="bi bi-pencil"></i>
+                </a>
+
+                {% if excepcional.resuelto %}
+                <button type="button" class="btn btn-danger btn-sm deshabilitar" data-url="{% url 'cambiar_excepcionales_habilitado' excepcional.pk %}" data-current="true" title="Marcar como No Resuelto">
+                    <i class="bi bi-x-circle-fill"></i>
+                </button>
+                {% else %}
+                <button type="button" class="btn btn-success btn-sm deshabilitar" data-url="{% url 'cambiar_excepcionales_habilitado' excepcional.pk %}" data-current="false" title="Marcar como Resuelto">
+                    <i class="bi bi-check-circle-fill"></i>
+                </button>
+                {% endif %}
+
+                <a href="{% url 'detalle_excepcional' excepcional.pk %}" class="btn btn-info btn-sm" title="Detalle Excepcional">
+                    <i class="bi bi-eye"></i>
+                </a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6">No se encontraron elementos en la lista.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+    <tfoot class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Título</th>
+            <th>Prioridad</th>
+            <th>Operación ID</th>
+            <th>Resuelto</th>
+            <th>Acciones</th>
+        </tr>
+    </tfoot>
+</table>
+{% csrf_token %}
+{% endblock %}
+
+{% block scripts_pie %}
+<script>
+    window.onload = function () {
+        new DataTable('#tablaExcepcionales');
+    }
+
+    document.addEventListener('click', function (event) {
+        const button = event.target.closest('.deshabilitar');
+        if (button) {
+            const url = button.getAttribute('data-url');
+            const isCurrentlyEnabled = button.getAttribute('data-current') === 'true';
+            const nextState = !isCurrentlyEnabled;
+
+            const formData = new FormData();
+            formData.append('resuelto', nextState);
+
+            const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': csrfToken,
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                body: formData
+            }).then(response => {
+                if (response.ok) {
+                    window.location.reload();
+                } else {
+                    alert('Ocurrió un error al actualizar el estado de la excepción.');
+                }
+            }).catch(error => console.error('Error:', error));
+        }
+    });
+</script>
+{% endblock %}

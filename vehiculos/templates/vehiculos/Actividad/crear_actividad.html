@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Crear Registro de Actividad{% endblock %}
+
+{% block content %}
+<h3>Agregar Actividad de Auditoría</h3>
+<br>
+
+<div class="row">
+    <form action="" method="post">
+        {% csrf_token %}
+
+        <div class="row">
+            <div class="col">
+                <label for="id_actor" class="form-label">Actor / Cliente:</label>
+                {{ form.actor }}
+            </div>
+
+            <div class="col">
+                <label for="id_accion" class="form-label">Acción Realizada:</label>
+                {{ form.accion }}
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col">
+                <label for="id_entidad_afectada" class="form-label">Entidad Afectada:</label>
+                {{ form.entidad_afectada }}
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col">
+                <label for="id_detalles" class="form-label">Detalles:</label>
+                {{ form.detalles }}
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col">
+                <button type="reset" class="btn btn-secondary">Cancelar</button>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

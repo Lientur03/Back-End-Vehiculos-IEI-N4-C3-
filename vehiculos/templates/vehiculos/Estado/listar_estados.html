@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% block title %}Listado de Estados{% endblock %}
+
+{% block content %}
+<h3>Listado de Estados</h3>
+<br>
+
+<a href="{% url 'crear_estado' %}" class="btn btn-primary">Agregar Estado</a>
+<br><br>
+
+<table class="table table-hover" id="tablaEstados">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Es Activo</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for estado in estados %}
+        <tr>
+            <td>{{ estado.id }}</td>
+            <td>{% if estado.nombre is not None %}{{ estado.nombre }}{% else %}--{% endif %}</td>
+            <td>{% if estado.descripcion is not None %}{{ estado.descripcion }}{% else %}--{% endif %}</td>
+            <td>{% if estado.es_activo %}Activo{% else %}Inactivo{% endif %}</td>
+            <td class="d-flex align-items-center gap-1">
+                <a href="{% url 'editar_estado' estado.pk %}" class="btn btn-warning btn-sm" title="Editar Estado">
+                    <i class="bi bi-pencil"></i>
+                </a>
+
+                {% if estado.es_activo %}
+                <button type="button" class="btn btn-danger btn-sm deshabilitar" data-url="{% url 'cambiar_estado_habilitado' estado.pk %}" data-current="true" title="Desactivar Estado">
+                    <i class="bi bi-x-circle-fill"></i>
+                </button>
+                {% else %}
+                <button type="button" class="btn btn-success btn-sm deshabilitar" data-url="{% url 'cambiar_estado_habilitado' estado.pk %}" data-current="false" title="Activar Estado">
+                    <i class="bi bi-check-circle-fill"></i>
+                </button>
+                {% endif %}
+
+                <a href="{% url 'detalle_estado' estado.pk %}" class="btn btn-info btn-sm" title="Detalle Estado">
+                    <i class="bi bi-eye"></i>
+                </a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5">No se encontraron elementos en la lista.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+    <tfoot class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Es Activo</th>
+            <th>Acciones</th>
+        </tr>
+    </tfoot>
+</table>
+{% csrf_token %}
+{% endblock %}
+
+{% block scripts_pie %}
+<script>
+    window.onload = function () {
+        new DataTable('#tablaEstados');
+    }
+
+    document.addEventListener('click', function (event) {
+        const button = event.target.closest('.deshabilitar');
+        if (button) {
+            const url = button.getAttribute('data-url');
+            const isCurrentlyEnabled = button.getAttribute('data-current') === 'true';
+            const nextState = !isCurrentlyEnabled;
+
+            const formData = new FormData();
+            formData.append('es_activo', nextState);
+
+            const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': csrfToken,
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                body: formData
+            }).then(response => {
+                if (response.ok) {
+                    window.location.reload();
+                } else {
+                    alert('Ocurrió un error al actualizar el estado.');
+                }
+            }).catch(error => console.error('Error:', error));
+        }
+    });
+</script>
+{% endblock %}

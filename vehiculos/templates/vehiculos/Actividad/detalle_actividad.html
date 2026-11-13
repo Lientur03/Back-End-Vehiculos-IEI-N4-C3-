@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Detalle Actividad{% endblock %}
+
+{% block content %}
+<h3>Detalle de Registro de Auditoría</h3>
+<br>
+
+<div class="row">
+    <div class="container">
+        <div class="col">
+            <div class="card text-center">
+                <div class="card-header">
+                    <h3>Acción: {{ object.accion }}</h3>
+                </div>
+
+                <div class="card-body">
+                    <div class="card-text">
+                        <div class="row">
+                            <div class="col"><strong>Entidad Afectada</strong></div>
+                            <div class="col"><strong>Fecha y Hora</strong></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">{% if object.entidad_afectada %}{{ object.entidad_afectada }}{% else %}--{% endif %}</div>
+                            <div class="col">{% if object.fecha_hora %}{{ object.fecha_hora }}{% else %}--{% endif %}</div>
+                        </div>
+                        <br>
+
+                        <h5 class="card-title"><strong>Detalles del Registro</strong></h5>
+                        <p class="card-text">{% if object.detalles %}{{ object.detalles }}{% else %}Sin detalles adicionales{% endif %}</p>
+                        <br>
+                    </div>
+                </div>
+
+                <div class="card-footer text-body-secondary">
+                    Actor: {% if object.actor %}{{ object.actor }}{% else %}Sistema / Anónimo{% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+
+<div class="row">
+    <div class="col">
+        <a href="{% url 'listar_actividades' %}" class="btn btn-primary">Volver</a>
+    </div>
+</div>
+{% endblock %}

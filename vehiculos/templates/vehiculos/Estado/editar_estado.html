@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Editar Estado{% endblock %}
+
+{% block content %}
+<h3>Editar Estado</h3>
+<br>
+
+<div class="row">
+    <form action="" method="post">
+        {% csrf_token %}
+
+        <div class="row">
+            <div class="col">
+                <label for="id_nombre" class="form-label">Nombre:</label>
+                {{ form.nombre }}
+            </div>
+
+            <div class="col">
+                <label for="id_es_activo" class="form-label">Es Activo:</label>
+                {{ form.es_activo }}
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col">
+                <label for="id_descripcion" class="form-label">Descripción:</label>
+                {{ form.descripcion }}
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col">
+                <a href="{% url 'listar_estados' %}" class="btn btn-secondary">Volver</a>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

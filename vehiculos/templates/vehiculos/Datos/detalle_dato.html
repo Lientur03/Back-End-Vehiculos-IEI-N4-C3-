@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Detalle de Registro de Datos{% endblock %}
+
+{% block content %}
+<h3>Detalle de Telemetría</h3>
+<br>
+
+<div class="row">
+    <div class="container">
+        <div class="col">
+            <div class="card text-center">
+                <div class="card-header">
+                    <h3>Registro #{{ object.id }}</h3>
+                </div>
+
+                <div class="card-body">
+                    <div class="card-text">
+                        <div class="row">
+                            <div class="col"><strong>Kilometraje</strong></div>
+                            <div class="col"><strong>Nivel Combustible</strong></div>
+                            <div class="col"><strong>Fecha de Registro</strong></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">{% if object.kilometraje %}{{ object.kilometraje }} km{% else %}--{% endif %}</div>
+                            <div class="col">{% if object.nivel_combustible %}{{ object.nivel_combustible }}%{% else %}--{% endif %}</div>
+                            <div class="col">{% if object.fecha_registro %}{{ object.fecha_registro }}{% else %}--{% endif %}</div>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+
+                <div class="card-footer text-body-secondary">
+                    Asociado a Operación ID: {% if object.operacion %}{{ object.operacion.id }}{% else %}--{% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+
+<div class="row">
+    <div class="col">
+        <a href="{% url 'listar_datos' %}" class="btn btn-primary">Volver</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}Detalle Indicador{% endblock %}
+
+{% block content %}
+<h3>Detalle de Indicador de Gestión</h3>
+<br>
+
+<div class="row">
+    <div class="container">
+        <div class="col">
+            <div class="card text-center">
+                <div class="card-header">
+                    <h3>{{ object.nombre }}</h3>
+                </div>
+
+                <div class="card-body">
+                    <div class="card-text">
+                        <div class="row">
+                            <div class="col"><strong>Valor Actual</strong></div>
+                            <div class="col"><strong>Unidad de Medida</strong></div>
+                            <div class="col"><strong>Fecha de Cálculo</strong></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">{% if object.valor is not None %}{{ object.valor }}{% else %}--{% endif %}</div>
+                            <div class="col">{% if object.unidad_medida %}{{ object.unidad_medida }}{% else %}--{% endif %}</div>
+                            <div class="col">{% if object.fecha_calculo %}{{ object.fecha_calculo }}{% else %}--{% endif %}</div>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+
+                <div class="card-footer text-body-secondary">
+                    ID Indicador: {{ object.id }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+
+<div class="row">
+    <div class="col">
+        <a href="{% url 'listar_indicadores' %}" class="btn btn-primary">Volver</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts_pie %}
+<script>
+</script>
+{% endblock %}

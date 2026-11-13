@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}Crear Operación{% endblock %}
+
+{% block content %}
+<h3>Agregar Operación</h3>
+<br>
+
+<div class="row">
+    <form action="" method="post">
+        {% csrf_token %}
+
+        <div class="row">
+            <div class="col">
+                <label for="id_gestion" class="form-label">Gestión:</label>
+                {{ form.gestion }}
+            </div>
+
+            <div class="col">
+                <label for="id_actor" class="form-label">Cliente / Actor:</label>
+                {{ form.actor }}
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col">
+                <label for="id_patente_vehiculo" class="form-label">Patente de Vehículo:</label>
+                {{ form.patente_vehiculo }}
+            </div>
+
+            <div class="col">
+                <label for="id_tipo_operacion" class="form-label">Tipo de Operación:</label>
+                {{ form.tipo_operacion }}
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col">
+                <label for="id_fecha_inicio" class="form-label">Fecha de Inicio:</label>
+                {{ form.fecha_inicio }}
+            </div>
+
+            <div class="col">
+                <label for="id_fecha_fin" class="form-label">Fecha de Fin:</label>
+                {{ form.fecha_fin }}
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col">
+                <label for="id_observaciones" class="form-label">Observaciones:</label>
+                {{ form.observaciones }}
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col">
+                <button type="reset" class="btn btn-secondary">Cancelar</button>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

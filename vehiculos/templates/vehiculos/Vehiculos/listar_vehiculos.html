@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block title %}Listado de Vehículos{% endblock %}
+
+{% block content %}
+<h3>Listado de Vehículos</h3>
+<br>
+
+<a href="{% url 'crear_vehiculo' %}" class="btn btn-primary">Agregar Vehículo</a>
+<br><br>
+
+<table class="table table-hover" id="tablaVehiculos">
+    <thead class="table-dark">
+        <tr>
+            <th>Patente</th>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Año</th>
+            <th>Combustible</th>
+            <th>Cliente</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for vehiculo in vehiculos %}
+        <tr>
+            <td>{{ vehiculo.patente }}</td>
+            <td>{% if vehiculo.marca is not None %}{{ vehiculo.marca }}{% else %}--{% endif %}</td>
+            <td>{% if vehiculo.modelo is not None %}{{ vehiculo.modelo }}{% else %}--{% endif %}</td>
+            <td>{% if vehiculo.anio is not None %}{{ vehiculo.anio }}{% else %}--{% endif %}</td>
+            <td>{% if vehiculo.tipo_combustible is not None %}{{ vehiculo.tipo_combustible }}{% else %}--{% endif %}</td>
+            <td>{% if vehiculo.cliente is not None %}{{ vehiculo.cliente.nombre }}{% else %}--{% endif %}</td>
+            <td class="d-flex align-items-center gap-1">
+                <a href="{% url 'editar_vehiculo' vehiculo.pk %}" class="btn btn-warning btn-sm" title="Editar Vehículo">
+                    <i class="bi bi-pencil"></i>
+                </a>
+
+                <a href="{% url 'detalle_vehiculo' vehiculo.pk %}" class="btn btn-info btn-sm" title="Detalle Vehículo">
+                    <i class="bi bi-eye"></i>
+                </a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="7">No se encontraron elementos en la lista.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+    <tfoot class="table-dark">
+        <tr>
+            <th>Patente</th>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Año</th>
+            <th>Combustible</th>
+            <th>Cliente</th>
+            <th>Acciones</th>
+        </tr>
+    </tfoot>
+</table>
+{% csrf_token %}
+{% endblock %}
+
+{% block scripts_pie %}
+<script>
+    window.onload = function () {
+        new DataTable('#tablaVehiculos');
+    }
+</script>
+{% endblock %}

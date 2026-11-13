@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}Listado de Consultas{% endblock %}
+
+{% block content %}
+<h3>Listado de Consultas Guardadas</h3>
+<br>
+
+<a href="{% url 'crear_consulta' %}" class="btn btn-primary">Agregar Consulta</a>
+<br><br>
+
+<table class="table table-hover" id="tablaConsultas">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Nombre Consulta</th>
+            <th>Usuario</th>
+            <th>Fecha Creación</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for consulta in consultas %}
+        <tr>
+            <td>{{ consulta.id }}</td>
+            <td>{% if consulta.nombre_consulta is not None %}{{ consulta.nombre_consulta }}{% else %}--{% endif %}</td>
+            <td>{% if consulta.usuario is not None %}{{ consulta.usuario.username }}{% else %}--{% endif %}</td>
+            <td>{% if consulta.fecha_creacion is not None %}{{ consulta.fecha_creacion }}{% else %}--{% endif %}</td>
+            <td class="d-flex align-items-center gap-1">
+                <a href="{% url 'editar_consulta' consulta.pk %}" class="btn btn-warning btn-sm" title="Editar Consulta">
+                    <i class="bi bi-pencil"></i>
+                </a>
+                <a href="{% url 'detalle_consulta' consulta.pk %}" class="btn btn-info btn-sm" title="Detalle Consulta">
+                    <i class="bi bi-eye"></i>
+                </a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5">No se encontraron elementos en la lista.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+    <tfoot class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Nombre Consulta</th>
+            <th>Usuario</th>
+            <th>Fecha Creación</th>
+            <th>Acciones</th>
+        </tr>
+    </tfoot>
+</table>
+{% csrf_token %}
+{% endblock %}
+
+{% block scripts_pie %}
+<script>
+    window.onload = function () {
+        new DataTable('#tablaConsultas');
+    }
+</script>
+{% endblock %}

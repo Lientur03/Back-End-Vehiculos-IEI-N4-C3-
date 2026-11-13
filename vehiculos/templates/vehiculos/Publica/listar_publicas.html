@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% block title %}Listado de Información Pública{% endblock %}
+
+{% block content %}
+<h3>Listado de Información Pública</h3>
+<br>
+
+<a href="{% url 'crear_publica' %}" class="btn btn-primary">Agregar Publicación</a>
+<br><br>
+
+<table class="table table-hover" id="tablaPublicas">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Título</th>
+            <th>Fecha Publicación</th>
+            <th>Visible</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for publica in publicas %}
+        <tr>
+            <td>{{ publica.id }}</td>
+            <td>{% if publica.titulo is not None %}{{ publica.titulo }}{% else %}--{% endif %}</td>
+            <td>{% if publica.fecha_publicacion is not None %}{{ publica.fecha_publicacion }}{% else %}--{% endif %}</td>
+            <td>{% if publica.es_visible %}Sí{% else %}No{% endif %}</td>
+            <td class="d-flex align-items-center gap-1">
+                <a href="{% url 'editar_publica' publica.pk %}" class="btn btn-warning btn-sm" title="Editar Publicación">
+                    <i class="bi bi-pencil"></i>
+                </a>
+
+                {% if publica.es_visible %}
+                <button type="button" class="btn btn-danger btn-sm deshabilitar" data-url="{% url 'cambiar_publica_habilitado' publica.pk %}" data-current="true" title="Ocultar Publicación">
+                    <i class="bi bi-x-circle-fill"></i>
+                </button>
+                {% else %}
+                <button type="button" class="btn btn-success btn-sm deshabilitar" data-url="{% url 'cambiar_publica_habilitado' publica.pk %}" data-current="false" title="Mostrar Publicación">
+                    <i class="bi bi-check-circle-fill"></i>
+                </button>
+                {% endif %}
+
+                <a href="{% url 'detalle_publica' publica.pk %}" class="btn btn-info btn-sm" title="Detalle Publicación">
+                    <i class="bi bi-eye"></i>
+                </a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5">No se encontraron elementos en la lista.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+    <tfoot class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Título</th>
+            <th>Fecha Publicación</th>
+            <th>Visible</th>
+            <th>Acciones</th>
+        </tr>
+    </tfoot>
+</table>
+{% csrf_token %}
+{% endblock %}
+
+{% block scripts_pie %}
+<script>
+    window.onload = function () {
+        new DataTable('#tablaPublicas');
+    }
+
+    document.addEventListener('click', function (event) {
+        const button = event.target.closest('.deshabilitar');
+        if (button) {
+            const url = button.getAttribute('data-url');
+            const isCurrentlyEnabled = button.getAttribute('data-current') === 'true';
+            const nextState = !isCurrentlyEnabled;
+
+            const formData = new FormData();
+            formData.append('es_visible', nextState);
+
+            const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': csrfToken,
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                body: formData
+            }).then(response => {
+                if (response.ok) {
+                    window.location.reload();
+                } else {
+                    alert('Ocurrió un error al actualizar la visibilidad.');
+                }
+            }).catch(error => console.error('Error:', error));
+        }
+    });
+</script>
+{% endblock %}

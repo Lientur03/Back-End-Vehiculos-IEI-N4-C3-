@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}Detalle Vehículo{% endblock %}
+
+{% block content %}
+<h3>Detalle Vehículo</h3>
+<br>
+
+<div class="row">
+    <div class="container">
+        <div class="col">
+            <div class="card text-center">
+                <div class="card-header">
+                    <h3>{{ object.marca }} {{ object.modelo }} ({{ object.patente }})</h3>
+                </div>
+
+                <div class="card-body">
+                    <div class="card-text">
+                        <div class="row">
+                            <div class="col"><strong>Patente</strong></div>
+                            <div class="col"><strong>Marca</strong></div>
+                            <div class="col"><strong>Modelo</strong></div>
+                            <div class="col"><strong>Año</strong></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                {% if object.patente %}{{ object.patente }}{% else %}--{% endif %}
+                            </div>
+                            <div class="col">
+                                {% if object.marca %}{{ object.marca }}{% else %}--{% endif %}
+                            </div>
+                            <div class="col">
+                                {% if object.modelo %}{{ object.modelo }}{% else %}--{% endif %}
+                            </div>
+                            <div class="col">
+                                {% if object.anio %}{{ object.anio }}{% else %}--{% endif %}
+                            </div>
+                        </div>
+                        <br>
+
+                        <h5 class="card-title"><strong>Tipo de Combustible</strong></h5>
+                        <p class="card-text">{{ object.tipo_combustible }}</p>
+                        <br>
+                    </div>
+                </div>
+
+                <div class="card-footer text-body-secondary">
+                    Propietario: {% if object.cliente %}{{ object.cliente }}{% else %}--{% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+
+<div class="row">
+    <div class="col">
+        <a href="{% url 'listar_vehiculos' %}" class="btn btn-primary">Volver</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts_pie %}
+<script>
+</script>
+{% endblock %}

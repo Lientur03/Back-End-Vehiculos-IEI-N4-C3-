@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}Detalle Operación{% endblock %}
+
+{% block content %}
+<h3>Detalle Operación</h3>
+<br>
+
+<div class="row">
+    <div class="container">
+        <div class="col">
+            <div class="card text-center">
+                <div class="card-header">
+                    <h3>Operación #{{ object.id }} - Vehículo: {{ object.patente_vehiculo }}</h3>
+                </div>
+
+                <div class="card-body">
+                    <div class="card-text">
+                        <div class="row">
+                            <div class="col"><strong>Tipo</strong></div>
+                            <div class="col"><strong>Fecha Inicio</strong></div>
+                            <div class="col"><strong>Fecha Fin</strong></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">{% if object.tipo_operacion %}{{ object.tipo_operacion }}{% else %}--{% endif %}</div>
+                            <div class="col">{% if object.fecha_inicio %}{{ object.fecha_inicio }}{% else %}--{% endif %}</div>
+                            <div class="col">{% if object.fecha_fin %}{{ object.fecha_fin }}{% else %}En curso{% endif %}</div>
+                        </div>
+                        <br>
+
+                        <h5 class="card-title"><strong>Observaciones</strong></h5>
+                        <p class="card-text">{% if object.observaciones %}{{ object.observaciones }}{% else %}Sin observaciones{% endif %}</p>
+                        <br>
+                    </div>
+                </div>
+
+                <div class="card-footer text-body-secondary">
+                    Cliente: {% if object.actor %}{{ object.actor }}{% else %}--{% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+
+<div class="row">
+    <div class="col">
+        <a href="{% url 'listar_operaciones' %}" class="btn btn-primary">Volver</a>
+    </div>
+</div>
+{% endblock %}

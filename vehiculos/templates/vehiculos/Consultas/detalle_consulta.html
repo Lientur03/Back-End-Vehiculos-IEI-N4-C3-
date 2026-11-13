@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Detalle Consulta{% endblock %}
+
+{% block content %}
+<h3>Detalle de Consulta Guardada</h3>
+<br>
+
+<div class="row">
+    <div class="container">
+        <div class="col">
+            <div class="card text-center">
+                <div class="card-header">
+                    <h3>{{ object.nombre_consulta }}</h3>
+                </div>
+
+                <div class="card-body">
+                    <div class="card-text">
+                        <h5 class="card-title"><strong>Criterios de Búsqueda (JSON)</strong></h5>
+                        <p class="card-text"><code>{% if object.criterios_busqueda %}{{ object.criterios_busqueda }}{% else %}--{% endif %}</code></p>
+                        <br>
+                    </div>
+                </div>
+
+                <div class="card-footer text-body-secondary">
+                    Creado por: {% if object.usuario %}{{ object.usuario.username }}{% else %}--{% endif %} | Fecha: {{ object.fecha_creacion }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+
+<div class="row">
+    <div class="col">
+        <a href="{% url 'listar_consultas' %}" class="btn btn-primary">Volver</a>
+    </div>
+</div>
+{% endblock %}

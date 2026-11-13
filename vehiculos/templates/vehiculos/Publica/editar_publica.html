@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Editar Información Pública{% endblock %}
+
+{% block content %}
+<h3>Editar Información Pública</h3>
+<br>
+
+<div class="row">
+    <form action="" method="post">
+        {% csrf_token %}
+
+        <div class="row">
+            <div class="col">
+                <label for="id_titulo" class="form-label">Título:</label>
+                {{ form.titulo }}
+            </div>
+
+            <div class="col">
+                <label for="id_es_visible" class="form-label">Es Visible:</label>
+                {{ form.es_visible }}
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col">
+                <label for="id_contenido" class="form-label">Contenido:</label>
+                {{ form.contenido }}
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col">
+                <a href="{% url 'listar_publicas' %}" class="btn btn-secondary">Volver</a>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block scripts_pie %}
+<script>
+</script>
+{% endblock %}

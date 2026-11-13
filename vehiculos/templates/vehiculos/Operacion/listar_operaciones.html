@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}Listado de Operaciones{% endblock %}
+
+{% block content %}
+<h3>Listado de Operaciones</h3>
+<br>
+
+<a href="{% url 'crear_operacion' %}" class="btn btn-primary">Agregar Operación</a>
+<br><br>
+
+<table class="table table-hover" id="tablaOperaciones">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Patente</th>
+            <th>Tipo</th>
+            <th>Cliente</th>
+            <th>Fecha Inicio</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for operacion in operaciones %}
+        <tr>
+            <td>{{ operacion.id }}</td>
+            <td>{% if operacion.patente_vehiculo is not None %}{{ operacion.patente_vehiculo }}{% else %}--{% endif %}</td>
+            <td>{% if operacion.tipo_operacion is not None %}{{ operacion.tipo_operacion }}{% else %}--{% endif %}</td>
+            <td>{% if operacion.actor is not None %}{{ operacion.actor.nombre }}{% else %}--{% endif %}</td>
+            <td>{% if operacion.fecha_inicio is not None %}{{ operacion.fecha_inicio }}{% else %}--{% endif %}</td>
+            <td class="d-flex align-items-center gap-1">
+                <a href="{% url 'editar_operacion' operacion.pk %}" class="btn btn-warning btn-sm" title="Editar Operación">
+                    <i class="bi bi-pencil"></i>
+                </a>
+                <a href="{% url 'detalle_operacion' operacion.pk %}" class="btn btn-info btn-sm" title="Detalle Operación">
+                    <i class="bi bi-eye"></i>
+                </a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6">No se encontraron elementos en la lista.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+    <tfoot class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Patente</th>
+            <th>Tipo</th>
+            <th>Cliente</th>
+            <th>Fecha Inicio</th>
+            <th>Acciones</th>
+        </tr>
+    </tfoot>
+</table>
+{% csrf_token %}
+{% endblock %}
+
+{% block scripts_pie %}
+<script>
+    window.onload = function () {
+        new DataTable('#tablaOperaciones');
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Crear Perfil{% endblock %}
+
+{% block content %}
+<h3>Agregar Perfil</h3>
+<br>
+
+<div class="row">
+    <form action="" method="post">
+        {% csrf_token %}
+
+        <div class="row">
+            <div class="col">
+                <label for="id_usuario" class="form-label">Usuario:</label>
+                {{ form.usuario }}
+            </div>
+
+            <div class="col">
+                <label for="id_rol" class="form-label">Rol:</label>
+                {{ form.rol }}
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col">
+                <label for="id_nivel_acceso" class="form-label">Nivel de Acceso:</label>
+                {{ form.nivel_acceso }}
+            </div>
+
+            <div class="col">
+                <label for="id_departamento" class="form-label">Departamento:</label>
+                {{ form.departamento }}
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col">
+                <button type="reset" class="btn btn-secondary">Cancelar</button>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

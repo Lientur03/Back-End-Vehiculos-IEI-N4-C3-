@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}Editar Gestión{% endblock %}
+
+{% block content %}
+<h3>Editar Gestión</h3>
+<br>
+
+<div class="row">
+    <form action="" method="post">
+        {% csrf_token %}
+
+        <div class="row">
+            <div class="col">
+                <label for="id_codigo_flota" class="form-label">Código de Flota:</label>
+                {{ form.codigo_flota }}
+            </div>
+
+            <div class="col">
+                <label for="id_nombre_area" class="form-label">Nombre de Área:</label>
+                {{ form.nombre_area }}
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col">
+                <label for="id_responsable" class="form-label">Responsable:</label>
+                {{ form.responsable }}
+            </div>
+
+            <div class="col">
+                <label for="id_fecha_inicio" class="form-label">Fecha de Inicio:</label>
+                {{ form.fecha_inicio }}
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col">
+                <label for="id_activo" class="form-label">Activo:</label>
+                {{ form.activo }}
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col">
+                <a href="{% url 'listar_gestiones' %}" class="btn btn-secondary">Volver</a>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Editar Dato de Telemetría{% endblock %}
+
+{% block content %}
+<h3>Editar Registro de Datos</h3>
+<br>
+
+<div class="row">
+    <form action="" method="post">
+        {% csrf_token %}
+
+        <div class="row">
+            <div class="col">
+                <label for="id_operacion" class="form-label">Operación:</label>
+                {{ form.operacion }}
+            </div>
+
+            <div class="col">
+                <label for="id_kilometraje" class="form-label">Kilometraje:</label>
+                {{ form.kilometraje }}
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col">
+                <label for="id_nivel_combustible" class="form-label">Nivel de Combustible (%):</label>
+                {{ form.nivel_combustible }}
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col">
+                <a href="{% url 'listar_datos' %}" class="btn btn-secondary">Volver</a>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

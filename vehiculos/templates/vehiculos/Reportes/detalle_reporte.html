@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Detalle Reporte{% endblock %}
+
+{% block content %}
+<h3>Detalle de Reporte</h3>
+<br>
+
+<div class="row">
+    <div class="container">
+        <div class="col">
+            <div class="card text-center">
+                <div class="card-header">
+                    <h3>{{ object.titulo }}</h3>
+                </div>
+
+                <div class="card-body">
+                    <div class="card-text">
+                        <h5 class="card-title"><strong>Tipo de Reporte</strong></h5>
+                        <p class="card-text">{% if object.tipo_reporte %}{{ object.tipo_reporte }}{% else %}--{% endif %}</p>
+                        <br>
+
+                        <h5 class="card-title"><strong>Parámetros Utilizados</strong></h5>
+                        <p class="card-text">{% if object.parametros_usados %}{{ object.parametros_usados }}{% else %}Sin parámetros{% endif %}</p>
+                        <br>
+                    </div>
+                </div>
+
+                <div class="card-footer text-body-secondary">
+                    Generado por: {% if object.generado_por %}{{ object.generado_por.username }}{% else %}Sistema{% endif %} | Fecha: {{ object.fecha_generacion }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+
+<div class="row">
+    <div class="col">
+        <a href="{% url 'listar_reportes' %}" class="btn btn-primary">Volver</a>
+    </div>
+</div>
+{% endblock %}

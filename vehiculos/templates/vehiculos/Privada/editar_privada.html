@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Editar Información Privada{% endblock %}
+
+{% block content %}
+<h3>Editar Información Privada / Restringida</h3>
+<br>
+
+<div class="row">
+    <form action="" method="post">
+        {% csrf_token %}
+
+        <div class="row">
+            <div class="col">
+                <label for="id_titulo" class="form-label">Título:</label>
+                {{ form.titulo }}
+            </div>
+
+            <div class="col">
+                <label for="id_perfil_autorizado" class="form-label">Perfil Autorizado:</label>
+                {{ form.perfil_autorizado }}
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col">
+                <label for="id_contenido_sensible" class="form-label">Contenido Sensible:</label>
+                {{ form.contenido_sensible }}
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col">
+                <a href="{% url 'listar_privadas' %}" class="btn btn-secondary">Volver</a>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block scripts_pie %}
+<script>
+</script>
+{% endblock %}

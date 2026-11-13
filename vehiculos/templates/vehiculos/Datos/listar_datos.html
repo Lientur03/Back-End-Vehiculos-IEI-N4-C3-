@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}Listado de Registros de Datos{% endblock %}
+
+{% block content %}
+<h3>Listado de Registros de Datos</h3>
+<br>
+
+<a href="{% url 'crear_dato' %}" class="btn btn-primary">Agregar Registro</a>
+<br><br>
+
+<table class="table table-hover" id="tablaDatos">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Operación ID</th>
+            <th>Kilometraje</th>
+            <th>Combustible</th>
+            <th>Fecha Registro</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for dato in datos %}
+        <tr>
+            <td>{{ dato.id }}</td>
+            <td>{% if dato.operacion is not None %}{{ dato.operacion.id }}{% else %}--{% endif %}</td>
+            <td>{% if dato.kilometraje is not None %}{{ dato.kilometraje }} km{% else %}--{% endif %}</td>
+            <td>{% if dato.nivel_combustible is not None %}{{ dato.nivel_combustible }}%{% else %}--{% endif %}</td>
+            <td>{% if dato.fecha_registro is not None %}{{ dato.fecha_registro }}{% else %}--{% endif %}</td>
+            <td class="d-flex align-items-center gap-1">
+                <a href="{% url 'editar_dato' dato.pk %}" class="btn btn-warning btn-sm" title="Editar Registro">
+                    <i class="bi bi-pencil"></i>
+                </a>
+                <a href="{% url 'detalle_dato' dato.pk %}" class="btn btn-info btn-sm" title="Detalle Registro">
+                    <i class="bi bi-eye"></i>
+                </a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6">No se encontraron elementos en la lista.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+    <tfoot class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Operación ID</th>
+            <th>Kilometraje</th>
+            <th>Combustible</th>
+            <th>Fecha Registro</th>
+            <th>Acciones</th>
+        </tr>
+    </tfoot>
+</table>
+{% csrf_token %}
+{% endblock %}
+
+{% block scripts_pie %}
+<script>
+    window.onload = function () {
+        new DataTable('#tablaDatos');
+    }
+</script>
+{% endblock %}

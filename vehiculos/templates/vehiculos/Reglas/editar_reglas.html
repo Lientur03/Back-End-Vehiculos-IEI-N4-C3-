@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Editar Regla de Negocio{% endblock %}
+
+{% block content %}
+<h3>Editar Regla</h3>
+<br>
+
+<div class="row">
+    <form action="" method="post">
+        {% csrf_token %}
+
+        <div class="row">
+            <div class="col">
+                <label for="id_nombre_regla" class="form-label">Nombre de Regla:</label>
+                {{ form.nombre_regla }}
+            </div>
+
+            <div class="col">
+                <label for="id_limite_kilometros_mantencion" class="form-label">Límite Kilómetros Mantención:</label>
+                {{ form.limite_kilometros_mantencion }}
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col">
+                <label for="id_dias_maximo_revision" class="form-label">Días Máximos Revisión:</label>
+                {{ form.dias_maximo_revision }}
+            </div>
+
+            <div class="col">
+                <label for="id_activa" class="form-label">Activa:</label>
+                {{ form.activa }}
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col">
+                <a href="{% url 'listar_reglas' %}" class="btn btn-secondary">Volver</a>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Detalle Antecedente{% endblock %}
+
+{% block content %}
+<h3>Detalle de Antecedente</h3>
+<br>
+
+<div class="row">
+    <div class="container">
+        <div class="col">
+            <div class="card text-center">
+                <div class="card-header">
+                    <h3>Vehículo: {{ object.vehiculo.patente }} - {{ object.tipo_antecedente }}</h3>
+                </div>
+
+                <div class="card-body">
+                    <div class="card-text">
+                        <h5 class="card-title"><strong>Fecha del Evento</strong></h5>
+                        <p class="card-text">{% if object.fecha_evento %}{{ object.fecha_evento }}{% else %}--{% endif %}</p>
+                        <br>
+
+                        <h5 class="card-title"><strong>Descripción</strong></h5>
+                        <p class="card-text">{% if object.descripcion %}{{ object.descripcion }}{% else %}--{% endif %}</p>
+                        <br>
+
+                        {% if object.archivo_adjunto %}
+                        <h5 class="card-title"><strong>Archivo Adjunto</strong></h5>
+                        <p class="card-text"><a href="{{ object.archivo_adjunto.url }}" target="_blank" class="btn btn-outline-primary btn-sm">Ver Archivo</a></p>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="card-footer text-body-secondary">
+                    ID Antecedente: {{ object.id }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+
+<div class="row">
+    <div class="col">
+        <a href="{% url 'listar_antecedentes' %}" class="btn btn-primary">Volver</a>
+    </div>
+</div>
+{% endblock %}

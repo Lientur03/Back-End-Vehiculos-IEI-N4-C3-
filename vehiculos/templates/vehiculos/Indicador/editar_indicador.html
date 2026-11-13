@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Editar Indicador de Gestión{% endblock %}
+
+{% block content %}
+<h3>Editar Indicador (KPI)</h3>
+<br>
+
+<div class="row">
+    <form action="" method="post">
+        {% csrf_token %}
+
+        <div class="row">
+            <div class="col">
+                <label for="id_nombre" class="form-label">Nombre del Indicador:</label>
+                {{ form.nombre }}
+            </div>
+
+            <div class="col">
+                <label for="id_valor" class="form-label">Valor:</label>
+                {{ form.valor }}
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col">
+                <label for="id_unidad_medida" class="form-label">Unidad de Medida:</label>
+                {{ form.unidad_medida }}
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col">
+                <a href="{% url 'listar_indicadores' %}" class="btn btn-secondary">Volver</a>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block scripts_pie %}
+<script>
+</script>
+{% endblock %}

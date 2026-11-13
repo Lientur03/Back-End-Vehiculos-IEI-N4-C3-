@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Crear Reporte{% endblock %}
+
+{% block content %}
+<h3>Agregar Reporte</h3>
+<br>
+
+<div class="row">
+    <form action="" method="post">
+        {% csrf_token %}
+
+        <div class="row">
+            <div class="col">
+                <label for="id_titulo" class="form-label">Título:</label>
+                {{ form.titulo }}
+            </div>
+
+            <div class="col">
+                <label for="id_tipo_reporte" class="form-label">Tipo de Reporte:</label>
+                {{ form.tipo_reporte }}
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col">
+                <label for="id_generado_por" class="form-label">Generado por:</label>
+                {{ form.generado_por }}
+            </div>
+
+            <div class="col">
+                <label for="id_parametros_usados" class="form-label">Parámetros Usados:</label>
+                {{ form.parametros_usados }}
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col">
+                <button type="reset" class="btn btn-secondary">Cancelar</button>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

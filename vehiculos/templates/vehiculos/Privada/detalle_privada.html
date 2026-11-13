@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}Detalle Información Privada{% endblock %}
+
+{% block content %}
+<h3>Detalle de Información Restringida</h3>
+<br>
+
+<div class="row">
+    <div class="container">
+        <div class="col">
+            <div class="card text-center">
+                <div class="card-header">
+                    <h3>[PRIVADO] {{ object.titulo }}</h3>
+                </div>
+
+                <div class="card-body">
+                    <div class="card-text">
+                        <h5 class="card-title"><strong>Contenido Sensible</strong></h5>
+                        <p class="card-text">{% if object.contenido_sensible %}{{ object.contenido_sensible }}{% else %}--{% endif %}</p>
+                        <br>
+                    </div>
+                </div>
+
+                <div class="card-footer text-body-secondary">
+                    Perfil Autorizado: {% if object.perfil_autorizado %}{{ object.perfil_autorizado }}{% else %}--{% endif %} | Fecha: {{ object.fecha_registro }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+
+<div class="row">
+    <div class="col">
+        <a href="{% url 'listar_privadas' %}" class="btn btn-primary">Volver</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts_pie %}
+<script>
+</script>
+{% endblock %}

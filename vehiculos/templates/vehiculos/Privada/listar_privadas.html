@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}Listado de Información Privada{% endblock %}
+
+{% block content %}
+<h3>Listado de Información Privada / Restringida</h3>
+<br>
+
+<a href="{% url 'crear_privada' %}" class="btn btn-primary">Agregar Registro Privado</a>
+<br><br>
+
+<table class="table table-hover" id="tablaPrivadas">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Título</th>
+            <th>Perfil Autorizado</th>
+            <th>Fecha Registro</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for privada in privadas %}
+        <tr>
+            <td>{{ privada.id }}</td>
+            <td>{% if privada.titulo is not None %}{{ privada.titulo }}{% else %}--{% endif %}</td>
+            <td>{% if privada.perfil_autorizado is not None %}{{ privada.perfil_autorizado }}{% else %}--{% endif %}</td>
+            <td>{% if privada.fecha_registro is not None %}{{ privada.fecha_registro }}{% else %}--{% endif %}</td>
+            <td class="d-flex align-items-center gap-1">
+                <a href="{% url 'editar_privada' privada.pk %}" class="btn btn-warning btn-sm" title="Editar Registro Privado">
+                    <i class="bi bi-pencil"></i>
+                </a>
+                <a href="{% url 'detalle_privada' privada.pk %}" class="btn btn-info btn-sm" title="Detalle Registro Privado">
+                    <i class="bi bi-eye"></i>
+                </a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5">No se encontraron elementos en la lista.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+    <tfoot class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Título</th>
+            <th>Perfil Autorizado</th>
+            <th>Fecha Registro</th>
+            <th>Acciones</th>
+        </tr>
+    </tfoot>
+</table>
+{% csrf_token %}
+{% endblock %}
+
+{% block scripts_pie %}
+<script>
+    window.onload = function () {
+        new DataTable('#tablaPrivadas');
+    }
+</script>
+{% endblock %}

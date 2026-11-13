@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}Detalle Gestión{% endblock %}
+
+{% block content %}
+<h3>Detalle Gestión</h3>
+<br>
+
+<div class="row">
+    <div class="container">
+        <div class="col">
+            <div class="card text-center">
+                <div class="card-header">
+                    <h3>Gestión {{ object.codigo_flota }} - {{ object.nombre_area }}</h3>
+                </div>
+
+                <div class="card-body">
+                    <div class="card-text">
+                        <div class="row">
+                            <div class="col"><strong>Fecha de Inicio</strong></div>
+                            <div class="col"><strong>Estado</strong></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">{% if object.fecha_inicio %}{{ object.fecha_inicio }}{% else %}--{% endif %}</div>
+                            <div class="col">{% if object.activo %}Activa{% else %}Inactiva{% endif %}</div>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+
+                <div class="card-footer text-body-secondary">
+                    Responsable: {% if object.responsable %}{{ object.responsable }}{% else %}--{% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+
+<div class="row">
+    <div class="col">
+        <a href="{% url 'listar_gestiones' %}" class="btn btn-primary">Volver</a>
+    </div>
+</div>
+{% endblock %}

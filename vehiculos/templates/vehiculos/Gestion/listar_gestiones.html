@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+{% block title %}Listado de Gestiones{% endblock %}
+
+{% block content %}
+<h3>Listado de Gestiones</h3>
+<br>
+
+<a href="{% url 'crear_gestion' %}" class="btn btn-primary">Agregar Gestión</a>
+<br><br>
+
+<table class="table table-hover" id="tablaGestiones">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Código Flota</th>
+            <th>Área</th>
+            <th>Responsable</th>
+            <th>Fecha Inicio</th>
+            <th>Activo</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for gestion in gestiones %}
+        <tr>
+            <td>{{ gestion.id }}</td>
+            <td>{% if gestion.codigo_flota is not None %}{{ gestion.codigo_flota }}{% else %}--{% endif %}</td>
+            <td>{% if gestion.nombre_area is not None %}{{ gestion.nombre_area }}{% else %}--{% endif %}</td>
+            <td>{% if gestion.responsable is not None %}{{ gestion.responsable.nombre }}{% else %}--{% endif %}</td>
+            <td>{% if gestion.fecha_inicio is not None %}{{ gestion.fecha_inicio }}{% else %}--{% endif %}</td>
+            <td>{% if gestion.activo %}Sí{% else %}No{% endif %}</td>
+            <td class="d-flex align-items-center gap-1">
+                <a href="{% url 'editar_gestion' gestion.pk %}" class="btn btn-warning btn-sm" title="Editar Gestión">
+                    <i class="bi bi-pencil"></i>
+                </a>
+
+                {% if gestion.activo %}
+                <button type="button" class="btn btn-danger btn-sm deshabilitar" data-url="{% url 'cambiar_gestion_habilitado' gestion.pk %}" data-current="true" title="Desactivar Gestión">
+                    <i class="bi bi-x-circle-fill"></i>
+                </button>
+                {% else %}
+                <button type="button" class="btn btn-success btn-sm deshabilitar" data-url="{% url 'cambiar_gestion_habilitado' gestion.pk %}" data-current="false" title="Activar Gestión">
+                    <i class="bi bi-check-circle-fill"></i>
+                </button>
+                {% endif %}
+
+                <a href="{% url 'detalle_gestion' gestion.pk %}" class="btn btn-info btn-sm" title="Detalle Gestión">
+                    <i class="bi bi-eye"></i>
+                </a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="7">No se encontraron elementos en la lista.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+    <tfoot class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Código Flota</th>
+            <th>Área</th>
+            <th>Responsable</th>
+            <th>Fecha Inicio</th>
+            <th>Activo</th>
+            <th>Acciones</th>
+        </tr>
+    </tfoot>
+</table>
+{% csrf_token %}
+{% endblock %}
+
+{% block scripts_pie %}
+<script>
+    window.onload = function () {
+        new DataTable('#tablaGestiones');
+    }
+
+    document.addEventListener('click', function (event) {
+        const button = event.target.closest('.deshabilitar');
+        if (button) {
+            const url = button.getAttribute('data-url');
+            const isCurrentlyEnabled = button.getAttribute('data-current') === 'true';
+            const nextState = !isCurrentlyEnabled;
+
+            const formData = new FormData();
+            formData.append('activo', nextState);
+
+            const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': csrfToken,
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                body: formData
+            }).then(response => {
+                if (response.ok) {
+                    window.location.reload();
+                } else {
+                    alert('Ocurrió un error al actualizar la gestión.');
+                }
+            }).catch(error => console.error('Error:', error));
+        }
+    });
+</script>
+{% endblock %}

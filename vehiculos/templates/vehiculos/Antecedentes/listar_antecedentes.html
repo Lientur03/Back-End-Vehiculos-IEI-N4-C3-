@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}Listado de Antecedentes{% endblock %}
+
+{% block content %}
+<h3>Listado de Antecedentes</h3>
+<br>
+
+<a href="{% url 'crear_antecedente' %}" class="btn btn-primary">Agregar Antecedente</a>
+<br><br>
+
+<table class="table table-hover" id="tablaAntecedentes">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Patente Vehículo</th>
+            <th>Fecha Evento</th>
+            <th>Tipo</th>
+            <th>Descripción</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for antecedente in antecedentes %}
+        <tr>
+            <td>{{ antecedente.id }}</td>
+            <td>{% if antecedente.vehiculo is not None %}{{ antecedente.vehiculo.patente }}{% else %}--{% endif %}</td>
+            <td>{% if antecedente.fecha_evento is not None %}{{ antecedente.fecha_evento }}{% else %}--{% endif %}</td>
+            <td>{% if antecedente.tipo_antecedente is not None %}{{ antecedente.tipo_antecedente }}{% else %}--{% endif %}</td>
+            <td>{% if antecedente.descripcion is not None %}{{ antecedente.descripcion|truncatechars:40 }}{% else %}--{% endif %}</td>
+            <td class="d-flex align-items-center gap-1">
+                <a href="{% url 'editar_antecedente' antecedente.pk %}" class="btn btn-warning btn-sm" title="Editar Antecedente">
+                    <i class="bi bi-pencil"></i>
+                </a>
+                <a href="{% url 'detalle_antecedente' antecedente.pk %}" class="btn btn-info btn-sm" title="Detalle Antecedente">
+                    <i class="bi bi-eye"></i>
+                </a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6">No se encontraron elementos en la lista.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+    <tfoot class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Patente Vehículo</th>
+            <th>Fecha Evento</th>
+            <th>Tipo</th>
+            <th>Descripción</th>
+            <th>Acciones</th>
+        </tr>
+    </tfoot>
+</table>
+{% csrf_token %}
+{% endblock %}
+
+{% block scripts_pie %}
+<script>
+    window.onload = function () {
+        new DataTable('#tablaAntecedentes');
+    }
+</script>
+{% endblock %}

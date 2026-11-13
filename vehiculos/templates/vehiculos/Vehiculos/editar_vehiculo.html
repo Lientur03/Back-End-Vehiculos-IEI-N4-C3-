@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}Editar Vehículo{% endblock %}
+
+{% block content %}
+<h3>Editar Vehículo</h3>
+<br>
+
+<div class="row">
+    <form action="" method="post">
+        {% csrf_token %}
+
+        <div class="row">
+            <div class="col">
+                <label for="id_patente" class="form-label">Patente:</label>
+                {{ form.patente }}
+            </div>
+
+            <div class="col">
+                <label for="id_cliente" class="form-label">Cliente Propietario:</label>
+                {{ form.cliente }}
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col">
+                <label for="id_marca" class="form-label">Marca:</label>
+                {{ form.marca }}
+            </div>
+
+            <div class="col">
+                <label for="id_modelo" class="form-label">Modelo:</label>
+                {{ form.modelo }}
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col">
+                <label for="id_anio" class="form-label">Año:</label>
+                {{ form.anio }}
+            </div>
+
+            <div class="col">
+                <label for="id_tipo_combustible" class="form-label">Tipo de Combustible:</label>
+                {{ form.tipo_combustible }}
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col">
+                <a href="{% url 'listar_vehiculos' %}" class="btn btn-secondary">Volver</a>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block scripts_pie %}
+<script>
+</script>
+{% endblock %}

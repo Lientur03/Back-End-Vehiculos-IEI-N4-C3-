@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}Listado de Indicadores{% endblock %}
+
+{% block content %}
+<h3>Listado de Indicadores de Gestión (KPIs)</h3>
+<br>
+
+<a href="{% url 'crear_indicador' %}" class="btn btn-primary">Agregar Indicador</a>
+<br><br>
+
+<table class="table table-hover" id="tablaIndicadores">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Valor</th>
+            <th>Unidad</th>
+            <th>Fecha Cálculo</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for indicador in indicadores %}
+        <tr>
+            <td>{{ indicador.id }}</td>
+            <td>{% if indicador.nombre is not None %}{{ indicador.nombre }}{% else %}--{% endif %}</td>
+            <td>{% if indicador.valor is not None %}{{ indicador.valor }}{% else %}--{% endif %}</td>
+            <td>{% if indicador.unidad_medida is not None %}{{ indicador.unidad_medida }}{% else %}--{% endif %}</td>
+            <td>{% if indicador.fecha_calculo is not None %}{{ indicador.fecha_calculo }}{% else %}--{% endif %}</td>
+            <td class="d-flex align-items-center gap-1">
+                <a href="{% url 'editar_indicador' indicador.pk %}" class="btn btn-warning btn-sm" title="Editar Indicador">
+                    <i class="bi bi-pencil"></i>
+                </a>
+                <a href="{% url 'detalle_indicador' indicador.pk %}" class="btn btn-info btn-sm" title="Detalle Indicador">
+                    <i class="bi bi-eye"></i>
+                </a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6">No se encontraron elementos en la lista.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+    <tfoot class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Valor</th>
+            <th>Unidad</th>
+            <th>Fecha Cálculo</th>
+            <th>Acciones</th>
+        </tr>
+    </tfoot>
+</table>
+{% csrf_token %}
+{% endblock %}
+
+{% block scripts_pie %}
+<script>
+    window.onload = function () {
+        new DataTable('#tablaIndicadores');
+    }
+</script>
+{% endblock %}

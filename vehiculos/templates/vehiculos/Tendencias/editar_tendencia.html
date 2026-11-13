@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}Editar Análisis de Tendencia{% endblock %}
+
+{% block content %}
+<h3>Editar Tendencia</h3>
+<br>
+
+<div class="row">
+    <form action="" method="post">
+        {% csrf_token %}
+
+        <div class="row">
+            <div class="col">
+                <label for="id_indicador" class="form-label">Indicador Asociado:</label>
+                {{ form.indicador }}
+            </div>
+
+            <div class="col">
+                <label for="id_periodo" class="form-label">Periodo:</label>
+                {{ form.periodo }}
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col">
+                <label for="id_porcentaje_variacion" class="form-label">Porcentaje de Variación (%):</label>
+                {{ form.porcentaje_variacion }}
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col">
+                <label for="id_interpretacion" class="form-label">Interpretación:</label>
+                {{ form.interpretacion }}
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col">
+                <a href="{% url 'listar_tendencias' %}" class="btn btn-secondary">Volver</a>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block scripts_pie %}
+<script>
+</script>
+{% endblock %}

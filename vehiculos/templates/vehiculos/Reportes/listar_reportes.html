@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}Listado de Reportes{% endblock %}
+
+{% block content %}
+<h3>Listado de Reportes Generados</h3>
+<br>
+
+<a href="{% url 'crear_reporte' %}" class="btn btn-primary">Agregar Reporte</a>
+<br><br>
+
+<table class="table table-hover" id="tablaReportes">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Título</th>
+            <th>Tipo</th>
+            <th>Generado Por</th>
+            <th>Fecha Generación</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for reporte in reportes %}
+        <tr>
+            <td>{{ reporte.id }}</td>
+            <td>{% if reporte.titulo is not None %}{{ reporte.titulo }}{% else %}--{% endif %}</td>
+            <td>{% if reporte.tipo_reporte is not None %}{{ reporte.tipo_reporte }}{% else %}--{% endif %}</td>
+            <td>{% if reporte.generado_por is not None %}{{ reporte.generado_por.username }}{% else %}Sistema{% endif %}</td>
+            <td>{% if reporte.fecha_generacion is not None %}{{ reporte.fecha_generacion }}{% else %}--{% endif %}</td>
+            <td class="d-flex align-items-center gap-1">
+                <a href="{% url 'editar_reporte' reporte.pk %}" class="btn btn-warning btn-sm" title="Editar Reporte">
+                    <i class="bi bi-pencil"></i>
+                </a>
+                <a href="{% url 'detalle_reporte' reporte.pk %}" class="btn btn-info btn-sm" title="Detalle Reporte">
+                    <i class="bi bi-eye"></i>
+                </a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6">No se encontraron elementos en la lista.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+    <tfoot class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Título</th>
+            <th>Tipo</th>
+            <th>Generado Por</th>
+            <th>Fecha Generación</th>
+            <th>Acciones</th>
+        </tr>
+    </tfoot>
+</table>
+{% csrf_token %}
+{% endblock %}
+
+{% block scripts_pie %}
+<script>
+    window.onload = function () {
+        new DataTable('#tablaReportes');
+    }
+</script>
+{% endblock %}

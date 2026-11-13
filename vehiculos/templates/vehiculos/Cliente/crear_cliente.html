@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}Crear Cliente{% endblock %}
+
+{% block content %}
+<h3>Agregar Cliente</h3>
+<br>
+
+<div class="row">
+    <form action="" method="post">
+        {% csrf_token %}
+
+        <div class="row">
+            <div class="col">
+                <label for="id_rut" class="form-label">RUT:</label>
+                {{ form.rut }}
+            </div>
+
+            <div class="col">
+                <label for="id_nombre" class="form-label">Nombre:</label>
+                {{ form.nombre }}
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col">
+                <label for="id_correo" class="form-label">Correo:</label>
+                {{ form.correo }}
+            </div>
+
+            <div class="col">
+                <label for="id_telefono" class="form-label">Teléfono:</label>
+                {{ form.telefono }}
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col">
+                <label for="id_direccion" class="form-label">Dirección:</label>
+                {{ form.direccion }}
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col">
+                <button type="reset" class="btn btn-secondary">Cancelar</button>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}
