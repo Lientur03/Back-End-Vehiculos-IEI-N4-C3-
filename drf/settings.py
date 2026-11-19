@@ -111,6 +111,15 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Parámetros para el Usuario
+# Redirección al iniciar sesión
+LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = 'login'
+
+# Comportamiento de sesión
+SESSION_COOKIE_AGE = 3600  # Expira después de 1 hora
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True  # Expira al cerrar el navegador
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # Sesión almacenada en BD
 
 # Internationalization
 # https://docs.djangoproject.com/en/6.1/topics/i18n/
@@ -148,6 +157,12 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
+
+    # Control de Fechas Global
+    'DATETIME_FORMAT': '%Y-%m-%d %H:%M:%S',
+    'DATETIME_INPUT_FORMATS': ['%d-%m-%Y %H:%M:%S', '%d-%m-%Y', 'iso-8601'],
+    'DATE_FORMAT': '%d-%m-%Y',
+    'DATE_INPUT_FORMATS': ['%d-%m-%Y'],
 }
 
 from datetime import timedelta
