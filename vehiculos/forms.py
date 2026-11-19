@@ -10,7 +10,7 @@ from .models import (
 class BaseBootstrapForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        for field_name, field in self.fields.items():
+        for _, field in self.fields.items():
             widget = field.widget
             if isinstance(widget, forms.CheckboxInput):
                 existing_class = widget.attrs.get("class", "")
