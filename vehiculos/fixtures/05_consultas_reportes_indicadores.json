@@ -8,7 +8,8 @@
       "criterios_busqueda": {
         "tipo_operacion": "MANTENCION",
         "activo": true
-      }
+      },
+      "fecha_creacion": "2026-10-15T10:00:00"
     }
   },
   {
@@ -20,7 +21,8 @@
       "criterios_busqueda": {
         "nivel_prioridad": "ALTA",
         "resuelto": false
-      }
+      },
+      "fecha_creacion": "2026-11-01T11:30:00"
     }
   },
   {
@@ -30,6 +32,7 @@
       "titulo": "Consolidado de Mantenciones Octubre 2026",
       "tipo_reporte": "MANTENCION",
       "generado_por": 2,
+      "fecha_generacion": "2026-10-31T17:00:00",
       "parametros_usados": "mes=10; anio=2026"
     }
   },
@@ -40,6 +43,7 @@
       "titulo": "Estado de Flota Activa",
       "tipo_reporte": "FLOTA",
       "generado_por": 2,
+      "fecha_generacion": "2026-11-10T14:30:00",
       "parametros_usados": "estado=OPERATIVO"
     }
   },
@@ -49,7 +53,8 @@
     "fields": {
       "nombre": "Disponibilidad Operativa de Flota",
       "valor": "94.50",
-      "unidad_medida": "%"
+      "unidad_medida": "%",
+      "fecha_calculo": "2026-11-01T08:00:00"
     }
   },
   {
@@ -58,7 +63,8 @@
     "fields": {
       "nombre": "Promedio Kilometraje Mensual",
       "valor": "2450.00",
-      "unidad_medida": "km"
+      "unidad_medida": "km",
+      "fecha_calculo": "2026-11-01T08:05:00"
     }
   },
   {

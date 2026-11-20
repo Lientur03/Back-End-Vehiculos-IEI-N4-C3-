@@ -53,7 +53,8 @@
     "fields": {
       "operacion": 1,
       "kilometraje": 42500,
-      "nivel_combustible": "82.50"
+      "nivel_combustible": "82.50",
+      "fecha_registro": "2026-10-10T09:05:00"
     }
   },
   {
@@ -62,7 +63,8 @@
     "fields": {
       "operacion": 2,
       "kilometraje": 18900,
-      "nivel_combustible": "65.00"
+      "nivel_combustible": "65.00",
+      "fecha_registro": "2026-11-05T08:20:00"
     }
   },
   {
@@ -95,7 +97,8 @@
       "titulo": "Desgaste anticipado pastillas delanteras",
       "descripcion": "Se detectó espesor cercano al mínimo durante la inspección de rutina.",
       "nivel_prioridad": "MEDIA",
-      "resuelto": true
+      "resuelto": true,
+      "fecha_reporte": "2026-10-10T11:20:00"
     }
   },
   {
@@ -106,7 +109,8 @@
       "titulo": "Alerta de presión en neumático trasero derecho",
       "descripcion": "Variación de presión reportada en ruta; se solicita calibración.",
       "nivel_prioridad": "ALTA",
-      "resuelto": false
+      "resuelto": false,
+      "fecha_reporte": "2026-11-05T10:45:00"
     }
   }
 ]
