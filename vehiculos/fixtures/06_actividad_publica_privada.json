@@ -1,0 +1,58 @@
+[
+  {
+    "model": "vehiculos.actividad",
+    "pk": 1,
+    "fields": {
+      "actor": "12345678-9",
+      "accion": "Registro de mantención preventiva",
+      "entidad_afectada": "Operacion",
+      "detalles": "Se registró operación de mantención para vehículo HJKP45."
+    }
+  },
+  {
+    "model": "vehiculos.actividad",
+    "pk": 2,
+    "fields": {
+      "actor": "16789123-K",
+      "accion": "Actualización de telemetría",
+      "entidad_afectada": "Datos",
+      "detalles": "Lectura de kilometraje y nivel de combustible actualizada."
+    }
+  },
+  {
+    "model": "vehiculos.publica",
+    "pk": 1,
+    "fields": {
+      "titulo": "Protocolo de Revisión Previa a Ruta",
+      "contenido": "Verificar niveles de fluidos, presión de neumáticos y luces antes de iniciar cada jornada.",
+      "es_visible": true
+    }
+  },
+  {
+    "model": "vehiculos.publica",
+    "pk": 2,
+    "fields": {
+      "titulo": "Calendario General de Mantenciones",
+      "contenido": "Las mantenciones preventivas se coordinan con antelación según kilometraje o días transcurridos.",
+      "es_visible": true
+    }
+  },
+  {
+    "model": "vehiculos.privada",
+    "pk": 1,
+    "fields": {
+      "titulo": "Observación Interna de Costos de Taller",
+      "contenido_sensible": "Revisión de tarifas por hora y convenios de repuestos vigentes con proveedores.",
+      "perfil_autorizado": 1
+    }
+  },
+  {
+    "model": "vehiculos.privada",
+    "pk": 2,
+    "fields": {
+      "titulo": "Auditoría de Excepciones Críticas",
+      "contenido_sensible": "Seguimiento interno de incidencias operativas y tiempos de respuesta.",
+      "perfil_autorizado": 1
+    }
+  }
+]

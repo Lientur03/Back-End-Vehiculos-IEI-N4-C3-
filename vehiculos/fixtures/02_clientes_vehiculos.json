@@ -1,0 +1,44 @@
+[
+  {
+    "model": "vehiculos.cliente",
+    "pk": "12345678-9",
+    "fields": {
+      "nombre": "Transportes Sur Austral SpA",
+      "correo": "contacto@transportessuraustral.cl",
+      "telefono": "+56 9 8123 4567",
+      "direccion": "Av. Alemania 0450, Temuco"
+    }
+  },
+  {
+    "model": "vehiculos.cliente",
+    "pk": "16789123-K",
+    "fields": {
+      "nombre": "Constructora Araucanía Ltda.",
+      "correo": "flota@constructoraaraucania.cl",
+      "telefono": "+56 9 7654 3210",
+      "direccion": "Calle Prat 820, Padre Las Casas"
+    }
+  },
+  {
+    "model": "vehiculos.vehiculos",
+    "pk": "HJKP45",
+    "fields": {
+      "marca": "Toyota",
+      "modelo": "Hilux 2.8",
+      "anio": 2023,
+      "tipo_combustible": "Diésel",
+      "cliente": "12345678-9"
+    }
+  },
+  {
+    "model": "vehiculos.vehiculos",
+    "pk": "LRTW88",
+    "fields": {
+      "marca": "Nissan",
+      "modelo": "NP300 Frontier",
+      "anio": 2024,
+      "tipo_combustible": "Diésel",
+      "cliente": "16789123-K"
+    }
+  }
+]

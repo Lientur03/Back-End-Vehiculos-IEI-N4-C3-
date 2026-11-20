@@ -1,0 +1,112 @@
+[
+  {
+    "model": "vehiculos.gestion",
+    "pk": 1,
+    "fields": {
+      "codigo_flota": "FLT-TEM-01",
+      "nombre_area": "Operaciones Zona Sur",
+      "responsable": "12345678-9",
+      "fecha_inicio": "2026-08-01",
+      "activo": true
+    }
+  },
+  {
+    "model": "vehiculos.gestion",
+    "pk": 2,
+    "fields": {
+      "codigo_flota": "FLT-PLC-02",
+      "nombre_area": "Logística y Terreno",
+      "responsable": "16789123-K",
+      "fecha_inicio": "2026-09-01",
+      "activo": true
+    }
+  },
+  {
+    "model": "vehiculos.operacion",
+    "pk": 1,
+    "fields": {
+      "gestion": 1,
+      "actor": "12345678-9",
+      "patente_vehiculo": "HJKP45",
+      "tipo_operacion": "MANTENCION",
+      "fecha_inicio": "2026-10-10T09:00:00",
+      "fecha_fin": "2026-10-10T13:30:00",
+      "observaciones": "Cambio de aceite, filtros y revisión de frenos."
+    }
+  },
+  {
+    "model": "vehiculos.operacion",
+    "pk": 2,
+    "fields": {
+      "gestion": 2,
+      "actor": "16789123-K",
+      "patente_vehiculo": "LRTW88",
+      "tipo_operacion": "USO_DIARIO",
+      "fecha_inicio": "2026-11-05T08:15:00",
+      "fecha_fin": null,
+      "observaciones": "Despacho de materiales en ruta regional."
+    }
+  },
+  {
+    "model": "vehiculos.datos",
+    "pk": 1,
+    "fields": {
+      "operacion": 1,
+      "kilometraje": 42500,
+      "nivel_combustible": "82.50"
+    }
+  },
+  {
+    "model": "vehiculos.datos",
+    "pk": 2,
+    "fields": {
+      "operacion": 2,
+      "kilometraje": 18900,
+      "nivel_combustible": "65.00"
+    }
+  },
+  {
+    "model": "vehiculos.antecedentes",
+    "pk": 1,
+    "fields": {
+      "vehiculo": "HJKP45",
+      "fecha_evento": "2026-10-10",
+      "tipo_antecedente": "Mantención Preventiva",
+      "descripcion": "Mantención de los 40.000 km registrada con repuestos originales.",
+      "archivo_adjunto": null
+    }
+  },
+  {
+    "model": "vehiculos.antecedentes",
+    "pk": 2,
+    "fields": {
+      "vehiculo": "LRTW88",
+      "fecha_evento": "2026-09-18",
+      "tipo_antecedente": "Revisión Técnica",
+      "descripcion": "Revisión técnica y análisis de gases al día sin observaciones.",
+      "archivo_adjunto": null
+    }
+  },
+  {
+    "model": "vehiculos.excepcionales",
+    "pk": 1,
+    "fields": {
+      "operacion": 1,
+      "titulo": "Desgaste anticipado pastillas delanteras",
+      "descripcion": "Se detectó espesor cercano al mínimo durante la inspección de rutina.",
+      "nivel_prioridad": "MEDIA",
+      "resuelto": true
+    }
+  },
+  {
+    "model": "vehiculos.excepcionales",
+    "pk": 2,
+    "fields": {
+      "operacion": 2,
+      "titulo": "Alerta de presión en neumático trasero derecho",
+      "descripcion": "Variación de presión reportada en ruta; se solicita calibración.",
+      "nivel_prioridad": "ALTA",
+      "resuelto": false
+    }
+  }
+]
