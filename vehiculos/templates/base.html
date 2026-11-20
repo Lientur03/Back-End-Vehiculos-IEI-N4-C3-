@@ -93,6 +93,20 @@
                             <li><a class="dropdown-item" href="{% url 'listar_privadas' %}">Privadas</a></li>
                         </ul>
                     </li>
+
+                    <!-- Inicio y cierre de sesión -->
+                    {% if request.user.is_authenticated %}
+                        <li class="nav-item ms-lg-2">
+                            <form id="logout-form" action="{% url 'logout' %}" method="post" class="d-inline">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-outline-light btn-sm">Cerrar sesión</button>
+                            </form>
+                        </li>
+                    {% else %}
+                        <li class="nav-item ms-lg-2">
+                            <a class="btn btn-outline-info btn-sm" href="{% url 'login' %}">Iniciar sesión</a>
+                        </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
@@ -114,20 +128,6 @@
         {% block content %}
         {% endblock %}
     </main>
-
-    <!--Inicio y cierre de sesión de autenticación -->
-    {% if request.user.is_authenticated %}
-    <li class="nav-item ms-lg-2">
-        <form id="logout-form" action="{% url 'logout' %}" method="post" class="d-inline">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-outline-light btn-sm">Cerrar sesión</button>
-        </form>
-    </li>
-{% else %}
-    <li class="nav-item ms-lg-2">
-        <a class="btn btn-outline-info btn-sm" href="{% url 'login' %}">Iniciar sesión</a>
-    </li>
-{% endif %}
 
     <!-- Pie de página institucional (Unidad 3) -->
     <footer class="bg-dark text-white py-4 mt-auto shadow-lg text-center">

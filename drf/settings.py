@@ -86,8 +86,7 @@ DATABASES = {
         'USER': config('USER'),
         'PASSWORD': config('PASSWORD'),
         'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-            'charset': 'utf8',
+            'init_command': "SET default_storage_engine=INNODB, sql_mode='STRICT_TRANS_TABLES'",
         },
     }
 }

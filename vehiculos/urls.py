@@ -69,13 +69,13 @@ urlpatterns = [
     path('antecedentes/<int:pk>/cambiar-estado/', views.CambiarAntecedentesHabilitadoView.as_view(), name='cambiar_antecedentes_habilitado'),
     path('antecedentes/<int:pk>/eliminar/', views.AntecedentesDeleteView.as_view(), name='eliminar_antecedente'),
 
-    # 4. CLIENTE
+    # 4. CLIENTE (PK: rut -> CharField)
     path('clientes/listar/', views.ClienteListView.as_view(), name='listar_clientes'),
     path('clientes/crear/', views.ClienteCreateView.as_view(), name='crear_cliente'),
-    path('clientes/<int:pk>/editar/', views.ClienteUpdateView.as_view(), name='editar_cliente'),
-    path('clientes/<int:pk>/detalle/', views.ClienteDetailView.as_view(), name='detalle_cliente'),
-    path('clientes/<int:pk>/cambiar-estado/', views.CambiarClienteHabilitadoView.as_view(), name='cambiar_cliente_habilitado'),
-    path('clientes/<int:pk>/eliminar/', views.ClienteDeleteView.as_view(), name='eliminar_cliente'),
+    path('clientes/<str:pk>/editar/', views.ClienteUpdateView.as_view(), name='editar_cliente'),
+    path('clientes/<str:pk>/detalle/', views.ClienteDetailView.as_view(), name='detalle_cliente'),
+    path('clientes/<str:pk>/cambiar-estado/', views.CambiarClienteHabilitadoView.as_view(), name='cambiar_cliente_habilitado'),
+    path('clientes/<str:pk>/eliminar/', views.ClienteDeleteView.as_view(), name='eliminar_cliente'),
 
     # 5. CONSULTAS
     path('consultas/listar/', views.ConsultasListView.as_view(), name='listar_consultas'),
@@ -189,11 +189,11 @@ urlpatterns = [
     path('tendencias/<int:pk>/cambiar-estado/', views.CambiarTendenciasHabilitadoView.as_view(), name='cambiar_tendencias_habilitado'),
     path('tendencias/<int:pk>/eliminar/', views.TendenciasDeleteView.as_view(), name='eliminar_tendencia'),
 
-    # 19. VEHICULOS
+    # 19. VEHICULOS (PK: patente -> CharField)
     path('vehiculos/listar/', views.VehiculosListView.as_view(), name='listar_vehiculos'),
     path('vehiculos/crear/', views.VehiculosCreateView.as_view(), name='crear_vehiculo'),
-    path('vehiculos/<int:pk>/editar/', views.VehiculosUpdateView.as_view(), name='editar_vehiculo'),
-    path('vehiculos/<int:pk>/detalle/', views.VehiculosDetailView.as_view(), name='detalle_vehiculo'),
-    path('vehiculos/<int:pk>/cambiar-estado/', views.CambiarVehiculosHabilitadoView.as_view(), name='cambiar_vehiculos_habilitado'),
-    path('vehiculos/<int:pk>/eliminar/', views.VehiculosDeleteView.as_view(), name='eliminar_vehiculo'),
+    path('vehiculos/<str:pk>/editar/', views.VehiculosUpdateView.as_view(), name='editar_vehiculo'),
+    path('vehiculos/<str:pk>/detalle/', views.VehiculosDetailView.as_view(), name='detalle_vehiculo'),
+    path('vehiculos/<str:pk>/cambiar-estado/', views.CambiarVehiculosHabilitadoView.as_view(), name='cambiar_vehiculos_habilitado'),
+    path('vehiculos/<str:pk>/eliminar/', views.VehiculosDeleteView.as_view(), name='eliminar_vehiculo'),
 ]
