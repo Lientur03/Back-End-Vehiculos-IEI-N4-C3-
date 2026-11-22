@@ -6,7 +6,6 @@ from django.contrib import messages
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from rest_framework import viewsets
-from django.contrib.auth.decorators import login_required
 
 from . import models as mod
 from . import serializer as ser
