@@ -113,7 +113,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Parámetros para el Usuario
 # Redirección al iniciar sesión
 LOGIN_REDIRECT_URL = '/'
-LOGIN_URL = 'login'
+LOGIN_URL = '/accounts/login/'
 
 # Comportamiento de sesión
 SESSION_COOKIE_AGE = 3600  # Expira después de 1 hora
