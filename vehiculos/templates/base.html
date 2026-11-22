@@ -39,60 +39,62 @@
                         <a class="nav-link" href="{% url 'index' %}">Inicio</a>
                     </li>
 
-                    <!-- Bloque 1: Usuarios y Roles -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Usuarios y Roles
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-dark">
-                            <li><a class="dropdown-item" href="{% url 'listar_perfiles' %}">Perfiles</a></li>
-                            <li><a class="dropdown-item" href="{% url 'listar_administradores' %}">Administradores</a></li>
-                            <li><a class="dropdown-item" href="{% url 'listar_supervisores' %}">Supervisores</a></li>
-                            <li><a class="dropdown-item" href="{% url 'listar_clientes' %}">Clientes</a></li>
-                        </ul>
-                    </li>
+                    {% if user.is_authenticated %}
+                        <!-- 1) Usuarios y Roles -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Usuarios y Roles
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                                <li><a class="dropdown-item" href="{% url 'listar_perfiles' %}">Perfiles</a></li>
+                                <li><a class="dropdown-item" href="{% url 'listar_administradores' %}">Administradores</a></li>
+                                <li><a class="dropdown-item" href="{% url 'listar_supervisores' %}">Supervisores</a></li>
+                                <li><a class="dropdown-item" href="{% url 'listar_clientes' %}">Clientes</a></li>
+                            </ul>
+                        </li>
 
-                    <!-- Bloque 2: Operación y Flota -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Operación y Flota
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-dark">
-                            <li><a class="dropdown-item" href="{% url 'listar_vehiculos' %}">Vehículos</a></li>
-                            <li><a class="dropdown-item" href="{% url 'listar_estados' %}">Estados</a></li>
-                            <li><a class="dropdown-item" href="{% url 'listar_gestiones' %}">Gestiones</a></li>
-                            <li><a class="dropdown-item" href="{% url 'listar_operaciones' %}">Operaciones</a></li>
-                            <li><a class="dropdown-item" href="{% url 'listar_datos' %}">Datos</a></li>
-                            <li><a class="dropdown-item" href="{% url 'listar_antecedentes' %}">Antecedentes</a></li>
-                        </ul>
-                    </li>
+                        <!-- 2) Operación y Flota -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Operación y Flota
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                                <li><a class="dropdown-item" href="{% url 'listar_vehiculos' %}">Vehículos</a></li>
+                                <li><a class="dropdown-item" href="{% url 'listar_estados' %}">Estados</a></li>
+                                <li><a class="dropdown-item" href="{% url 'listar_gestiones' %}">Gestiones</a></li>
+                                <li><a class="dropdown-item" href="{% url 'listar_operaciones' %}">Operaciones</a></li>
+                                <li><a class="dropdown-item" href="{% url 'listar_datos' %}">Datos</a></li>
+                                <li><a class="dropdown-item" href="{% url 'listar_antecedentes' %}">Antecedentes</a></li>
+                            </ul>
+                        </li>
 
-                    <!-- Bloque 3: Control y Auditoría -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Control y Auditoría
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-dark">
-                            <li><a class="dropdown-item" href="{% url 'listar_excepcionales' %}">Excepcionales</a></li>
-                            <li><a class="dropdown-item" href="{% url 'listar_reglas' %}">Reglas</a></li>
-                            <li><a class="dropdown-item" href="{% url 'listar_consultas' %}">Consultas</a></li>
-                            <li><a class="dropdown-item" href="{% url 'listar_reportes' %}">Reportes</a></li>
-                            <li><a class="dropdown-item" href="{% url 'listar_actividades' %}">Actividades</a></li>
-                        </ul>
-                    </li>
+                        <!-- 3) Control y Auditoría -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Control y Auditoría
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                                <li><a class="dropdown-item" href="{% url 'listar_excepcionales' %}">Excepcionales</a></li>
+                                <li><a class="dropdown-item" href="{% url 'listar_reglas' %}">Reglas</a></li>
+                                <li><a class="dropdown-item" href="{% url 'listar_consultas' %}">Consultas</a></li>
+                                <li><a class="dropdown-item" href="{% url 'listar_reportes' %}">Reportes</a></li>
+                                <li><a class="dropdown-item" href="{% url 'listar_actividades' %}">Actividades</a></li>
+                            </ul>
+                        </li>
 
-                    <!-- Bloque 4: Analítica y Comunicación -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Analítica y Comunicación
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-dark">
-                            <li><a class="dropdown-item" href="{% url 'listar_indicadores' %}">Indicadores</a></li>
-                            <li><a class="dropdown-item" href="{% url 'listar_tendencias' %}">Tendencias</a></li>
-                            <li><a class="dropdown-item" href="{% url 'listar_publicas' %}">Públicas</a></li>
-                            <li><a class="dropdown-item" href="{% url 'listar_privadas' %}">Privadas</a></li>
-                        </ul>
-                    </li>
+                        <!-- 4) Analítica y Comunicación -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Analítica y Comunicación
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                                <li><a class="dropdown-item" href="{% url 'listar_indicadores' %}">Indicadores</a></li>
+                                <li><a class="dropdown-item" href="{% url 'listar_tendencias' %}">Tendencias</a></li>
+                                <li><a class="dropdown-item" href="{% url 'listar_publicas' %}">Públicas</a></li>
+                                <li><a class="dropdown-item" href="{% url 'listar_privadas' %}">Privadas</a></li>
+                            </ul>
+                        </li>
+                    {% endif %}
 
                     <!-- Inicio y cierre de sesión -->
                     {% if request.user.is_authenticated %}
