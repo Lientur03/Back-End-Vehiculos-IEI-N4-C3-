@@ -26,8 +26,9 @@ enrutador.register(r'tendencias', views.TendenciasViewSet)
 enrutador.register(r'vehiculos', views.VehiculosViewSet)
 
 urlpatterns = [
-    path('', include(enrutador.urls)),
     path('index/', views.index, name='index'),
+
+    # --- Rutas CBV (HTML) ---
 
     # 1. ACTIVIDAD
     path('actividades/listar/', views.ActividadListView.as_view(), name='listar_actividades'),
@@ -180,4 +181,7 @@ urlpatterns = [
     path('vehiculos/<str:pk>/detalle/', views.VehiculosDetailView.as_view(), name='detalle_vehiculo'),
     path('vehiculos/<str:pk>/cambiar-estado/', views.CambiarVehiculosHabilitadoView.as_view(), name='cambiar_vehiculos_habilitado'),
     path('vehiculos/<str:pk>/eliminar/', views.VehiculosDeleteView.as_view(), name='eliminar_vehiculo'),
+
+    # --- Rutas DRF aisladas bajo /api/ ---
+    path('api/', include(enrutador.urls)),
 ]
