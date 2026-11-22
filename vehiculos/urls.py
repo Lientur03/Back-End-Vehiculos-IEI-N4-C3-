@@ -1,12 +1,6 @@
 from django.urls import path, include
 from rest_framework import routers
-from django.contrib.auth import views as auth_views
 from vehiculos import views
-
-from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
-    TokenRefreshView,
-)
 
 enrutador = routers.DefaultRouter()
 
@@ -34,16 +28,6 @@ enrutador.register(r'vehiculos', views.VehiculosViewSet)
 urlpatterns = [
     path('', include(enrutador.urls)),
     path('index/', views.index, name='index'),
-
-    # --- Autenticación JWT ---
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-
-    # Autenticación
-    path('accounts/', include('django.contrib.auth.urls')),
-    path('login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
-    path('registro/', views.registro, name='registro'),
 
     # 1. ACTIVIDAD
     path('actividades/listar/', views.ActividadListView.as_view(), name='listar_actividades'),
