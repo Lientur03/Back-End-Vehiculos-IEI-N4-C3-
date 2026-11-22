@@ -36,6 +36,9 @@
                 <a href="{% url 'detalle_operacion' operacion.pk %}" class="btn btn-info btn-sm" title="Detalle Operación">
                     <i class="bi bi-eye"></i>
                 </a>
+                <a href="{% url 'eliminar_operacion' operacion.pk %}" class="btn btn-danger btn-sm" title="Eliminar Operación">
+                    <i class="bi bi-trash"></i>
+                </a>
             </td>
         </tr>
         {% empty %}

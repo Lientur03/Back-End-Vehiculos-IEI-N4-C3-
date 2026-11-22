@@ -45,6 +45,10 @@
                 <a href="{% url 'detalle_estado' estado.pk %}" class="btn btn-info btn-sm" title="Detalle Estado">
                     <i class="bi bi-eye"></i>
                 </a>
+
+                <a href="{% url 'eliminar_estado' estado.pk %}" class="btn btn-danger btn-sm" title="Eliminar Estado">
+                    <i class="bi bi-trash"></i>
+                </a>
             </td>
         </tr>
         {% empty %}

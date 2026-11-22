@@ -34,6 +34,9 @@
                 <a href="{% url 'detalle_consulta' consulta.pk %}" class="btn btn-info btn-sm" title="Detalle Consulta">
                     <i class="bi bi-eye"></i>
                 </a>
+                <a href="{% url 'eliminar_consulta' consulta.pk %}" class="btn btn-danger btn-sm" title="Eliminar Consulta">
+                    <i class="bi bi-trash"></i>
+                </a>
             </td>
         </tr>
         {% empty %}

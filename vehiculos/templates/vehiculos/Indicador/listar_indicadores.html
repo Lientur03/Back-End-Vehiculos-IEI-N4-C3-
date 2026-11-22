@@ -36,6 +36,9 @@
                 <a href="{% url 'detalle_indicador' indicador.pk %}" class="btn btn-info btn-sm" title="Detalle Indicador">
                     <i class="bi bi-eye"></i>
                 </a>
+                <a href="{% url 'eliminar_indicador' indicador.pk %}" class="btn btn-danger btn-sm" title="Eliminar Indicador">
+                    <i class="bi bi-trash"></i>
+                </a>
             </td>
         </tr>
         {% empty %}

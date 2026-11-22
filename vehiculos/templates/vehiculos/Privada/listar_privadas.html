@@ -34,6 +34,9 @@
                 <a href="{% url 'detalle_privada' privada.pk %}" class="btn btn-info btn-sm" title="Detalle Registro Privado">
                     <i class="bi bi-eye"></i>
                 </a>
+                <a href="{% url 'eliminar_privada' privada.pk %}" class="btn btn-danger btn-sm" title="Eliminar Registro Privado">
+                    <i class="bi bi-trash"></i>
+                </a>
             </td>
         </tr>
         {% empty %}
