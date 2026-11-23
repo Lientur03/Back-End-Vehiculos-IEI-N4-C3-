@@ -36,20 +36,20 @@
 
                 {% if regla.activa %}
                 <button type="button" class="btn btn-danger btn-sm deshabilitar" data-url="{% url 'cambiar_reglas_habilitado' regla.pk %}" data-current="true" title="Desactivar Regla">
-                    <i class="bi bi-x-circle-fill"></i>
+                    <i class="bi bi-toggle-off"></i>
                 </button>
                 {% else %}
                 <button type="button" class="btn btn-success btn-sm deshabilitar" data-url="{% url 'cambiar_reglas_habilitado' regla.pk %}" data-current="false" title="Activar Regla">
-                    <i class="bi bi-check-circle-fill"></i>
+                    <i class="bi bi-toggle-on"></i>
                 </button>
                 {% endif %}
 
                 <a href="{% url 'detalle_reglas' regla.pk %}" class="btn btn-info btn-sm" title="Detalle Regla">
-                    <i class="bi bi-eye"></i>
+                    <i class="bi bi-folder"></i>
                 </a>
 
                 <a href="{% url 'eliminar_regla' regla.pk %}" class="btn btn-danger btn-sm" title="Eliminar Regla">
-                    <i class="bi bi-trash"></i>
+                    <i class="bi bi-recycle"></i>
                 </a>
             </td>
         </tr>

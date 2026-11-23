@@ -36,20 +36,20 @@
 
                 {% if excepcional.resuelto %}
                 <button type="button" class="btn btn-danger btn-sm deshabilitar" data-url="{% url 'cambiar_excepcionales_habilitado' excepcional.pk %}" data-current="true" title="Marcar como No Resuelto">
-                    <i class="bi bi-x-circle-fill"></i>
+                    <i class="bi bi-x-circle"></i>
                 </button>
                 {% else %}
                 <button type="button" class="btn btn-success btn-sm deshabilitar" data-url="{% url 'cambiar_excepcionales_habilitado' excepcional.pk %}" data-current="false" title="Marcar como Resuelto">
-                    <i class="bi bi-check-circle-fill"></i>
+                    <i class="bi bi-check-circle"></i>
                 </button>
                 {% endif %}
 
                 <a href="{% url 'detalle_excepcional' excepcional.pk %}" class="btn btn-info btn-sm" title="Detalle Excepcional">
-                    <i class="bi bi-eye"></i>
+                    <i class="bi bi-folder"></i>
                 </a>
 
                 <a href="{% url 'eliminar_excepcional' excepcional.pk %}" class="btn btn-danger btn-sm" title="Eliminar Excepcional">
-                    <i class="bi bi-trash"></i>
+                    <i class="bi bi-recycle"></i>
                 </a>
             </td>
         </tr>

@@ -34,20 +34,20 @@
 
                 {% if publica.es_visible %}
                 <button type="button" class="btn btn-danger btn-sm deshabilitar" data-url="{% url 'cambiar_publica_habilitado' publica.pk %}" data-current="true" title="Ocultar Publicación">
-                    <i class="bi bi-x-circle-fill"></i>
+                    <i class="bi bi-eye-slash"></i>
                 </button>
                 {% else %}
                 <button type="button" class="btn btn-success btn-sm deshabilitar" data-url="{% url 'cambiar_publica_habilitado' publica.pk %}" data-current="false" title="Mostrar Publicación">
-                    <i class="bi bi-check-circle-fill"></i>
+                    <i class="bi bi-eye"></i>
                 </button>
                 {% endif %}
 
                 <a href="{% url 'detalle_publica' publica.pk %}" class="btn btn-info btn-sm" title="Detalle Publicación">
-                    <i class="bi bi-eye"></i>
+                    <i class="bi bi-folder"></i>
                 </a>
 
                 <a href="{% url 'eliminar_publica' publica.pk %}" class="btn btn-danger btn-sm" title="Eliminar Publicación">
-                    <i class="bi bi-trash"></i>
+                    <i class="bi bi-recycle"></i>
                 </a>
             </td>
         </tr>

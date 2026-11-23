@@ -34,20 +34,20 @@
 
                 {% if estado.es_activo %}
                 <button type="button" class="btn btn-danger btn-sm deshabilitar" data-url="{% url 'cambiar_estado_habilitado' estado.pk %}" data-current="true" title="Desactivar Estado">
-                    <i class="bi bi-x-circle-fill"></i>
+                    <i class="bi bi-toggle-off"></i>
                 </button>
                 {% else %}
                 <button type="button" class="btn btn-success btn-sm deshabilitar" data-url="{% url 'cambiar_estado_habilitado' estado.pk %}" data-current="false" title="Activar Estado">
-                    <i class="bi bi-check-circle-fill"></i>
+                    <i class="bi bi-toggle-on"></i>
                 </button>
                 {% endif %}
 
                 <a href="{% url 'detalle_estado' estado.pk %}" class="btn btn-info btn-sm" title="Detalle Estado">
-                    <i class="bi bi-eye"></i>
+                    <i class="bi bi-folder"></i>
                 </a>
 
                 <a href="{% url 'eliminar_estado' estado.pk %}" class="btn btn-danger btn-sm" title="Eliminar Estado">
-                    <i class="bi bi-trash"></i>
+                    <i class="bi bi-recycle"></i>
                 </a>
             </td>
         </tr>
