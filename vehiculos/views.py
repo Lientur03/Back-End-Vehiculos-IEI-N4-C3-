@@ -23,7 +23,7 @@ class BaseCambiarEstadoView(LoginRequiredMixin, UpdateView):
     fields = []
 
     def post(self, request, *args, **kwargs):
-        self.object = self.get_object(*args, **kwargs)
+        self.object = self.get_object()
         for field_name, value in request.POST.items():
             if field_name in ("csrfmiddlewaretoken",):
                 continue
