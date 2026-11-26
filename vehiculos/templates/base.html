@@ -108,7 +108,7 @@
                             </form>
                         </li>
                     {% else %}
-                        {% if request.resolver_match.url_name != 'login' and request.resolver_match.url_name != 'registro' %}
+                        {% if request.resolver_match.url_name != 'login' and request.resolver_match.url_name != 'registro' and request.resolver_match.url_name != 'password_reset' and request.resolver_match.url_name != 'password_reset_done' and request.resolver_match.url_name != 'password_reset_confirm' and request.resolver_match.url_name != 'password_reset_complete' %}
                             <li class="nav-item ms-lg-2">
                                 <a class="btn btn-outline-info btn-sm" href="{% url 'login' %}">Iniciar sesión</a>
                             </li>
