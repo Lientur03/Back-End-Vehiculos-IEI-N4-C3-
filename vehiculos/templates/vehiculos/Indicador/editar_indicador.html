@@ -10,15 +10,27 @@
     <form action="" method="post">
         {% csrf_token %}
 
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger" role="alert">
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+
         <div class="row">
             <div class="col">
                 <label for="id_nombre" class="form-label">Nombre del Indicador:</label>
                 {{ form.nombre }}
+                {% if form.nombre.errors %}
+                    <div class="text-danger small mt-1">{{ form.nombre.errors }}</div>
+                {% endif %}
             </div>
 
             <div class="col">
                 <label for="id_valor" class="form-label">Valor:</label>
                 {{ form.valor }}
+                {% if form.valor.errors %}
+                    <div class="text-danger small mt-1">{{ form.valor.errors }}</div>
+                {% endif %}
             </div>
         </div>
         <br>
@@ -27,6 +39,9 @@
             <div class="col">
                 <label for="id_unidad_medida" class="form-label">Unidad de Medida:</label>
                 {{ form.unidad_medida }}
+                {% if form.unidad_medida.errors %}
+                    <div class="text-danger small mt-1">{{ form.unidad_medida.errors }}</div>
+                {% endif %}
             </div>
         </div>
         <br>

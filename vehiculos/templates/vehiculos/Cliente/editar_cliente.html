@@ -10,15 +10,27 @@
     <form action="" method="post">
         {% csrf_token %}
 
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger" role="alert">
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+
         <div class="row">
             <div class="col">
                 <label for="id_rut" class="form-label">RUT:</label>
                 {{ form.rut }}
+                {% if form.rut.errors %}
+                    <div class="text-danger small mt-1">{{ form.rut.errors }}</div>
+                {% endif %}
             </div>
 
             <div class="col">
                 <label for="id_nombre" class="form-label">Nombre:</label>
                 {{ form.nombre }}
+                {% if form.nombre.errors %}
+                    <div class="text-danger small mt-1">{{ form.nombre.errors }}</div>
+                {% endif %}
             </div>
         </div>
         <br>
@@ -27,11 +39,17 @@
             <div class="col">
                 <label for="id_correo" class="form-label">Correo:</label>
                 {{ form.correo }}
+                {% if form.correo.errors %}
+                    <div class="text-danger small mt-1">{{ form.correo.errors }}</div>
+                {% endif %}
             </div>
 
             <div class="col">
                 <label for="id_telefono" class="form-label">Teléfono:</label>
                 {{ form.telefono }}
+                {% if form.telefono.errors %}
+                    <div class="text-danger small mt-1">{{ form.telefono.errors }}</div>
+                {% endif %}
             </div>
         </div>
         <br>
@@ -40,6 +58,9 @@
             <div class="col">
                 <label for="id_direccion" class="form-label">Dirección:</label>
                 {{ form.direccion }}
+                {% if form.direccion.errors %}
+                    <div class="text-danger small mt-1">{{ form.direccion.errors }}</div>
+                {% endif %}
             </div>
         </div>
         <br>

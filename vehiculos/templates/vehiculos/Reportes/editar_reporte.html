@@ -10,15 +10,27 @@
     <form action="" method="post">
         {% csrf_token %}
 
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger" role="alert">
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+
         <div class="row">
             <div class="col">
                 <label for="id_titulo" class="form-label">Título:</label>
                 {{ form.titulo }}
+                {% if form.titulo.errors %}
+                    <div class="text-danger small mt-1">{{ form.titulo.errors }}</div>
+                {% endif %}
             </div>
 
             <div class="col">
                 <label for="id_tipo_reporte" class="form-label">Tipo de Reporte:</label>
                 {{ form.tipo_reporte }}
+                {% if form.tipo_reporte.errors %}
+                    <div class="text-danger small mt-1">{{ form.tipo_reporte.errors }}</div>
+                {% endif %}
             </div>
         </div>
         <br>
@@ -27,11 +39,17 @@
             <div class="col">
                 <label for="id_generado_por" class="form-label">Generado por:</label>
                 {{ form.generado_por }}
+                {% if form.generado_por.errors %}
+                    <div class="text-danger small mt-1">{{ form.generado_por.errors }}</div>
+                {% endif %}
             </div>
 
             <div class="col">
                 <label for="id_parametros_usados" class="form-label">Parámetros Usados:</label>
                 {{ form.parametros_usados }}
+                {% if form.parametros_usados.errors %}
+                    <div class="text-danger small mt-1">{{ form.parametros_usados.errors }}</div>
+                {% endif %}
             </div>
         </div>
         <br>

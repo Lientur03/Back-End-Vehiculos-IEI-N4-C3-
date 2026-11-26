@@ -10,15 +10,27 @@
     <form action="" method="post">
         {% csrf_token %}
 
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger" role="alert">
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+
         <div class="row">
             <div class="col">
                 <label for="id_indicador" class="form-label">Indicador Asociado:</label>
                 {{ form.indicador }}
+                {% if form.indicador.errors %}
+                    <div class="text-danger small mt-1">{{ form.indicador.errors }}</div>
+                {% endif %}
             </div>
 
             <div class="col">
                 <label for="id_periodo" class="form-label">Periodo:</label>
                 {{ form.periodo }}
+                {% if form.periodo.errors %}
+                    <div class="text-danger small mt-1">{{ form.periodo.errors }}</div>
+                {% endif %}
             </div>
         </div>
         <br>
@@ -27,6 +39,9 @@
             <div class="col">
                 <label for="id_porcentaje_variacion" class="form-label">Porcentaje de Variación (%):</label>
                 {{ form.porcentaje_variacion }}
+                {% if form.porcentaje_variacion.errors %}
+                    <div class="text-danger small mt-1">{{ form.porcentaje_variacion.errors }}</div>
+                {% endif %}
             </div>
         </div>
         <br>
@@ -35,6 +50,9 @@
             <div class="col">
                 <label for="id_interpretacion" class="form-label">Interpretación:</label>
                 {{ form.interpretacion }}
+                {% if form.interpretacion.errors %}
+                    <div class="text-danger small mt-1">{{ form.interpretacion.errors }}</div>
+                {% endif %}
             </div>
         </div>
         <br>

@@ -10,15 +10,27 @@
     <form action="" method="post">
         {% csrf_token %}
 
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger" role="alert">
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+
         <div class="row">
             <div class="col">
                 <label for="id_patente" class="form-label">Patente:</label>
                 {{ form.patente }}
+                {% if form.patente.errors %}
+                    <div class="text-danger small mt-1">{{ form.patente.errors }}</div>
+                {% endif %}
             </div>
 
             <div class="col">
                 <label for="id_cliente" class="form-label">Cliente Propietario:</label>
                 {{ form.cliente }}
+                {% if form.cliente.errors %}
+                    <div class="text-danger small mt-1">{{ form.cliente.errors }}</div>
+                {% endif %}
             </div>
         </div>
         <br>
@@ -27,11 +39,17 @@
             <div class="col">
                 <label for="id_marca" class="form-label">Marca:</label>
                 {{ form.marca }}
+                {% if form.marca.errors %}
+                    <div class="text-danger small mt-1">{{ form.marca.errors }}</div>
+                {% endif %}
             </div>
 
             <div class="col">
                 <label for="id_modelo" class="form-label">Modelo:</label>
                 {{ form.modelo }}
+                {% if form.modelo.errors %}
+                    <div class="text-danger small mt-1">{{ form.modelo.errors }}</div>
+                {% endif %}
             </div>
         </div>
         <br>
@@ -40,11 +58,17 @@
             <div class="col">
                 <label for="id_anio" class="form-label">Año:</label>
                 {{ form.anio }}
+                {% if form.anio.errors %}
+                    <div class="text-danger small mt-1">{{ form.anio.errors }}</div>
+                {% endif %}
             </div>
 
             <div class="col">
                 <label for="id_tipo_combustible" class="form-label">Tipo de Combustible:</label>
                 {{ form.tipo_combustible }}
+                {% if form.tipo_combustible.errors %}
+                    <div class="text-danger small mt-1">{{ form.tipo_combustible.errors }}</div>
+                {% endif %}
             </div>
         </div>
         <br>

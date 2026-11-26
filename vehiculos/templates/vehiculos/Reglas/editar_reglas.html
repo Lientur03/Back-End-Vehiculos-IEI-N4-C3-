@@ -10,15 +10,27 @@
     <form action="" method="post">
         {% csrf_token %}
 
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger" role="alert">
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+
         <div class="row">
             <div class="col">
                 <label for="id_nombre_regla" class="form-label">Nombre de Regla:</label>
                 {{ form.nombre_regla }}
+                {% if form.nombre_regla.errors %}
+                    <div class="text-danger small mt-1">{{ form.nombre_regla.errors }}</div>
+                {% endif %}
             </div>
 
             <div class="col">
                 <label for="id_limite_kilometros_mantencion" class="form-label">Límite Kilómetros Mantención:</label>
                 {{ form.limite_kilometros_mantencion }}
+                {% if form.limite_kilometros_mantencion.errors %}
+                    <div class="text-danger small mt-1">{{ form.limite_kilometros_mantencion.errors }}</div>
+                {% endif %}
             </div>
         </div>
         <br>
@@ -27,11 +39,17 @@
             <div class="col">
                 <label for="id_dias_maximo_revision" class="form-label">Días Máximos Revisión:</label>
                 {{ form.dias_maximo_revision }}
+                {% if form.dias_maximo_revision.errors %}
+                    <div class="text-danger small mt-1">{{ form.dias_maximo_revision.errors }}</div>
+                {% endif %}
             </div>
 
             <div class="col">
                 <label for="id_activa" class="form-label">Activa:</label>
                 {{ form.activa }}
+                {% if form.activa.errors %}
+                    <div class="text-danger small mt-1">{{ form.activa.errors }}</div>
+                {% endif %}
             </div>
         </div>
         <br>

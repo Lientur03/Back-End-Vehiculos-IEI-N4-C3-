@@ -10,15 +10,27 @@
     <form action="" method="post">
         {% csrf_token %}
 
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger" role="alert">
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+
         <div class="row">
             <div class="col">
                 <label for="id_operacion" class="form-label">Operación:</label>
                 {{ form.operacion }}
+                {% if form.operacion.errors %}
+                    <div class="text-danger small mt-1">{{ form.operacion.errors }}</div>
+                {% endif %}
             </div>
 
             <div class="col">
                 <label for="id_kilometraje" class="form-label">Kilometraje:</label>
                 {{ form.kilometraje }}
+                {% if form.kilometraje.errors %}
+                    <div class="text-danger small mt-1">{{ form.kilometraje.errors }}</div>
+                {% endif %}
             </div>
         </div>
         <br>
@@ -27,6 +39,9 @@
             <div class="col">
                 <label for="id_nivel_combustible" class="form-label">Nivel de Combustible (%):</label>
                 {{ form.nivel_combustible }}
+                {% if form.nivel_combustible.errors %}
+                    <div class="text-danger small mt-1">{{ form.nivel_combustible.errors }}</div>
+                {% endif %}
             </div>
         </div>
         <br>

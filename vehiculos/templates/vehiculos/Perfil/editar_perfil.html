@@ -10,15 +10,27 @@
     <form action="" method="post">
         {% csrf_token %}
 
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger" role="alert">
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+
         <div class="row">
             <div class="col">
                 <label for="id_usuario" class="form-label">Usuario:</label>
                 {{ form.usuario }}
+                {% if form.usuario.errors %}
+                    <div class="text-danger small mt-1">{{ form.usuario.errors }}</div>
+                {% endif %}
             </div>
 
             <div class="col">
                 <label for="id_rol" class="form-label">Rol:</label>
                 {{ form.rol }}
+                {% if form.rol.errors %}
+                    <div class="text-danger small mt-1">{{ form.rol.errors }}</div>
+                {% endif %}
             </div>
         </div>
         <br>
@@ -27,11 +39,17 @@
             <div class="col">
                 <label for="id_nivel_acceso" class="form-label">Nivel de Acceso:</label>
                 {{ form.nivel_acceso }}
+                {% if form.nivel_acceso.errors %}
+                    <div class="text-danger small mt-1">{{ form.nivel_acceso.errors }}</div>
+                {% endif %}
             </div>
 
             <div class="col">
                 <label for="id_departamento" class="form-label">Departamento:</label>
                 {{ form.departamento }}
+                {% if form.departamento.errors %}
+                    <div class="text-danger small mt-1">{{ form.departamento.errors }}</div>
+                {% endif %}
             </div>
         </div>
         <br>
