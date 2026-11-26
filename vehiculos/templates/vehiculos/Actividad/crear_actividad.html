@@ -10,15 +10,27 @@
     <form action="" method="post">
         {% csrf_token %}
 
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger" role="alert">
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+
         <div class="row">
             <div class="col">
                 <label for="id_actor" class="form-label">Actor / Cliente:</label>
                 {{ form.actor }}
+                {% if form.actor.errors %}
+                    <div class="text-danger small mt-1">{{ form.actor.errors }}</div>
+                {% endif %}
             </div>
 
             <div class="col">
                 <label for="id_accion" class="form-label">Acción Realizada:</label>
                 {{ form.accion }}
+                {% if form.accion.errors %}
+                    <div class="text-danger small mt-1">{{ form.accion.errors }}</div>
+                {% endif %}
             </div>
         </div>
         <br>
@@ -27,6 +39,9 @@
             <div class="col">
                 <label for="id_entidad_afectada" class="form-label">Entidad Afectada:</label>
                 {{ form.entidad_afectada }}
+                {% if form.entidad_afectada.errors %}
+                    <div class="text-danger small mt-1">{{ form.entidad_afectada.errors }}</div>
+                {% endif %}
             </div>
         </div>
         <br>
@@ -35,6 +50,9 @@
             <div class="col">
                 <label for="id_detalles" class="form-label">Detalles:</label>
                 {{ form.detalles }}
+                {% if form.detalles.errors %}
+                    <div class="text-danger small mt-1">{{ form.detalles.errors }}</div>
+                {% endif %}
             </div>
         </div>
         <br>

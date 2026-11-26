@@ -10,15 +10,27 @@
     <form action="" method="post">
         {% csrf_token %}
 
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger" role="alert">
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+
         <div class="row">
             <div class="col">
                 <label for="id_gestion" class="form-label">Gestión:</label>
                 {{ form.gestion }}
+                {% if form.gestion.errors %}
+                    <div class="text-danger small mt-1">{{ form.gestion.errors }}</div>
+                {% endif %}
             </div>
 
             <div class="col">
                 <label for="id_actor" class="form-label">Cliente / Actor:</label>
                 {{ form.actor }}
+                {% if form.actor.errors %}
+                    <div class="text-danger small mt-1">{{ form.actor.errors }}</div>
+                {% endif %}
             </div>
         </div>
         <br>
@@ -27,11 +39,17 @@
             <div class="col">
                 <label for="id_patente_vehiculo" class="form-label">Patente de Vehículo:</label>
                 {{ form.patente_vehiculo }}
+                {% if form.patente_vehiculo.errors %}
+                    <div class="text-danger small mt-1">{{ form.patente_vehiculo.errors }}</div>
+                {% endif %}
             </div>
 
             <div class="col">
                 <label for="id_tipo_operacion" class="form-label">Tipo de Operación:</label>
                 {{ form.tipo_operacion }}
+                {% if form.tipo_operacion.errors %}
+                    <div class="text-danger small mt-1">{{ form.tipo_operacion.errors }}</div>
+                {% endif %}
             </div>
         </div>
         <br>
@@ -40,11 +58,17 @@
             <div class="col">
                 <label for="id_fecha_inicio" class="form-label">Fecha de Inicio:</label>
                 {{ form.fecha_inicio }}
+                {% if form.fecha_inicio.errors %}
+                    <div class="text-danger small mt-1">{{ form.fecha_inicio.errors }}</div>
+                {% endif %}
             </div>
 
             <div class="col">
                 <label for="id_fecha_fin" class="form-label">Fecha de Fin:</label>
                 {{ form.fecha_fin }}
+                {% if form.fecha_fin.errors %}
+                    <div class="text-danger small mt-1">{{ form.fecha_fin.errors }}</div>
+                {% endif %}
             </div>
         </div>
         <br>
@@ -53,6 +77,9 @@
             <div class="col">
                 <label for="id_observaciones" class="form-label">Observaciones:</label>
                 {{ form.observaciones }}
+                {% if form.observaciones.errors %}
+                    <div class="text-danger small mt-1">{{ form.observaciones.errors }}</div>
+                {% endif %}
             </div>
         </div>
         <br>

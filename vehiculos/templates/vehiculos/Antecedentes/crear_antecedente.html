@@ -10,15 +10,27 @@
     <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
 
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger" role="alert">
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+
         <div class="row">
             <div class="col">
                 <label for="id_vehiculo" class="form-label">Vehículo:</label>
                 {{ form.vehiculo }}
+                {% if form.vehiculo.errors %}
+                    <div class="text-danger small mt-1">{{ form.vehiculo.errors }}</div>
+                {% endif %}
             </div>
 
             <div class="col">
                 <label for="id_fecha_evento" class="form-label">Fecha del Evento:</label>
                 {{ form.fecha_evento }}
+                {% if form.fecha_evento.errors %}
+                    <div class="text-danger small mt-1">{{ form.fecha_evento.errors }}</div>
+                {% endif %}
             </div>
         </div>
         <br>
@@ -27,11 +39,17 @@
             <div class="col">
                 <label for="id_tipo_antecedente" class="form-label">Tipo de Antecedente:</label>
                 {{ form.tipo_antecedente }}
+                {% if form.tipo_antecedente.errors %}
+                    <div class="text-danger small mt-1">{{ form.tipo_antecedente.errors }}</div>
+                {% endif %}
             </div>
 
             <div class="col">
                 <label for="id_archivo_adjunto" class="form-label">Archivo Adjunto:</label>
                 {{ form.archivo_adjunto }}
+                {% if form.archivo_adjunto.errors %}
+                    <div class="text-danger small mt-1">{{ form.archivo_adjunto.errors }}</div>
+                {% endif %}
             </div>
         </div>
         <br>
@@ -40,6 +58,9 @@
             <div class="col">
                 <label for="id_descripcion" class="form-label">Descripción:</label>
                 {{ form.descripcion }}
+                {% if form.descripcion.errors %}
+                    <div class="text-danger small mt-1">{{ form.descripcion.errors }}</div>
+                {% endif %}
             </div>
         </div>
         <br>

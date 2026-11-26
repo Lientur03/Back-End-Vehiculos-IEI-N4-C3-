@@ -10,15 +10,27 @@
     <form action="" method="post">
         {% csrf_token %}
 
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger" role="alert">
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+
         <div class="row">
             <div class="col">
                 <label for="id_operacion" class="form-label">Operación:</label>
                 {{ form.operacion }}
+                {% if form.operacion.errors %}
+                    <div class="text-danger small mt-1">{{ form.operacion.errors }}</div>
+                {% endif %}
             </div>
 
             <div class="col">
                 <label for="id_titulo" class="form-label">Título:</label>
                 {{ form.titulo }}
+                {% if form.titulo.errors %}
+                    <div class="text-danger small mt-1">{{ form.titulo.errors }}</div>
+                {% endif %}
             </div>
         </div>
         <br>
@@ -27,11 +39,17 @@
             <div class="col">
                 <label for="id_nivel_prioridad" class="form-label">Nivel de Prioridad:</label>
                 {{ form.nivel_prioridad }}
+                {% if form.nivel_prioridad.errors %}
+                    <div class="text-danger small mt-1">{{ form.nivel_prioridad.errors }}</div>
+                {% endif %}
             </div>
 
             <div class="col">
                 <label for="id_resuelto" class="form-label">Resuelto:</label>
                 {{ form.resuelto }}
+                {% if form.resuelto.errors %}
+                    <div class="text-danger small mt-1">{{ form.resuelto.errors }}</div>
+                {% endif %}
             </div>
         </div>
         <br>
@@ -40,6 +58,9 @@
             <div class="col">
                 <label for="id_descripcion" class="form-label">Descripción:</label>
                 {{ form.descripcion }}
+                {% if form.descripcion.errors %}
+                    <div class="text-danger small mt-1">{{ form.descripcion.errors }}</div>
+                {% endif %}
             </div>
         </div>
         <br>
