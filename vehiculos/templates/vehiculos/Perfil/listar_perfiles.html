@@ -41,20 +41,29 @@
                 </a>
             </td>
         </tr>
-        {% empty %}
-        <tr>
-            <td colspan="6">No se encontraron elementos en la lista.</td>
-        </tr>
         {% endfor %}
     </tbody>
 </table>
-{% csrf_token %}
 {% endblock %}
 
 {% block scripts_pie %}
 <script>
-    window.onload = function () {
-        new DataTable('#tablaPerfiles');
-    }
+    $(document).ready(function () {
+        $('#tablaPerfiles').DataTable({
+            language: {
+                emptyTable: 'No se encontraron elementos en la lista.',
+                info: 'Mostrando _START_ a _END_ de _TOTAL_ registros',
+                infoEmpty: 'Mostrando 0 a 0 de 0 registros',
+                lengthMenu: 'Mostrar _MENU_ registros',
+                search: 'Buscar:',
+                paginate: {
+                    first: 'Primero',
+                    last: 'Último',
+                    next: 'Siguiente',
+                    previous: 'Anterior'
+                }
+            }
+        });
+    });
 </script>
 {% endblock %}
