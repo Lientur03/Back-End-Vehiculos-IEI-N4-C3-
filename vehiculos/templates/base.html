@@ -7,8 +7,10 @@
     <meta name="csrf-token" content="{{ csrf_token }}">
     <title>{% block title %}Sistema Vehículos{% endblock %}</title>
 
-    <!-- Bootstrap CSS (CDN oficial para garantizar estabilidad visual) -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap CSS base (reemplazable por plantilla hija vía block base_css) -->
+    {% block base_css %}
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    {% endblock %}
 
     <!-- Bootstrap Icons CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
@@ -16,6 +18,7 @@
     <!-- DataTables Bootstrap 5 CSS -->
     <link href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap5.min.css" rel="stylesheet">
 
+    <!-- CSS específico o ajustes adicionales por plantilla hija -->
     {% block extra_css %}{% endblock %}
 </head>
 <body class="bg-light d-flex flex-column min-vh-100">
@@ -98,7 +101,13 @@
 
                     <!-- Inicio y cierre de sesión -->
                     {% if request.user.is_authenticated %}
-                        <li class="nav-item ms-lg-2">
+                        <li class="nav-item ms-lg-2 d-flex align-items-center gap-2">
+                            <span class="text-white-50 small">
+                                <i class="bi bi-person-circle me-1"></i>{{ request.user.username }}
+                                {% if request.user.departamento %}
+                                    ({{ request.user.departamento }})
+                                {% endif %}
+                            </span>
                             <form id="logout-form" action="{% url 'logout' %}" method="post" class="d-inline">
                                 {% csrf_token %}
                                 <button type="submit" class="btn btn-outline-light btn-sm">Cerrar sesión</button>
@@ -121,7 +130,7 @@
         {% if messages %}
             <div class="mb-3">
                 {% for message in messages %}
-                    <div class="alert alert-{{ message.tags|default:'info' }} alert-dismissible fade show" role="alert">
+                    <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags|default:'info' }}{% endif %} alert-dismissible fade show" role="alert">
                         {{ message }}
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
                     </div>
