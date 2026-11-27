@@ -3,6 +3,10 @@
 
 {% block title %}Bienvenida{% endblock %}
 
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+{% endblock %}
+
 {% block content %}
 <!-- Tarjeta Principal de Bienvenida -->
 <div class="card mb-4 border-0 shadow-sm border-start border-primary border-4">
