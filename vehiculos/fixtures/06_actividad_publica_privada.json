@@ -1,0 +1,168 @@
+[
+  {
+    "model": "vehiculos.actividad",
+    "pk": 1,
+    "fields": {
+      "actor": "12345678-9",
+      "accion": "Registro de mantención preventiva",
+      "entidad_afectada": "Operacion",
+      "fecha_hora": "2026-10-10T09:10:00",
+      "detalles": "Se registró operación de mantención para vehículo HJKP45."
+    }
+  },
+  {
+    "model": "vehiculos.actividad",
+    "pk": 2,
+    "fields": {
+      "actor": "16789123-K",
+      "accion": "Actualización de telemetría",
+      "entidad_afectada": "Datos",
+      "fecha_hora": "2026-11-05T08:25:00",
+      "detalles": "Lectura de kilometraje y nivel de combustible actualizada."
+    }
+  },
+  {
+    "model": "vehiculos.actividad",
+    "pk": 3,
+    "fields": {
+      "actor": "76543210-4",
+      "accion": "Cierre de incidencia en taller",
+      "entidad_afectada": "Excepcionales",
+      "fecha_hora": "2026-11-08T15:50:00",
+      "detalles": "Se marcó como resuelta la fuga en amortiguador de patente PRST92."
+    }
+  },
+  {
+    "model": "vehiculos.actividad",
+    "pk": 4,
+    "fields": {
+      "actor": "77123456-2",
+      "accion": "Registro de antecedente documental",
+      "entidad_afectada": "Antecedentes",
+      "fecha_hora": "2026-10-25T14:10:00",
+      "detalles": "Incorporación de renovación de seguro comercial para KLMN34."
+    }
+  },
+  {
+    "model": "vehiculos.actividad",
+    "pk": 5,
+    "fields": {
+      "actor": "78901234-5",
+      "accion": "Ingreso de diagnóstico OBD-II",
+      "entidad_afectada": "Operacion",
+      "fecha_hora": "2026-11-18T12:15:00",
+      "detalles": "Finalización de inspección electrónica de unidad VWXY71."
+    }
+  },
+  {
+    "model": "vehiculos.actividad",
+    "pk": 6,
+    "fields": {
+      "actor": "12345678-9",
+      "accion": "Apertura de ruta regional",
+      "entidad_afectada": "Operacion",
+      "fecha_hora": "2026-11-22T08:02:00",
+      "detalles": "Inicio de operación de despacho para camión BCDF19."
+    }
+  },
+  {
+    "model": "vehiculos.publica",
+    "pk": 1,
+    "fields": {
+      "titulo": "Protocolo de Revisión Previa a Ruta",
+      "contenido": "Verificar niveles de fluidos, presión de neumáticos y luces antes de iniciar cada jornada.",
+      "fecha_publicacion": "2026-08-15T09:00:00",
+      "es_visible": true
+    }
+  },
+  {
+    "model": "vehiculos.publica",
+    "pk": 2,
+    "fields": {
+      "titulo": "Calendario General de Mantenciones",
+      "contenido": "Las mantenciones preventivas se coordinan con antelación según kilometraje o días transcurridos.",
+      "fecha_publicacion": "2026-09-01T10:30:00",
+      "es_visible": true
+    }
+  },
+  {
+    "model": "vehiculos.publica",
+    "pk": 3,
+    "fields": {
+      "titulo": "Normativa de Seguridad Vial en Ruta 5 Sur",
+      "contenido": "Respetar límites de velocidad, pausas de descanso cada 2 horas y uso obligatorio de cinturón.",
+      "fecha_publicacion": "2026-10-03T11:00:00",
+      "es_visible": true
+    }
+  },
+  {
+    "model": "vehiculos.publica",
+    "pk": 4,
+    "fields": {
+      "titulo": "Procedimiento ante Alertas en Tablero",
+      "contenido": "Ante testigos críticos de temperatura o presión de aceite, detener la unidad y notificar al supervisor.",
+      "fecha_publicacion": "2026-11-04T08:45:00",
+      "es_visible": true
+    }
+  },
+  {
+    "model": "vehiculos.publica",
+    "pk": 5,
+    "fields": {
+      "titulo": "Actualización de Horarios de Atención en Taller",
+      "contenido": "Recepción de unidades para mantención preventiva de lunes a viernes entre 08:30 y 17:30 hrs.",
+      "fecha_publicacion": "2026-11-20T12:00:00",
+      "es_visible": true
+    }
+  },
+  {
+    "model": "vehiculos.privada",
+    "pk": 1,
+    "fields": {
+      "titulo": "Observación Interna de Costos de Taller",
+      "contenido_sensible": "Revisión de tarifas por hora y convenios de repuestos vigentes con proveedores.",
+      "perfil_autorizado": 1,
+      "fecha_registro": "2026-10-05T15:00:00"
+    }
+  },
+  {
+    "model": "vehiculos.privada",
+    "pk": 2,
+    "fields": {
+      "titulo": "Auditoría de Excepciones Críticas",
+      "contenido_sensible": "Seguimiento interno de incidencias operativas y tiempos de respuesta.",
+      "perfil_autorizado": 1,
+      "fecha_registro": "2026-11-02T16:15:00"
+    }
+  },
+  {
+    "model": "vehiculos.privada",
+    "pk": 3,
+    "fields": {
+      "titulo": "Evaluación de Proveedores de Neumáticos",
+      "contenido_sensible": "Comparativa confidencial de rendimiento kilométrico y garantías por lote adquirido.",
+      "perfil_autorizado": 1,
+      "fecha_registro": "2026-11-11T10:40:00"
+    }
+  },
+  {
+    "model": "vehiculos.privada",
+    "pk": 4,
+    "fields": {
+      "titulo": "Informe Reservado de Siniestralidad",
+      "contenido_sensible": "Análisis interno de eventos menores en maniobras de carga y medidas correctivas.",
+      "perfil_autorizado": 1,
+      "fecha_registro": "2026-11-17T17:20:00"
+    }
+  },
+  {
+    "model": "vehiculos.privada",
+    "pk": 5,
+    "fields": {
+      "titulo": "Planificación Presupuestaria Flota 2027",
+      "contenido_sensible": "Proyección financiera para renovación de dos camionetas diésel de alto recorrido.",
+      "perfil_autorizado": 1,
+      "fecha_registro": "2026-11-24T09:50:00"
+    }
+  }
+]

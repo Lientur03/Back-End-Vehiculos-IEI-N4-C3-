@@ -1,0 +1,97 @@
+[
+  {
+    "model": "vehiculos.administrador",
+    "pk": 1,
+    "fields": {
+      "nombre": "Camila Soto Rojas",
+      "correo": "camila.soto@sistemavehiculos.cl"
+    }
+  },
+  {
+    "model": "vehiculos.administrador",
+    "pk": 2,
+    "fields": {
+      "nombre": "Diego Muñoz Vera",
+      "correo": "diego.munoz@sistemavehiculos.cl"
+    }
+  },
+  {
+    "model": "vehiculos.administrador",
+    "pk": 3,
+    "fields": {
+      "nombre": "Valentina Riquelme Torres",
+      "correo": "valentina.riquelme@sistemavehiculos.cl"
+    }
+  },
+  {
+    "model": "vehiculos.administrador",
+    "pk": 4,
+    "fields": {
+      "nombre": "Matías Sepúlveda Campos",
+      "correo": "matias.sepulveda@sistemavehiculos.cl"
+    }
+  },
+  {
+    "model": "vehiculos.administrador",
+    "pk": 5,
+    "fields": {
+      "nombre": "Fernanda Garrido Medina",
+      "correo": "fernanda.garrido@sistemavehiculos.cl"
+    }
+  },
+  {
+    "model": "vehiculos.supervisor",
+    "pk": 1,
+    "fields": {
+      "nombre": "Rodrigo Paredes Silva",
+      "correo": "rodrigo.paredes@sistemavehiculos.cl",
+      "perfil": "Supervisor de Taller"
+    }
+  },
+  {
+    "model": "vehiculos.supervisor",
+    "pk": 2,
+    "fields": {
+      "nombre": "Paula Contreras Lagos",
+      "correo": "paula.contreras@sistemavehiculos.cl",
+      "perfil": "Supervisor de Flota"
+    }
+  },
+  {
+    "model": "vehiculos.supervisor",
+    "pk": 3,
+    "fields": {
+      "nombre": "Cristian Navarro Fuentealba",
+      "correo": "cristian.navarro@sistemavehiculos.cl",
+      "perfil": "Supervisor de Seguridad Vial"
+    }
+  },
+  {
+    "model": "vehiculos.supervisor",
+    "pk": 4,
+    "fields": {
+      "nombre": "Javiera Bustos Morales",
+      "correo": "javiera.bustos@sistemavehiculos.cl",
+      "perfil": "Supervisor de Auditoría Técnica"
+    }
+  },
+  {
+    "model": "vehiculos.supervisor",
+    "pk": 5,
+    "fields": {
+      "nombre": "Sebastián Alarcón Pino",
+      "correo": "sebastian.alarcon@sistemavehiculos.cl",
+      "perfil": "Supervisor de Logística Regional"
+    }
+  },
+  {
+    "model": "vehiculos.perfil",
+    "pk": 1,
+    "fields": {
+      "usuario": 2,
+      "rol": "ADMIN",
+      "nivel_acceso": 3,
+      "departamento": "Administración y Control"
+    }
+  }
+]

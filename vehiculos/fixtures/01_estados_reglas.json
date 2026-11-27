@@ -1,0 +1,97 @@
+[
+  {
+    "model": "vehiculos.estado",
+    "pk": 1,
+    "fields": {
+      "nombre": "Operativo",
+      "descripcion": "Vehículo o recurso en condiciones normales de operación.",
+      "es_activo": true
+    }
+  },
+  {
+    "model": "vehiculos.estado",
+    "pk": 2,
+    "fields": {
+      "nombre": "En Mantención",
+      "descripcion": "En proceso de mantención preventiva o revisión en taller.",
+      "es_activo": true
+    }
+  },
+  {
+    "model": "vehiculos.estado",
+    "pk": 3,
+    "fields": {
+      "nombre": "En Reparación Correctiva",
+      "descripcion": "Vehículo detenido por falla mecánica o eléctrica mayor.",
+      "es_activo": true
+    }
+  },
+  {
+    "model": "vehiculos.estado",
+    "pk": 4,
+    "fields": {
+      "nombre": "Fuera de Servicio Temporal",
+      "descripcion": "Unidad sin asignación operativa por trámite o documentación pendiente.",
+      "es_activo": true
+    }
+  },
+  {
+    "model": "vehiculos.estado",
+    "pk": 5,
+    "fields": {
+      "nombre": "Dado de Baja",
+      "descripcion": "Recurso retirado definitivamente de la flota activa.",
+      "es_activo": false
+    }
+  },
+  {
+    "model": "vehiculos.reglas",
+    "pk": 1,
+    "fields": {
+      "nombre_regla": "Mantención Preventiva Estándar",
+      "limite_kilometros_mantencion": 10000,
+      "dias_maximo_revision": 180,
+      "activa": true
+    }
+  },
+  {
+    "model": "vehiculos.reglas",
+    "pk": 2,
+    "fields": {
+      "nombre_regla": "Revisión Flota Alta Exigencia",
+      "limite_kilometros_mantencion": 5000,
+      "dias_maximo_revision": 90,
+      "activa": true
+    }
+  },
+  {
+    "model": "vehiculos.reglas",
+    "pk": 3,
+    "fields": {
+      "nombre_regla": "Control Vehículos Pesados y Carga",
+      "limite_kilometros_mantencion": 7500,
+      "dias_maximo_revision": 120,
+      "activa": true
+    }
+  },
+  {
+    "model": "vehiculos.reglas",
+    "pk": 4,
+    "fields": {
+      "nombre_regla": "Inspección Pre-Temporada Invierno",
+      "limite_kilometros_mantencion": 8000,
+      "dias_maximo_revision": 150,
+      "activa": true
+    }
+  },
+  {
+    "model": "vehiculos.reglas",
+    "pk": 5,
+    "fields": {
+      "nombre_regla": "Esquema Antiguo Flota Liviana",
+      "limite_kilometros_mantencion": 15000,
+      "dias_maximo_revision": 365,
+      "activa": false
+    }
+  }
+]

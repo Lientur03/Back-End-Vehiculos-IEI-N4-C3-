@@ -1,0 +1,118 @@
+[
+  {
+    "model": "vehiculos.cliente",
+    "pk": "12345678-9",
+    "fields": {
+      "nombre": "Transportes Sur Austral SpA",
+      "correo": "contacto@transportessuraustral.cl",
+      "telefono": "+56 9 8123 4567",
+      "direccion": "Av. Alemania 0450, Temuco"
+    }
+  },
+  {
+    "model": "vehiculos.cliente",
+    "pk": "16789123-K",
+    "fields": {
+      "nombre": "Constructora Araucanía Ltda.",
+      "correo": "flota@constructoraaraucania.cl",
+      "telefono": "+56 9 7654 3210",
+      "direccion": "Calle Prat 820, Padre Las Casas"
+    }
+  },
+  {
+    "model": "vehiculos.cliente",
+    "pk": "76543210-4",
+    "fields": {
+      "nombre": "Forestal y Servicios Cautín S.A.",
+      "correo": "operaciones@forestalcautin.cl",
+      "telefono": "+56 9 9234 5678",
+      "direccion": "Ruta 5 Sur Km 672, Temuco"
+    }
+  },
+  {
+    "model": "vehiculos.cliente",
+    "pk": "77123456-2",
+    "fields": {
+      "nombre": "Distribuidora Logística Nahuelbuta SpA",
+      "correo": "logistica@nahuelbutaspa.cl",
+      "telefono": "+56 9 6345 7890",
+      "direccion": "Av. Caupolicán 1190, Temuco"
+    }
+  },
+  {
+    "model": "vehiculos.cliente",
+    "pk": "78901234-5",
+    "fields": {
+      "nombre": "Agrícola y Maquinarias Villarrica Ltda.",
+      "correo": "taller@agricolavillarrica.cl",
+      "telefono": "+56 9 5432 1098",
+      "direccion": "Camino a Villarrica Km 4, Freire"
+    }
+  },
+  {
+    "model": "vehiculos.vehiculos",
+    "pk": "HJKP45",
+    "fields": {
+      "marca": "Toyota",
+      "modelo": "Hilux 2.8",
+      "anio": 2023,
+      "tipo_combustible": "Diésel",
+      "cliente": "12345678-9"
+    }
+  },
+  {
+    "model": "vehiculos.vehiculos",
+    "pk": "LRTW88",
+    "fields": {
+      "marca": "Nissan",
+      "modelo": "NP300 Frontier",
+      "anio": 2024,
+      "tipo_combustible": "Diésel",
+      "cliente": "16789123-K"
+    }
+  },
+  {
+    "model": "vehiculos.vehiculos",
+    "pk": "PRST92",
+    "fields": {
+      "marca": "Mitsubishi",
+      "modelo": "L200 Katana CRT",
+      "anio": 2022,
+      "tipo_combustible": "Diésel",
+      "cliente": "76543210-4"
+    }
+  },
+  {
+    "model": "vehiculos.vehiculos",
+    "pk": "KLMN34",
+    "fields": {
+      "marca": "Peugeot",
+      "modelo": "Partner Maxi 1.6",
+      "anio": 2023,
+      "tipo_combustible": "Diésel",
+      "cliente": "77123456-2"
+    }
+  },
+  {
+    "model": "vehiculos.vehiculos",
+    "pk": "VWXY71",
+    "fields": {
+      "marca": "Ford",
+      "modelo": "Ranger XLT 3.2",
+      "anio": 2021,
+      "tipo_combustible": "Diésel",
+      "cliente": "78901234-5"
+    }
+  },
+  {
+    "model": "vehiculos.vehiculos",
+    "pk": "BCDF19",
+    "fields": {
+      "marca": "Hyundai",
+      "modelo": "Porter HD 2.5",
+      "anio": 2024,
+      "tipo_combustible": "Diésel",
+      "cliente": "12345678-9"
+    }
+  }
+]

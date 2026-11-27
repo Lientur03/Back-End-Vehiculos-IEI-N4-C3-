@@ -1,0 +1,221 @@
+[
+  {
+    "model": "vehiculos.consultas",
+    "pk": 1,
+    "fields": {
+      "usuario": 2,
+      "nombre_consulta": "Vehículos en Mantención Preventiva",
+      "criterios_busqueda": {
+        "tipo_operacion": "MANTENCION",
+        "activo": true
+      },
+      "fecha_creacion": "2026-10-15T10:00:00"
+    }
+  },
+  {
+    "model": "vehiculos.consultas",
+    "pk": 2,
+    "fields": {
+      "usuario": 2,
+      "nombre_consulta": "Incidencias de Prioridad Alta",
+      "criterios_busqueda": {
+        "nivel_prioridad": "ALTA",
+        "resuelto": false
+      },
+      "fecha_creacion": "2026-11-01T11:30:00"
+    }
+  },
+  {
+    "model": "vehiculos.consultas",
+    "pk": 3,
+    "fields": {
+      "usuario": 2,
+      "nombre_consulta": "Flota Diésel Sobre 40.000 km",
+      "criterios_busqueda": {
+        "tipo_combustible": "Diésel",
+        "kilometraje_min": 40000
+      },
+      "fecha_creacion": "2026-11-10T09:45:00"
+    }
+  },
+  {
+    "model": "vehiculos.consultas",
+    "pk": 4,
+    "fields": {
+      "usuario": 2,
+      "nombre_consulta": "Operaciones Activas Sin Cierre",
+      "criterios_busqueda": {
+        "fecha_fin_isnull": true
+      },
+      "fecha_creacion": "2026-11-16T15:20:00"
+    }
+  },
+  {
+    "model": "vehiculos.consultas",
+    "pk": 5,
+    "fields": {
+      "usuario": 2,
+      "nombre_consulta": "Antecedentes Técnicos Q4 2026",
+      "criterios_busqueda": {
+        "desde": "2026-10-01",
+        "hasta": "2026-12-31"
+      },
+      "fecha_creacion": "2026-11-23T16:10:00"
+    }
+  },
+  {
+    "model": "vehiculos.reportes",
+    "pk": 1,
+    "fields": {
+      "titulo": "Consolidado de Mantenciones Octubre 2026",
+      "tipo_reporte": "MANTENCION",
+      "generado_por": 2,
+      "fecha_generacion": "2026-10-31T17:00:00",
+      "parametros_usados": "mes=10; anio=2026"
+    }
+  },
+  {
+    "model": "vehiculos.reportes",
+    "pk": 2,
+    "fields": {
+      "titulo": "Estado de Flota Activa",
+      "tipo_reporte": "FLOTA",
+      "generado_por": 2,
+      "fecha_generacion": "2026-11-10T14:30:00",
+      "parametros_usados": "estado=OPERATIVO"
+    }
+  },
+  {
+    "model": "vehiculos.reportes",
+    "pk": 3,
+    "fields": {
+      "titulo": "Auditoría de Excepciones y Alertas Noviembre",
+      "tipo_reporte": "AUDITORIA",
+      "generado_por": 2,
+      "fecha_generacion": "2026-11-19T18:00:00",
+      "parametros_usados": "mes=11; prioridad=ALTA,MEDIA"
+    }
+  },
+  {
+    "model": "vehiculos.reportes",
+    "pk": 4,
+    "fields": {
+      "titulo": "Consumo y Kilometraje por Área Operativa",
+      "tipo_reporte": "OPERACION",
+      "generado_por": 2,
+      "fecha_generacion": "2026-11-22T12:15:00",
+      "parametros_usados": "agrupar_por=gestion"
+    }
+  },
+  {
+    "model": "vehiculos.reportes",
+    "pk": 5,
+    "fields": {
+      "titulo": "Cumplimiento de Reglas Preventivas Primavera 2026",
+      "tipo_reporte": "CUMPLIMIENTO",
+      "generado_por": 2,
+      "fecha_generacion": "2026-11-26T09:30:00",
+      "parametros_usados": "reglas_activas=true"
+    }
+  },
+  {
+    "model": "vehiculos.indicador",
+    "pk": 1,
+    "fields": {
+      "nombre": "Disponibilidad Operativa de Flota",
+      "valor": "94.50",
+      "unidad_medida": "%",
+      "fecha_calculo": "2026-11-01T08:00:00"
+    }
+  },
+  {
+    "model": "vehiculos.indicador",
+    "pk": 2,
+    "fields": {
+      "nombre": "Promedio Kilometraje Mensual",
+      "valor": "2450.00",
+      "unidad_medida": "km",
+      "fecha_calculo": "2026-11-01T08:05:00"
+    }
+  },
+  {
+    "model": "vehiculos.indicador",
+    "pk": 3,
+    "fields": {
+      "nombre": "Cumplimiento de Mantención Preventiva",
+      "valor": "96.80",
+      "unidad_medida": "%",
+      "fecha_calculo": "2026-11-15T08:00:00"
+    }
+  },
+  {
+    "model": "vehiculos.indicador",
+    "pk": 4,
+    "fields": {
+      "nombre": "Tiempo Medio de Atención en Taller",
+      "valor": "4.25",
+      "unidad_medida": "horas",
+      "fecha_calculo": "2026-11-20T09:00:00"
+    }
+  },
+  {
+    "model": "vehiculos.indicador",
+    "pk": 5,
+    "fields": {
+      "nombre": "Índice de Resolución de Incidencias",
+      "valor": "88.00",
+      "unidad_medida": "%",
+      "fecha_calculo": "2026-11-25T10:00:00"
+    }
+  },
+  {
+    "model": "vehiculos.tendencias",
+    "pk": 1,
+    "fields": {
+      "indicador": 1,
+      "periodo": "2026-Q4",
+      "porcentaje_variacion": "3.20",
+      "interpretacion": "Incremento sostenido en disponibilidad gracias a mantenciones preventivas oportunas."
+    }
+  },
+  {
+    "model": "vehiculos.tendencias",
+    "pk": 2,
+    "fields": {
+      "indicador": 2,
+      "periodo": "Noviembre 2026",
+      "porcentaje_variacion": "-4.15",
+      "interpretacion": "Leve disminución en recorrido mensual por redistribución de rutas."
+    }
+  },
+  {
+    "model": "vehiculos.tendencias",
+    "pk": 3,
+    "fields": {
+      "indicador": 3,
+      "periodo": "Noviembre 2026",
+      "porcentaje_variacion": "5.40",
+      "interpretacion": "Mejora en cumplimiento de pautas preventivas respecto al mes anterior."
+    }
+  },
+  {
+    "model": "vehiculos.tendencias",
+    "pk": 4,
+    "fields": {
+      "indicador": 4,
+      "periodo": "2026-Q4",
+      "porcentaje_variacion": "-11.80",
+      "interpretacion": "Reducción favorable en horas de detención por mejor planificación de repuestos."
+    }
+  },
+  {
+    "model": "vehiculos.tendencias",
+    "pk": 5,
+    "fields": {
+      "indicador": 5,
+      "periodo": "Noviembre 2026",
+      "porcentaje_variacion": "6.10",
+      "interpretacion": "Mayor velocidad de cierre en alertas reportadas desde ruta."
+    }
+  }
+]
