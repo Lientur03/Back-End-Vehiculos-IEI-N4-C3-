@@ -6,6 +6,10 @@
     <link rel="stylesheet" href="{% static 'css/cerulean.css' %}">
 {% endblock %}
 
+{% block extra_js %}
+    <script src="{% static 'js/datatables.js' %}"></script>
+{% endblock %}
+
 {% block content %}
 <h3>Listado de Consultas Guardadas</h3>
 <br>
