@@ -1,5 +1,6 @@
+from django.conf import settings
+from django.contrib.auth.models import AbstractUser
 from django.db import models
-from django.contrib.auth.models import User
 
 str_nombre = "Nombre"
 str_correo = "Correo Electrónico"
@@ -11,9 +12,27 @@ str_fecha_creacion = "Fecha Creación"
 str_fecha_actualizacion = "Fecha Actualización"
 
 
+# Modelo de usuario autenticado de la aplicación
+class Usuario(AbstractUser):
+    telefono = models.CharField(str_telefono, max_length=20, blank=True, null=True)
+    departamento = models.CharField("Departamento", max_length=100, blank=True, null=True)
+
+    class Meta:
+        db_table = "vehiculos_usuarios"
+        db_table_comment = "Usuarios autenticados del sistema de control de vehículos."
+
+    def __str__(self):
+        return self.username
+
+
 # 1. Perfil de usuario y niveles de acceso
 class Perfil(models.Model):
-    usuario = models.OneToOneField(User, on_delete=models.CASCADE, related_name='perfil', verbose_name="Usuario")
+    usuario = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='perfil',
+        verbose_name="Usuario",
+    )
     rol = models.CharField(
         "Rol",
         max_length=50,
@@ -203,7 +222,7 @@ class Reglas(models.Model):
 
 # 13. Consultas avanzadas y filtros guardados
 class Consultas(models.Model):
-    usuario = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Usuario")
+    usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="Usuario")
     nombre_consulta = models.CharField("Nombre de Consulta", max_length=100)
     criterios_busqueda = models.JSONField("Criterios de Búsqueda", help_text="Filtros guardados en formato JSON")
     fecha_creacion = models.DateTimeField(str_fecha_creacion, auto_now_add=True)
@@ -219,7 +238,7 @@ class Consultas(models.Model):
 class Reportes(models.Model):
     titulo = models.CharField(str_titulo, max_length=150)
     tipo_reporte = models.CharField("Tipo de Reporte", max_length=50)
-    generado_por = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, verbose_name="Generado Por")
+    generado_por = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, verbose_name="Generado Por")
     fecha_generacion = models.DateTimeField("Fecha de Generación", auto_now_add=True)
     parametros_usados = models.TextField("Parámetros Usados", blank=True)
 

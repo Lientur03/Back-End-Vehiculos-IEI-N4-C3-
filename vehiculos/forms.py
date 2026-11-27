@@ -1,4 +1,6 @@
 from django import forms
+from django.contrib.auth import get_user_model
+from django.contrib.auth.forms import UserCreationForm
 from .models import (
     Perfil, Administrador, Supervisor, Cliente, Vehiculos,
     Estado, Gestion, Operacion, Datos, Antecedentes,
@@ -6,8 +8,34 @@ from .models import (
     Tendencias, Actividad, Publica, Privada
 )
 
+Usuario = get_user_model()
+
 
 class BaseBootstrapForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for _, field in self.fields.items():
+            widget = field.widget
+            if isinstance(widget, forms.CheckboxInput):
+                existing_class = widget.attrs.get("class", "")
+                widget.attrs["class"] = f"{existing_class} form-check-input".strip()
+            elif isinstance(widget, forms.Select):
+                existing_class = widget.attrs.get("class", "")
+                widget.attrs["class"] = f"{existing_class} form-select".strip()
+            else:
+                existing_class = widget.attrs.get("class", "")
+                widget.attrs["class"] = f"{existing_class} form-control".strip()
+
+
+class UsuarioRegistroForm(UserCreationForm):
+    email = forms.EmailField(required=True, label="Correo Electrónico")
+    telefono = forms.CharField(max_length=20, required=False, label="Teléfono")
+    departamento = forms.CharField(max_length=100, required=False, label="Departamento")
+
+    class Meta(UserCreationForm.Meta):
+        model = Usuario
+        fields = ("username", "email", "telefono", "departamento")
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for _, field in self.fields.items():

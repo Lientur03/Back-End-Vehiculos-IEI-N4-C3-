@@ -1,11 +1,13 @@
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
 from .models import (
-    Perfil, Administrador, Supervisor, Cliente, Vehiculos, Estado, 
-    Gestion, Operacion, Datos, Antecedentes, Excepcionales, Reglas, 
+    Usuario, Perfil, Administrador, Supervisor, Cliente, Vehiculos, Estado,
+    Gestion, Operacion, Datos, Antecedentes, Excepcionales, Reglas,
     Consultas, Reportes, Indicador, Tendencias, Actividad, Publica, Privada
 )
 
-# Registramos todos los modelos en el panel de administración
+# Registramos el usuario personalizado con UserAdmin y todos los modelos en el panel de administración
+admin.site.register(Usuario, UserAdmin)
 admin.site.register(Perfil)
 admin.site.register(Administrador)
 admin.site.register(Supervisor)

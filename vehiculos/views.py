@@ -4,7 +4,6 @@ from django.views.generic import ListView, CreateView, UpdateView, DetailView, D
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.contrib.auth import login
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from rest_framework import viewsets
 
@@ -40,7 +39,7 @@ class BaseCambiarEstadoView(LoginRequiredMixin, UpdateView):
 # === Vista de registro y manejo de sesión === #
 def registro(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = fo.UsuarioRegistroForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
@@ -49,7 +48,7 @@ def registro(request):
         else:
             messages.error(request, "No ha sido posible Registrarlo. Por favor revise el formulario.")
     else:
-        form = UserCreationForm()
+        form = fo.UsuarioRegistroForm()
     return render(request, 'registration/registro.html', {'form': form})
 
 # === Vista Pública de Bienvenida === #
@@ -707,7 +706,7 @@ class CambiarTendenciasHabilitadoView(BaseCambiarEstadoView):
 
 class TendenciasDeleteView(LoginRequiredMixin, DeleteView):
     model = mod.Tendencias
-    template_name = 'vehiculos/Tendencias/eliminar_tendencia.html'
+    template_name = 'vehiculos/Tendencias/eliminar_regla.html'
     success_url = reverse_lazy('listar_tendencias')
 
 # =============

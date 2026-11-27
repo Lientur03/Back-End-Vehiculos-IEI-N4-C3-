@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/6.1/ref/settings/
 
 from pathlib import Path
 from decouple import config
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -40,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_simplejwt.token_blacklist',
-    'vehiculos'
+    'vehiculos',
 ]
 
 MIDDLEWARE = [
@@ -110,6 +111,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Modelo de usuario personalizado de la aplicación
+AUTH_USER_MODEL = 'vehiculos.Usuario'
+
 # Parámetros para el Usuario
 # Redirección al iniciar sesión y cerrar sesión
 LOGIN_URL = '/login/'
@@ -166,8 +170,6 @@ REST_FRAMEWORK = {
     'DATE_FORMAT': '%d-%m-%Y',
     'DATE_INPUT_FORMATS': ['%d-%m-%Y'],
 }
-
-from datetime import timedelta
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),

@@ -101,7 +101,13 @@
 
                     <!-- Inicio y cierre de sesión -->
                     {% if request.user.is_authenticated %}
-                        <li class="nav-item ms-lg-2">
+                        <li class="nav-item ms-lg-2 d-flex align-items-center gap-2">
+                            <span class="text-white-50 small">
+                                <i class="bi bi-person-circle me-1"></i>{{ request.user.username }}
+                                {% if request.user.departamento %}
+                                    ({{ request.user.departamento }})
+                                {% endif %}
+                            </span>
                             <form id="logout-form" action="{% url 'logout' %}" method="post" class="d-inline">
                                 {% csrf_token %}
                                 <button type="submit" class="btn btn-outline-light btn-sm">Cerrar sesión</button>
@@ -124,7 +130,7 @@
         {% if messages %}
             <div class="mb-3">
                 {% for message in messages %}
-                    <div class="alert alert-{{ message.tags|default:'info' }} alert-dismissible fade show" role="alert">
+                    <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags|default:'info' }}{% endif %} alert-dismissible fade show" role="alert">
                         {{ message }}
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
                     </div>
