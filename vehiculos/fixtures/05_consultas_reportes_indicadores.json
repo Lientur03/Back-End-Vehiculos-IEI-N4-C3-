@@ -3,7 +3,7 @@
     "model": "vehiculos.consultas",
     "pk": 1,
     "fields": {
-      "usuario": 2,
+      "usuario": 1,
       "nombre_consulta": "Vehículos en Mantención Preventiva",
       "criterios_busqueda": {
         "tipo_operacion": "MANTENCION",
@@ -16,7 +16,7 @@
     "model": "vehiculos.consultas",
     "pk": 2,
     "fields": {
-      "usuario": 2,
+      "usuario": 1,
       "nombre_consulta": "Incidencias de Prioridad Alta",
       "criterios_busqueda": {
         "nivel_prioridad": "ALTA",
@@ -29,7 +29,7 @@
     "model": "vehiculos.consultas",
     "pk": 3,
     "fields": {
-      "usuario": 2,
+      "usuario": 1,
       "nombre_consulta": "Flota Diésel Sobre 40.000 km",
       "criterios_busqueda": {
         "tipo_combustible": "Diésel",
@@ -42,7 +42,7 @@
     "model": "vehiculos.consultas",
     "pk": 4,
     "fields": {
-      "usuario": 2,
+      "usuario": 1,
       "nombre_consulta": "Operaciones Activas Sin Cierre",
       "criterios_busqueda": {
         "fecha_fin_isnull": true
@@ -54,7 +54,7 @@
     "model": "vehiculos.consultas",
     "pk": 5,
     "fields": {
-      "usuario": 2,
+      "usuario": 1,
       "nombre_consulta": "Antecedentes Técnicos Q4 2026",
       "criterios_busqueda": {
         "desde": "2026-10-01",
@@ -69,7 +69,7 @@
     "fields": {
       "titulo": "Consolidado de Mantenciones Octubre 2026",
       "tipo_reporte": "MANTENCION",
-      "generado_por": 2,
+      "generado_por": 1,
       "fecha_generacion": "2026-10-31T17:00:00",
       "parametros_usados": "mes=10; anio=2026"
     }
@@ -80,7 +80,7 @@
     "fields": {
       "titulo": "Estado de Flota Activa",
       "tipo_reporte": "FLOTA",
-      "generado_por": 2,
+      "generado_por": 1,
       "fecha_generacion": "2026-11-10T14:30:00",
       "parametros_usados": "estado=OPERATIVO"
     }
@@ -91,7 +91,7 @@
     "fields": {
       "titulo": "Auditoría de Excepciones y Alertas Noviembre",
       "tipo_reporte": "AUDITORIA",
-      "generado_por": 2,
+      "generado_por": 1,
       "fecha_generacion": "2026-11-19T18:00:00",
       "parametros_usados": "mes=11; prioridad=ALTA,MEDIA"
     }
@@ -102,7 +102,7 @@
     "fields": {
       "titulo": "Consumo y Kilometraje por Área Operativa",
       "tipo_reporte": "OPERACION",
-      "generado_por": 2,
+      "generado_por": 1,
       "fecha_generacion": "2026-11-22T12:15:00",
       "parametros_usados": "agrupar_por=gestion"
     }
@@ -113,7 +113,7 @@
     "fields": {
       "titulo": "Cumplimiento de Reglas Preventivas Primavera 2026",
       "tipo_reporte": "CUMPLIMIENTO",
-      "generado_por": 2,
+      "generado_por": 1,
       "fecha_generacion": "2026-11-26T09:30:00",
       "parametros_usados": "reglas_activas=true"
     }
